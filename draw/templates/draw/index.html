@@ -56,7 +56,7 @@
         var newPoint = new paper.Point([xPoint, yPoint]);
         
         if (!(receivedUid in route)) {
-            paths[receivedUid] = new paper.Path();
+            route[receivedUid] = new paper.Path();
         }
 
         route[receivedUid].strokeColor = "red";
