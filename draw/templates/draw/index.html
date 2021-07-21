@@ -28,6 +28,16 @@
     var uid = Date.now() % 10000;
     path.strokeColor = "red";
 
+    //drew inspiration from stackoverflow color function
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
     // add route .
     var route = {};
 
@@ -36,16 +46,17 @@
 
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
-
+    var color = getRandomColor();
     tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
        path.add(event.point);
        // You may need to add code here if you want to pass any other information.
-       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + "}" );
+       console.log(color)
+       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + ", \"color\" : " + JSON.stringify(color)+ "}" );
     }
 
     socket.onmessage = function(receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
-
+        var color = (received.color).toString();
         //get UID
         var receivedUid = (received.uid).toString();
         //get x
@@ -54,12 +65,11 @@
         var yPoint = (received.y).toString();
         //add x and y
         var newPoint = new paper.Point([xPoint, yPoint]);
-        
         if (!(receivedUid in route)) {
             route[receivedUid] = new paper.Path();
         }
 
-        route[receivedUid].strokeColor = "red";
+        route[receivedUid].strokeColor = color;
         route[receivedUid].add(newPoint);
 
         console.log("Received: " + JSON.stringify(received));
