@@ -28,7 +28,7 @@
     var uid = Date.now() % 10000;
     var color = getRandomColor();
     path.strokeColor = color;
-    
+
 
     //drew inspiration from stackoverflow color function
     function getRandomColor() {
@@ -81,7 +81,7 @@
         // You will probably want to add some code here to draw more lines.
     }
     }
-    
+
 
     socket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');

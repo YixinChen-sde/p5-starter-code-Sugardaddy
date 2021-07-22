@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Drawing</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+
+    </style>
+
+
+</head>
+<body>
+    <!-- You may change the dimensions of this canvas -->
+    Chat room implementation
+    <br>
+    <input type="text" name="option" id = "feedback">
+    <h1 class = "printchatbox" id = "printchatbox"></h1>
+
+</body>
+<script>
+    var inputTyped = document.getElementById('feedback');
+    var typed_str = inputTyped.value;
+    console.log(typeof typed_str)
+    //function to print
+    function print(msg) {
+      document.getElementById('printchatbox').innerHTML = inputTyped.value;
+    }
+    //print if user press the key
+    inputTyped.onkeyup = print(typed_str);
+
+    var uid = Date.now() % 10000;
+    // getting the URL (you may want to use for Exercise 3)
+    var url = window.location.href;
+
+    var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
+    // The input will display on the webpage
+    inputTyped.onkeyup = function() {
+      document.getElementById('printchatbox').innerHTML = inputTyped.value;
+      socket.send("{\"uid\" : " + uid + ", \"typed\" : " + JSON.stringify(typed_str)  + "}" );
+    }
+
+    socket.onmessage = function(receivedMessage) {
+      var received = JSON.parse(receivedMessage.data);
+      var receivedUid = (received.uid).toString();
+      var receiveStr = (received.typed).toString();
+      console.log(receiveStr);
+      print(receiveStr);
+    }
+
+    socket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+</script>
+
+
+
+
+
+</html>
