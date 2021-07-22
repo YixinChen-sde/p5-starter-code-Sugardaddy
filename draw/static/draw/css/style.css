@@ -1,2 +1,36 @@
-body {
+#responseText {
+  height: 100vh;
+  width: 93vh;
+  background-color: blue;
 }
+
+body {
+  background-color: blue;
+}
+/* 
+#textbox {
+  width: 93vh;
+  height: 10vh;
+}
+
+#send-btn {
+  padding: 0%;
+}
+
+#form {
+  height: 100vh;
+  width: 92vh;
+}
+
+#class-name {
+  font-size: 100px;
+  font-family: monospace;
+}
+
+body {
+  background-color: bisque;
+}
+
+input {
+  font-size: 100px;
+}  */
