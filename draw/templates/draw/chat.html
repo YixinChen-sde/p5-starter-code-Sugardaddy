@@ -20,44 +20,42 @@
     <!-- You may change the dimensions of this canvas -->
     Chat room implementation
     <br>
-    <input type="text" name="option" id = "feedback">
-    <h1 class = "printchatbox" id = "printchatbox"></h1>
-
+    <form onsubmit="return false;">
+      <h2>Welcome to the WebSocket chat room:</h2>
+      <textarea id="responseText" style="width: 500px; height: 500px;"></textarea>
+      <br>
+      <input type="text" name="message" style="width: 400px" value="Please type in your text">
+      <input type="button" value="send messages" onclick="send(this.form.message.value)">       <!-- onlick with javascript: drew inspiration from stackoverflow-->
+      <input type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear the chatbox">
+	</form>
 </body>
 <script>
-    var inputTyped = document.getElementById('feedback');
-    var typed_str = inputTyped.value;
-    console.log(typeof typed_str)
-    //function to print
-    function print(msg) {
-      document.getElementById('printchatbox').innerHTML = inputTyped.value;
-    }
-    //print if user press the key
-    inputTyped.onkeyup = print(typed_str);
-
-    var uid = Date.now() % 10000;
-    // getting the URL (you may want to use for Exercise 3)
-    var url = window.location.href;
-
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
-    // The input will display on the webpage
-    inputTyped.onkeyup = function() {
-      document.getElementById('printchatbox').innerHTML = inputTyped.value;
-      socket.send("{\"uid\" : " + uid + ", \"typed\" : " + JSON.stringify(typed_str)  + "}" );
-    }
-
-    socket.onmessage = function(receivedMessage) {
-      var received = JSON.parse(receivedMessage.data);
-      var receivedUid = (received.uid).toString();
-      var receiveStr = (received.typed).toString();
-      console.log(receiveStr);
-      print(receiveStr);
-    }
-
-    socket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-
+  var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
+  // Append the new input to the original text string
+  socket.onmessage = function (event) {
+			var text = document.getElementById('responseText');
+			text.value += '\n' + event.data;
+	};
+  // when the websocket is ready, inform the user
+	socket.onopen = function (event) {
+			var text = document.getElementById('responseText');
+			text.value = "The connection is open!";
+	};
+  // When the websocket is no longer active, inform the user
+	socket.onclose = function (event) {
+			var ta = document.getElementById('responseText');
+			ta.value = ta.value + "Connection was closed";
+	};
+  // click the button will send message to server by the WebSocket
+  function send(message) {
+  		if (!window.WebSocket) {
+  			return;
+  		} else if (socket.readyState == WebSocket.OPEN) {
+  			socket.send(message);
+  		} else {
+  			alert("The connection is not open.");
+  		}
+  }
 </script>
 
 
