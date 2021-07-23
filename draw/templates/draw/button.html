@@ -26,9 +26,9 @@
       <br>
       <p id = "responseText"></p>
       <p id = "dislikeText"></p>
-      <input type="button" name = "like" value="Useful" onclick="send('like')">
-      <input type = "button" name = "dislike" value = "Not useful" onclick = "send('hate')">
-      <input type = "button" name = "result" value = "graphing result" onclick = "send('result')">
+      <input type="button" id="like" name = "like" value="Useful" onclick="send('like')">
+      <input type = "button" id="dislike" name = "dislike" value = "Not useful" onclick = "send('hate')">
+      <input type = "button" id="result-btn" name = "result" value = "graphing result" onclick = "send('result')">
       <div id="container" style="width: 500px; height: 400px;"></div>
 	</form>
 </body>
@@ -38,6 +38,8 @@
   // Append the new input to the original text string
   var like_count = 0;
   var hate_count = 0;
+  var url = window.location.href;
+
 
   socket.onmessage = function (event) {
       var received = JSON.parse(event.data);
@@ -45,13 +47,19 @@
       if (received.type == "like") {
         var like_text = document.getElementById('responseText');
         like_count += 1;
-  			like_text.innerHTML = like_count;
+        if (url.indexOf("large") > -1) {
+  			like_text.innerHTML = "userful:" + like_count;
+        }
       } else if (received.type == "hate") {
         var hate_text = document.getElementById('dislikeText');
         hate_count += 1;
-        hate_text.innerHTML = hate_count;
+        if (url.indexOf("large") > -1) {
+        hate_text.innerHTML = "not userful:" + hate_count;
+        }
       } else if (received.type == "result") {
-        // create an instance of a pie chart
+
+        if(url.indexOf("large") > -1) {
+           // create an instance of a pie chart
         var chart = anychart.bar();
         // set the data
         chart.data([
@@ -64,6 +72,7 @@
         chart.container("container");
         // initiate chart display
         chart.draw();
+        }
       }
 	};
   // click the button will send message to server by the WebSocket
@@ -81,6 +90,16 @@
 			var ta = document.getElementById('responseText');
 			ta.value = ta.value + "Connection was closed";
 	};
+
+  if (url.indexOf("small") > -1) {
+	  document.getElementById('result-btn').style.display = 'none';
+  }
+
+  if (url.indexOf("large") > -1) {
+	  document.getElementById('like').style.display = 'none';
+    document.getElementById('dislike').style.display = 'none';
+
+  }
 
 </script>
 
