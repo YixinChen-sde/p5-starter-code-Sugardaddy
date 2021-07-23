@@ -46,7 +46,24 @@
         font-family:Georgia, 'Times New Roman', Times, serif;
       }
 
+      #title{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 50px;
+        padding: 50px;
+      }
   
+      #like{
+        background-color: lightslategray;
+        border-radius: 16px;
+        padding: 15px;
+      }
+
+
+      .dislike-select{
+        background-color: lightslategray;
+        border-radius: 16px;
+        padding: 15px;
+      }
       
     </style>
 
@@ -61,8 +78,11 @@
       <center> <h2 id="title">Rate your understanding!</h2></center>
       <p id = "responseText"></p>
       <p id = "dislikeText"></p>
-      <input type="button" id="like" name = "like" value="Useful" onclick="send('like')">
-      <input type = "button" id="dislike" name = "dislike" value = "Not useful" onclick = "send('hate')">
+      <!-- <img src="{% static 'draw/img/thumbUp.png' %}" alt="">
+      <img src="{% static 'draw/img/thumbDown.png' %}" alt=""> -->
+  
+      <input type="image" id="like" name = "like" value="Useful" src="{% static 'draw/img/up.png' %}" onclick="send('like')">
+      <input type="image" id="dislike" name = "dislike" value = "Not useful" src="{% static 'draw/img/down.png' %}" onclick = "send('hate')">
       <input type = "button" id="result-btn" name = "result" value = "graphing result" onclick = "send('result')">
       <div id="container" style="width: 500px; height: 400px;"></div>
 	</form>
@@ -138,6 +158,13 @@
 
   }
 
+  $('#like').on('click', () => {
+     $('#like').toggleClass(".like-select")
+    });
+
+  $('#dislike').on('click', () => {
+     $('#dislike').toggleClass(".dislike-select")
+    });
 </script>
 
 </html>
