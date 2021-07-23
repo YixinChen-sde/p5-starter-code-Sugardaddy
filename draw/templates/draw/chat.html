@@ -118,6 +118,9 @@
         display:block;width:100%
       }
 
+      .message_text {
+        font-size: 100px;
+      }
 
     </style>
 
@@ -139,7 +142,7 @@
     <form onsubmit="return false;" id="form">
       <button id="home-btn" onclick="w3_open()">☰</button>
       <center><h2 id="class-name">CS 160 Questions</h2></center>
-      <center><textarea id="responseText"></textarea></center>
+      <center><textarea id="responseText" class = "message_text"></textarea></center>
       <input type="text" name="message" id="textbox" placeholder="Ask a question...">
       <!-- onlick with javascript: drew inspiration from stackoverflow-->
 
