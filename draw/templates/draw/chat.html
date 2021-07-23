@@ -158,15 +158,30 @@
 </body>
 <script>
     var uid = Date.now() % 10000;
+    var userInfo = {};
+    var a = ["Small", "Blue", "Ugly"];
+var b = ["Bear", "Dog", "Banana"];
 
-
+var rA = Math.floor(Math.random()*a.length);
+var rB = Math.floor(Math.random()*b.length);
+var name = a[rA] + b[rB];
 
 
   var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
   // Append the new input to the original text string
   socket.onmessage = function (event) {
 			var text = document.getElementById('responseText');
-			text.value += '\n' + uid +" : "+ event.data;
+      var received = JSON.parse(event.data);
+      var receivedUid = (received.uid).toString();
+      var receivedMSG = (received.msg).toString();
+      var receivedNanme = (received.name).toString();
+      if (!(receivedUid in userInfo)) {
+        text.value += '\n' + receivedNanme +" : "+ receivedMSG;
+        userInfo[receivedUid] = receivedNanme;
+        console.log(userInfo)
+      } else {
+        text.value += '\n' + userInfo[receivedUid] +" : "+ receivedMSG;
+      }
 	};
   // when the websocket is ready, inform the user
 	socket.onopen = function (event) {
@@ -183,7 +198,7 @@
   		if (!window.WebSocket) {
   			return;
   		} else if (socket.readyState == WebSocket.OPEN) {
-  			socket.send(message);
+  			socket.send("{\"msg\" : " + JSON.stringify(message) + ",\"uid\" : " + uid + ", \"name\" : " + JSON.stringify(name) + "}");
   		} else {
   			alert("The connection is not open.");
   		}
