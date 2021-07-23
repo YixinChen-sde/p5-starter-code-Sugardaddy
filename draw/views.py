@@ -7,8 +7,5 @@ def index(request):
 def chat(request):
     return render(request, 'draw/chat.html')
 
-
-def room(request, room_name):
-    return render(request, 'draw/room.html', {
-        'room_name': room_name
-    })
+def button(request):
+    return render(request, 'draw/button.html')

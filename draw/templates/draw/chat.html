@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Drawing</title>
+    <title>P4 Question Board</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
@@ -12,29 +12,158 @@
 
     <style type="text/css">
 
+      body{
+        background-color: antiquewhite;
+      }
+
+      #form {
+        height: 100vh;
+        width: 26cm;
+        background-color: antiquewhite;
+      }
+
+      #responseText {
+        position: absolute;
+        left: 5px;
+        height: 80vh;
+        width: 26.2cm;
+        top: 5cm;
+        border-radius: 8px;
+        background-color: antiquewhite;
+      }
+
+      #home-btn{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 25px;
+        padding: 15px 32px;
+        border-radius: 8px;
+        background-color: lightblue;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+
+      #class-name{
+        position: absolute;
+        top: 60px;
+        left: 300px;
+        font-size: 60px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+
+      #textbox{
+        position: absolute;
+        bottom: 3cm;
+        left: 5px;
+        width: 26.2cm;
+        height: 3cm;
+        font-size: 40px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+
+      }
+      #textbox:focus {
+        height:9cm;
+        transition: 0.5s;
+      }
+
+      #send-btn {
+        position: absolute;
+        font-size: 40px;
+        width: 13.1cm;
+        top: 43cm;
+        left: 20px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        background-color: lightblue;
+
+      }
+
+      #clear-btn {
+        position: absolute;
+        font-size: 40px;
+        width: 13.1cm;
+        top: 43cm;
+        left: 8px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        background-color: lightblue;
+
+      }
+
+      /* sidebar borrowed from w3school */
+      .w3-sidebar
+      {
+        height:100%;
+        width:15cm;
+        background-color: lightblue;
+        position:fixed!important;
+        z-index:1;
+        overflow:auto
+      }
+      .w3-bar-block .w3-bar-item{
+        font-size: 1.6cm;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        width:100%;
+        display:block;
+        padding:8px 16px;
+        text-align:left;
+        border:none;
+        white-space:normal;
+        float:none;
+        outline:0
+      }
+
+      .w3-bar-block.w3-center .w3-bar-item{
+        text-align:center
+      }
+      .w3-block{
+        display:block;width:100%
+      }
+
+
     </style>
 
 
 </head>
 <body>
-    <!-- You may change the dimensions of this canvas -->
-    Chat room implementation
-    <br>
-    <form onsubmit="return false;">
-      <h2>Welcome to the WebSocket chat room:</h2>
-      <textarea id="responseText" style="width: 500px; height: 500px;"></textarea>
-      <br>
-      <input type="text" name="message" style="width: 400px" value="Please type in your text">
-      <input type="button" value="send messages" onclick="send(this.form.message.value)">       <!-- onlick with javascript: drew inspiration from stackoverflow-->
-      <input type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear the chatbox">
+  <!-- /* sidebar borrowed from w3school */ -->
+
+
+  <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+    <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+    <a href="#" class="w3-bar-item w3-button" style="color: black;">Classes:</a>
+    <a href="#" class="w3-bar-item w3-button">Compsci 160</a>
+    <a href="#" class="w3-bar-item w3-button">Compsci 189</a>
+    <a href="#" class="w3-bar-item w3-button">Data 100</a>
+    <a href="#" class="w3-bar-item w3-button">Econ 140</a>
+  </div>
+
+    <form onsubmit="return false;" id="form">
+      <button id="home-btn" onclick="w3_open()">☰</button>
+      <center><h2 id="class-name">CS 160 Questions</h2></center>
+      <center><textarea id="responseText"></textarea></center>
+      <input type="text" name="message" id="textbox" placeholder="Ask a question...">
+      <!-- onlick with javascript: drew inspiration from stackoverflow-->
+
+      <div class="row">
+        <div class="col">
+          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)">
+        </div>
+        <div class="col">
+          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear the chatbox">
+        </div>
+      </div>
 	</form>
 </body>
 <script>
+    var uid = Date.now() % 10000;
+
+
+
+
   var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
   // Append the new input to the original text string
   socket.onmessage = function (event) {
 			var text = document.getElementById('responseText');
-			text.value += '\n' + event.data;
+			text.value += '\n' + uid +" : "+ event.data;
 	};
   // when the websocket is ready, inform the user
 	socket.onopen = function (event) {
@@ -56,10 +185,15 @@
   			alert("The connection is not open.");
   		}
   }
+
+  /* sidebar borrowed from w3school */
+  function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
 </script>
-
-
-
-
 
 </html>

@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Drawing</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    <!-- This is the library for drawing the bar char-->
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js" type="text/javascript"></script>
+
+    <style type="text/css">
+
+    </style>
+
+
+</head>
+<body>
+    <!-- You may change the dimensions of this canvas -->
+    <br>
+    <form onsubmit="return false;">
+      <h2>Welcome to the WebSocket Button:</h2>
+      <br>
+      <p id = "responseText"></p>
+      <p id = "dislikeText"></p>
+      <input type="button" name = "like" value="Useful" onclick="send('like')">
+      <input type = "button" name = "dislike" value = "Not useful" onclick = "send('hate')">
+      <input type = "button" name = "result" value = "graphing result" onclick = "send('result')">
+      <div id="container" style="width: 500px; height: 400px;"></div>
+	</form>
+</body>
+
+<script>
+  var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
+  // Append the new input to the original text string
+  var like_count = 0;
+  var hate_count = 0;
+
+  socket.onmessage = function (event) {
+      var received = JSON.parse(event.data);
+      console.log(received.type)
+      if (received.type == "like") {
+        var like_text = document.getElementById('responseText');
+        like_count += 1;
+  			like_text.innerHTML = like_count;
+      } else if (received.type == "hate") {
+        var hate_text = document.getElementById('dislikeText');
+        hate_count += 1;
+        hate_text.innerHTML = hate_count;
+      } else if (received.type == "result") {
+        // create an instance of a pie chart
+        var chart = anychart.bar();
+        // set the data
+        chart.data([
+          ["like", like_count],
+          ["hate", hate_count]
+        ]);
+        // set chart title
+        chart.title("Voting result");
+        // set the container element
+        chart.container("container");
+        // initiate chart display
+        chart.draw();
+      }
+	};
+  // click the button will send message to server by the WebSocket
+  function send(type) {
+  		if (!window.WebSocket) {
+  			return;
+  		} else if (socket.readyState == WebSocket.OPEN) {
+        socket.send("{\"like\" : " + JSON.stringify(like_count) + ", \"hate\" : " + JSON.stringify(hate_count) + ", \"type\" : " + JSON.stringify(type) + "}");
+  		} else {
+  			alert("The connection is not open.");
+  		}
+  }
+  // When the websocket is no longer active, inform the user
+	socket.onclose = function (event) {
+			var ta = document.getElementById('responseText');
+			ta.value = ta.value + "Connection was closed";
+	};
+
+</script>
+
+</html>
