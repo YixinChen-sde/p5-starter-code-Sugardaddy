@@ -52,7 +52,7 @@
         padding: 50px;
       }
   
-      #like{
+      .like-select{
         background-color: lightslategray;
         border-radius: 16px;
         padding: 15px;
@@ -64,7 +64,9 @@
         border-radius: 16px;
         padding: 15px;
       }
-      
+      .ba {
+        background-color: lightslategray;
+      }
     </style>
 
 
@@ -159,11 +161,11 @@
   }
 
   $('#like').on('click', () => {
-     $('#like').toggleClass(".like-select")
+     $('#like').addClass("like-select")
     });
 
   $('#dislike').on('click', () => {
-     $('#dislike').toggleClass(".dislike-select")
+     $('#dislike').addClass("dislike-select")
     });
 </script>
 
