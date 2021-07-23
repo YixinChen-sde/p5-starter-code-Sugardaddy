@@ -51,6 +51,26 @@
         font-size: 50px;
         padding: 50px;
       }
+
+      #info{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
+        padding: 50px;
+      }
+
+      #like {
+        position: absolute;
+        left: 5cm;
+        top: 10cm;
+        border: lightslategray;
+      }
+
+      #dislike {
+        position: absolute;
+        right: 5cm;
+        top: 10cm;
+        border: lightslategray;
+      }
   
       .like-select{
         background-color: lightslategray;
@@ -66,6 +86,16 @@
       }
       .ba {
         background-color: lightslategray;
+      }
+
+      #box {
+        background-color: lightgray;
+        width: 16cm;
+        height: fit-content;
+        border-radius: 16px;
+        position: absolute;
+        top: 18cm;
+        left: 5cm;
       }
     </style>
 
@@ -86,6 +116,9 @@
       <input type="image" id="like" name = "like" value="Useful" src="{% static 'draw/img/up.png' %}" onclick="send('like')">
       <input type="image" id="dislike" name = "dislike" value = "Not useful" src="{% static 'draw/img/down.png' %}" onclick = "send('hate')">
       <input type = "button" id="result-btn" name = "result" value = "graphing result" onclick = "send('result')">
+      <div id="box" style="display: none;">
+        <p id="info">Thanks for voting, your instructor will release result on the big screen soon!</p>
+      </div>
       <div id="container" style="width: 500px; height: 400px;"></div>
 	</form>
 </body>
@@ -161,11 +194,13 @@
   }
 
   $('#like').on('click', () => {
-     $('#like').addClass("like-select")
+     $('#like').toggleClass("like-select")
+     document.getElementById('box').style.display = '';
     });
 
   $('#dislike').on('click', () => {
-     $('#dislike').addClass("dislike-select")
+     $('#dislike').toggleClass("dislike-select")
+     document.getElementById('box').style.display = '';
     });
 </script>
 
