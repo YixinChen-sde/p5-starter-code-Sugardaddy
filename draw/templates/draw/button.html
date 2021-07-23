@@ -14,6 +14,40 @@
 
     <style type="text/css">
 
+
+      body{
+        background-color: antiquewhite;
+      }
+
+      #form {
+        height: 100vh;
+        width: 26cm;
+        background-color: antiquewhite;
+      }
+
+      #responseText {
+        position: absolute;
+        left: 5px;
+        height: 80vh;
+        width: 26.2cm;
+        top: 10cm;
+        border-radius: 8px;
+        background-color: antiquewhite;
+      }
+
+      #home-btn{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 25px;
+        padding: 15px 32px;
+        border-radius: 8px;
+        background-color: lightblue;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+
+  
+      
     </style>
 
 
@@ -21,9 +55,10 @@
 <body>
     <!-- You may change the dimensions of this canvas -->
     <br>
+    <a href="chat"><button id="home-btn">Home</button></a>
     <form onsubmit="return false;">
-      <h2>Welcome to the WebSocket Button:</h2>
-      <br>
+      <br><br><br>
+      <center> <h2 id="title">Rate your understanding!</h2></center>
       <p id = "responseText"></p>
       <p id = "dislikeText"></p>
       <input type="button" id="like" name = "like" value="Useful" onclick="send('like')">
@@ -93,6 +128,8 @@
 
   if (url.indexOf("small") > -1) {
 	  document.getElementById('result-btn').style.display = 'none';
+    document.getElementById('responseText').style.display = 'none';
+
   }
 
   if (url.indexOf("large") > -1) {
