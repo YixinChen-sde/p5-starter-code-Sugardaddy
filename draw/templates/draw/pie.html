@@ -14,27 +14,191 @@
 
     <style type="text/css">
 
+
+body{
+        background-color: antiquewhite;
+      }
+
+
+      #responseText {
+        position: absolute;
+        left: 5px;
+        height: 80vh;
+        width: 26.2cm;
+        top: 10cm;
+        border-radius: 8px;
+        background-color: antiquewhite;
+      }
+
+      #home-btn{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 25px;
+        padding: 15px 32px;
+        border-radius: 8px;
+        background-color: lightblue;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+
+      #home-btn{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 25px;
+        padding: 15px 32px;
+        border-radius: 8px;
+        background-color: lightblue;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+
+      #title{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 50px;
+        padding: 50px;
+      }
+
+      #info{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
+        padding: 50px;
+      }
+
+      #like {
+        position: absolute;
+        left: 5cm;
+        top: 10cm;
+        border: lightslategray;
+      }
+
+      #dislike {
+        position: absolute;
+        right: 5cm;
+        top: 10cm;
+        border: lightslategray;
+      }
+  
+      .like-select{
+        background-color: lightslategray;
+        border-radius: 16px;
+        padding: 15px;
+      }
+
+
+      .dislike-select{
+        background-color: lightslategray;
+        border-radius: 16px;
+        padding: 15px;
+      }
+      .ba {
+        background-color: lightslategray;
+      }
+
+      #box {
+        background-color: lightgray;
+        width: 16cm;
+        height: fit-content;
+        border-radius: 16px;
+        position: absolute;
+        top: 18cm;
+        left: 5cm;
+      }
+
+      #result-btn {
+        padding: 10px;
+        background-color: lightblue;
+        font-size: 1cm;
+        left: 9cm;
+        position: absolute;
+      }
+
+      #container {
+        position: absolute;
+        top: 13cm;
+        left: 3cm;
+        height: 10cm;
+        width: 750px;
+        height: 600px;
+      }
+
+      #container2 {
+        position: absolute;
+        top: 29cm;
+        left: 3cm;
+        height: 10cm;
+        width: 750px;
+        height: 600px;
+      }
+
+    
+      #fully {
+        padding: 10px;
+        background-color: greenyellow;
+        width: 10cm;
+        height: 5cm;
+        font-size: 1cm;
+        left: 8cm;
+        position: absolute;
+      }
+
+
+      #kind {
+        padding: 10px;
+        background-color: yellow;
+        width: 10cm;
+        height: 5cm;
+        font-size: 1cm;
+        left: 8cm;
+        top: 15cm;
+        position: absolute;
+      }
+
+      #late {
+        padding: 10px;
+        background-color: orange;
+        width: 10cm;
+        height: 5cm;
+        font-size: 1cm;
+        left: 8cm;
+        top: 22cm;
+        position: absolute;
+      }
+
+      #no {
+        padding: 10px;
+        background-color: red;
+        width: 10cm;
+        height: 5cm;
+        font-size: 1cm;
+        left: 8cm;
+        top: 29cm;
+        position: absolute;
+      }
+
     </style>
 
 
 </head>
 <body>
+   <a id="large" href="chat?large"><button id="home-btn">Home</button></a>
+    <a id="small" href="chat"><button id="home-btn">Home</button></a>
     <!-- You may change the dimensions of this canvas -->
     <br>
     <form onsubmit="return false;">
-      <h2>Welcome to the WebSocket Button:</h2>
+      <br><br><br>
+      <center> <h2 id="title">Rate your understanding!</h2></center>
       <br>
       <p id = "full"></p>
       <p id = "kinda"></p>
       <p id = "later"></p>
       <p id = "no_clue"></p>
-      <input type="button" name = "full" value="fully_understand" onclick="send('full')">
-      <input type = "button" name = "kinda" value = "kinda_understand" onclick = "send('kinda')">
-      <input type = "button" name = "later" value = "Figure it out later" onclick = "send('later')">
-      <input type = "button" name = "no" value = "No_clue" onclick = "send('noclue')">
-      <input type = "button" name = "result" value = "graphing result" onclick = "send('result')">
-      <div id="container" style="width: 500px; height: 400px;"></div>
-      <div id = "container2" style="width: 500px; height: 400px;"></div>
+      <input type="button" id="fully" name = "full" value="Fully understand" onclick="send('full')">
+      <input type = "button" id="kind" name = "kinda" value = "Kinda understand" onclick = "send('kinda')">
+      <input type = "button" id="late" name = "later" value = "Figure it out later" onclick = "send('later')">
+      <input type = "button" id="no" name = "no" value = "No clue" onclick = "send('noclue')">
+      <input type = "button" id="result-btn" name = "result" value = "graphing result" onclick = "send('result')">
+      <div id="container"></div>
+      <div id = "container2"></div>
 	</form>
 </body>
 
@@ -45,25 +209,27 @@
   var kinda_count = 0;
   var later_count = 0;
   var no_count = 0;
+  var url = window.location.href;
+
 
   socket.onmessage = function (event) {
       var received = JSON.parse(event.data);
       if (received.type == "full") {
         var full_text = document.getElementById('full');
         full_count += 1;
-  			full_text.innerHTML = full_count;
+  			// full_text.innerHTML = full_count;
       } else if (received.type == "kinda") {
         var kinda_text = document.getElementById('kinda');
         kinda_count += 1;
-        kinda_text.innerHTML = kinda_count;
+        // kinda_text.innerHTML = kinda_count;
       } else if (received.type == "later") {
         var later_text = document.getElementById('later');
         later_count += 1;
-        later_text.innerHTML = later_count;
+        // later_text.innerHTML = later_count;
       } else if (received.type == "noclue") {
         var no_text = document.getElementById('no_clue');
         no_count += 1;
-        no_text.innerHTML = no_count;
+        // no_text.innerHTML = no_count;
       } else if (received.type == "result") {
         // 1. create an instance of a pie chart
         var chart = anychart.pie();
@@ -108,6 +274,38 @@
 			var ta = document.getElementById('responseText');
 			ta.value = ta.value + "Connection was closed";
 	};
+
+
+  if (url.indexOf("small") > -1) {
+	  document.getElementById('result-btn').style.display = 'none';
+    document.getElementById('container').style.display = 'none';
+    document.getElementById('container2').style.display = 'none';
+
+
+
+  }
+
+  if (url.indexOf("large") > -1) {
+	  document.getElementById('kind').style.display = 'none';
+    document.getElementById('no').style.display = 'none';
+    document.getElementById('late').style.display = 'none';
+    document.getElementById('fully').style.display = 'none';
+    document.getElementById('small').style.display = 'none';
+
+
+  }
+
+  $('#like').on('click', () => {
+     $('#like').toggleClass("like-select")
+     document.getElementById('box').style.display = '';
+     document.getElementById('dog').style.display = '';
+    });
+
+  $('#dislike').on('click', () => {
+     $('#dislike').toggleClass("dislike-select")
+     document.getElementById('box').style.display = '';
+     document.getElementById('dog').style.display = '';
+    });
 
 </script>
 
