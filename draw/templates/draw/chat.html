@@ -80,7 +80,28 @@
         background-color: lightblue;
 
       }
+      #buttonPageS {
+        position: absolute;
+        font-size: 40px;
+        width: 26.2cm;
+        top: 44.8cm;
+        left: 20px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        background-color: lightblue;
 
+      }
+
+      #buttonPageL {
+        position: absolute;
+        font-size: 40px;
+        width: 26.2cm;
+        top: 41.8cm;
+        height: 5cm;
+        left: 20px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        background-color: lightblue;
+
+      }
       #clear-btn {
         position: absolute;
         font-size: 40px;
@@ -161,7 +182,17 @@
           <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)">
         </div>
         <div class="col">
-          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear the chatbox">
+          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <a href="button?small">
+            <input id="buttonPageS" type="button" value="Rate your understanding">
+          </a>
+          <a href="button?large">
+            <input id="buttonPageL" type="button" value="Rate your understanding">
+          </a>
         </div>
       </div>
 	</form>
@@ -169,8 +200,8 @@
 <script>
     var uid = Date.now() % 10000;
     var userInfo = {};
-    var a = ["Small", "Blue", "Ugly"];
-    var b = ["Bear", "Dog", "Banana"];
+    var a = ["Small", "Blue", "Pretty", "Big"];
+    var b = ["Bear", "Dog", "Banana", "Piazza", "Beaker"];
 
     var rA = Math.floor(Math.random()*a.length);
     var rB = Math.floor(Math.random()*b.length);
@@ -230,6 +261,11 @@ if (url.indexOf("large") > -1) {
     document.getElementById('send-btn').style.display = 'none';
     document.getElementById('clear-btn').style.display = 'none';
     document.getElementById('home-btn').style.display = 'none';
+    document.getElementById('buttonPageS').style.display = 'none';
+  }
+
+if (url.indexOf("large") == -1) {
+  document.getElementById('buttonPageL').style.display = 'none';
   }
 
   $('#like').on('click', () => {

@@ -120,7 +120,10 @@
 <body>
     <!-- You may change the dimensions of this canvas -->
     <br>
-    <a href="chat"><button id="home-btn">Home</button></a>
+    <a id="large" href="chat?large"><button id="home-btn">Home</button></a>
+
+    <a id="small" href="chat"><button id="home-btn">Home</button></a>
+
     <form onsubmit="return false;">
       <br><br><br>
       <center> <h2 id="title">Rate your understanding!</h2></center>
@@ -209,6 +212,8 @@
   if (url.indexOf("large") > -1) {
 	  document.getElementById('like').style.display = 'none';
     document.getElementById('dislike').style.display = 'none';
+    document.getElementById('small').style.display = 'none';
+
 
   }
 
