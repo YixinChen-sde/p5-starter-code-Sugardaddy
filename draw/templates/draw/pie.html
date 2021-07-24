@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Drawing</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    <!-- This is the library for drawing the bar char-->
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js" type="text/javascript"></script>
+
+    <style type="text/css">
+
+    </style>
+
+
+</head>
+<body>
+    <!-- You may change the dimensions of this canvas -->
+    <br>
+    <form onsubmit="return false;">
+      <h2>Welcome to the WebSocket Button:</h2>
+      <br>
+      <p id = "full"></p>
+      <p id = "kinda"></p>
+      <p id = "later"></p>
+      <p id = "no_clue"></p>
+      <input type="button" name = "full" value="fully_understand" onclick="send('full')">
+      <input type = "button" name = "kinda" value = "kinda_understand" onclick = "send('kinda')">
+      <input type = "button" name = "later" value = "Figure it out later" onclick = "send('later')">
+      <input type = "button" name = "no" value = "No_clue" onclick = "send('noclue')">
+      <input type = "button" name = "result" value = "graphing result" onclick = "send('result')">
+      <div id="container" style="width: 500px; height: 400px;"></div>
+      <div id = "container2" style="width: 500px; height: 400px;"></div>
+	</form>
+</body>
+
+<script>
+  var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
+  // Append the new input to the original text string
+  var full_count = 0;
+  var kinda_count = 0;
+  var later_count = 0;
+  var no_count = 0;
+
+  socket.onmessage = function (event) {
+      var received = JSON.parse(event.data);
+      if (received.type == "full") {
+        var full_text = document.getElementById('full');
+        full_count += 1;
+  			full_text.innerHTML = full_count;
+      } else if (received.type == "kinda") {
+        var kinda_text = document.getElementById('kinda');
+        kinda_count += 1;
+        kinda_text.innerHTML = kinda_count;
+      } else if (received.type == "later") {
+        var later_text = document.getElementById('later');
+        later_count += 1;
+        later_text.innerHTML = later_count;
+      } else if (received.type == "noclue") {
+        var no_text = document.getElementById('no_clue');
+        no_count += 1;
+        no_text.innerHTML = no_count;
+      } else if (received.type == "result") {
+        // 1. create an instance of a pie chart
+        var chart = anychart.pie();
+        // set the data
+        chart.data([
+          ["fully Understand", full_count],
+          ["Partially Understand", kinda_count],
+          ["Figure it out later", later_count],
+          ["No Clue", no_count]
+        ]);
+        // set chart title
+        chart.title("Voting result");
+        // set the container element
+        chart.container("container");
+        // initiate chart display
+        chart.draw();
+        // 2. Create an instance of vertical bar chart
+        var chart_2 = anychart.column();
+        chart_2.data([
+          ["fully Understand", full_count],
+          ["Partially Understand", kinda_count],
+          ["Figure it out later", later_count],
+          ["No Clue", no_count]
+        ]);
+        chart_2.title("Voting result")
+        chart_2.container("container2");
+        chart_2.draw();
+      }
+	};
+  // click the button will send message to server by the WebSocket
+  function send(type) {
+  		if (!window.WebSocket) {
+  			return;
+  		} else if (socket.readyState == WebSocket.OPEN) {
+        socket.send("{\"type\" : " + JSON.stringify(type) + "}");
+  		} else {
+  			alert("The connection is not open.");
+  		}
+  }
+  // When the websocket is no longer active, inform the user
+	socket.onclose = function (event) {
+			var ta = document.getElementById('responseText');
+			ta.value = ta.value + "Connection was closed";
+	};
+
+</script>
+
+</html>
