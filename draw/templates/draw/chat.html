@@ -13,13 +13,15 @@
     <style type="text/css">
 
       body{
-        background-color: antiquewhite;
+        background-color: #D5E3EA;
+        /* background-image: url("/static/draw/img/whitewood.jpg");; */
       }
 
       #form {
         height: 100vh;
         width: 26cm;
-        background-color: antiquewhite;
+        background-color: #D5E3EA;
+        /* background-image: url("/static/draw/img/whitewood.jpg");; */
       }
 
       #responseText {
@@ -29,12 +31,14 @@
         width: 26.2cm;
         top: 5cm;
         border-radius: 8px;
-        background-color: antiquewhite;
+        background-color: #D5E3EA;
+
+        /* background-image: url("/static/draw/img/whitewood.jpg");; */
       }
 
       #home-btn{
         position: absolute;
-        top: 20px;
+        top: 100px;
         left: 20px;
         font-size: 25px;
         padding: 15px 32px;
@@ -123,14 +127,21 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
       }
 
+      #logo {
+        /* size determined by the scale of our logo */
+        width: 166.6px;
+        height: 62.6px; 
+        position: absolute;
+        top: 10px;
+        left: 20px;
+      }
     </style>
 
 
 </head>
 <body>
   <!-- /* sidebar borrowed from w3school */ -->
-
-
+  <img src="{% static 'draw/img/logo.png' %}" id="logo" alt="" sizes=10%>
   <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
     <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
     <a href="#" class="w3-bar-item w3-button" style="color: black;">Classes:</a>
@@ -139,7 +150,6 @@
     <a href="#" class="w3-bar-item w3-button">Data 100</a>
     <a href="#" class="w3-bar-item w3-button">Econ 140</a>
   </div>
-
     <form onsubmit="return false;" id="form">
       <button id="home-btn" onclick="w3_open()">☰</button>
       <center><h2 id="class-name">CS 160 Questions</h2></center>
@@ -160,11 +170,12 @@
     var uid = Date.now() % 10000;
     var userInfo = {};
     var a = ["Small", "Blue", "Ugly"];
-var b = ["Bear", "Dog", "Banana"];
+    var b = ["Bear", "Dog", "Banana"];
 
-var rA = Math.floor(Math.random()*a.length);
-var rB = Math.floor(Math.random()*b.length);
-var name = a[rA] + b[rB];
+    var rA = Math.floor(Math.random()*a.length);
+    var rB = Math.floor(Math.random()*b.length);
+    var name = a[rA] + b[rB];
+    var url = window.location.href;
 
 
   var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
@@ -186,7 +197,7 @@ var name = a[rA] + b[rB];
   // when the websocket is ready, inform the user
 	socket.onopen = function (event) {
 			var text = document.getElementById('responseText');
-			text.value = "The connection is open!";
+			text.value = "Please ask your questions here!";
 	};
   // When the websocket is no longer active, inform the user
 	socket.onclose = function (event) {
@@ -212,6 +223,24 @@ var name = a[rA] + b[rB];
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
+
+
+if (url.indexOf("large") > -1) {
+	  document.getElementById('textbox').style.display = 'none';
+    document.getElementById('send-btn').style.display = 'none';
+    document.getElementById('clear-btn').style.display = 'none';
+    document.getElementById('home-btn').style.display = 'none';
+  }
+
+  $('#like').on('click', () => {
+     $('#like').toggleClass("like-select")
+     document.getElementById('box').style.display = '';
+    });
+
+  $('#dislike').on('click', () => {
+     $('#dislike').toggleClass("dislike-select")
+     document.getElementById('box').style.display = '';
+    });
 </script>
 
 </html>

@@ -97,6 +97,22 @@
         top: 18cm;
         left: 5cm;
       }
+
+      #result-btn {
+        padding: 10px;
+        background-color: lightblue;
+        font-size: 1cm;
+        left: 7cm;
+        position: absolute;
+      }
+
+      #dog {
+        position: absolute;
+        top: 26cm;
+        left: 4.5cm;
+        width: 10cm;
+        height: 10cm;
+      }
     </style>
 
 
@@ -117,7 +133,10 @@
       <input type="image" id="dislike" name = "dislike" value = "Not useful" src="{% static 'draw/img/down.png' %}" onclick = "send('hate')">
       <input type = "button" id="result-btn" name = "result" value = "graphing result" onclick = "send('result')">
       <div id="box" style="display: none;">
-        <p id="info">Thanks for voting, your instructor will release result on the big screen soon!</p>
+        <p id="info">Thanks for voting, your instructor will release result on the big screen soon. Here is a dog while you wait!</p>
+      </div>
+      <div id="dog" style="display: none;">
+        <img src="{% static 'draw/img/dogo.gif' %}" alt="">
       </div>
       <div id="container" style="width: 500px; height: 400px;"></div>
 	</form>
@@ -196,11 +215,13 @@
   $('#like').on('click', () => {
      $('#like').toggleClass("like-select")
      document.getElementById('box').style.display = '';
+     document.getElementById('dog').style.display = '';
     });
 
   $('#dislike').on('click', () => {
      $('#dislike').toggleClass("dislike-select")
      document.getElementById('box').style.display = '';
+     document.getElementById('dog').style.display = '';
     });
 </script>
 
