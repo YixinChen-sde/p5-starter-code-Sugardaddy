@@ -71,7 +71,7 @@
         top: 10cm;
         border: lightslategray;
       }
-  
+
       .like-select{
         background-color: lightslategray;
         border-radius: 16px;
@@ -140,7 +140,7 @@
       <p id = "dislikeText"></p>
       <!-- <img src="{% static 'draw/img/thumbUp.png' %}" alt="">
       <img src="{% static 'draw/img/thumbDown.png' %}" alt=""> -->
-  
+
       <input type="image" id="like" name = "like" value="Useful" src="{% static 'draw/img/up.png' %}" onclick="send('like')">
       <input type="image" id="dislike" name = "dislike" value = "Not useful" src="{% static 'draw/img/down.png' %}" onclick = "send('hate')">
       <input type = "button" id="result-btn" name = "result" value = "graphing result" onclick = "send('result')">
@@ -169,13 +169,13 @@
         var like_text = document.getElementById('responseText');
         like_count += 1;
         if (url.indexOf("large") > -1) {
-  			like_text.innerHTML = "userful:" + like_count;
+  			//like_text.innerHTML = "userful:" + like_count;
         }
       } else if (received.type == "hate") {
         var hate_text = document.getElementById('dislikeText');
         hate_count += 1;
         if (url.indexOf("large") > -1) {
-        hate_text.innerHTML = "not userful:" + hate_count;
+        //hate_text.innerHTML = "not userful:" + hate_count;
         }
       } else if (received.type == "result") {
 
