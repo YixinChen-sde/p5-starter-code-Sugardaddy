@@ -8,4 +8,10 @@ urlpatterns = [
     path('chat', views.chat, name='chat'),
     path('button', views.button, name='button'),
     path('pie', views.pie, name='pie'),
+    path('activities', views.activities, name='activities'),
+    path('days', views.days, name='days'),
+    path('lovetracker', views.lovetracker, name='lovetracker'),
+    path('share', views.share, name='share'),
+    path('summary', views.summary, name='summary'),
+    path('topics', views.topics, name='topics')
 ]

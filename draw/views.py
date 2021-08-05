@@ -12,3 +12,23 @@ def pie(request):
 
 def button(request):
     return render(request, 'draw/button.html')
+
+def activities(request):
+    return render(request, 'draw/activities.html')
+
+
+def days(request):
+    return render(request, 'draw/days.html')
+
+def lovetracker(request):
+    return render(request, 'draw/lovetracker.html')
+
+def share(request):
+    return render(request, 'draw/share.html')
+
+
+def summary(request):
+    return render(request, 'draw/summary.html')
+
+def topics(request):
+    return render(request, 'draw/topics.html')
