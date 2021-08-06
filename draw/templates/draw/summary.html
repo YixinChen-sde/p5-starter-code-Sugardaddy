@@ -16,6 +16,18 @@
         background-color: #D5E3EA;
       }
 
+      .boxes{
+        text-align:center;
+        height:24vh;
+        font-size:3vh;
+      }
+
+      .button{
+        height:18vh;
+        width:40vw;
+        border-radius:12%;
+      }
+
         /* some navbar design inspired by W3school */
      .navbar {
             background-color: #EDEEED;
@@ -47,19 +59,96 @@
             background-color: #C4C4C4;
             color: white;
             }
-      
 
+    .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            right: 0;
+            }
+
+    .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    #photo {
+      position: absolute;
+      top: 8cm;
+      left: 7cm;
+      width: 12cm;
+    }
+
+    .share{
+        height:4vh;
+        width:15vw;
+        border-radius:50px;
+        position: absolute;
+        top: 5cm;
+        left: 19cm;
+      }
+    
     </style>
 
 
 </head>
 <body>
+
+  
+
+  <img id="photo" src="{% static 'draw/img/couple.png' %}" alt="">
+  <div class="col-6">
+    <a href="share">
+      <button class="share" style="background:#C4C4C4"><img style=" width: 1cm; " src="{% static 'draw/img/share.png' %}" alt=""></button>
+    </a>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="row boxes">
+    <div class="col-6">
+      <a href="lovetracker">
+        <button class="button" style="background:#9D8189">Status Quo</button>
+      </a>
+    </div>
+    <div class="col-6">
+      <a href="days">
+        <button class="button" style="background:#FFCAD4">Anniversary</button>
+      </a>
+    </div>
+  </div>
+  <div class="row boxes">
+    <div class="col-6">
+      <a href="days">
+        <button class="button" style="background:#778DA9">2 Days left til next Date</button>
+      </a>
+    </div>
+    <div class="col-6">
+      <a href="activities">
+        <button class="button" style="background:#FFE66D">Activities</button>
+      </a>
+    </div>
+  </div>
+
+  <img src="" alt="">
+  
   <div class="navbar">
     <a href="summary"  class="active"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
     <a href="days"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
     <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics"><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
     <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+
+
+  <div class="topbar">
+    <a href="" style="padding-left:  9.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.5cm; padding-left: 0%;">Queue&lt;T></p></a>
+  </div>
 
 </div>
 </body>
