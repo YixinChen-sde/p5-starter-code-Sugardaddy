@@ -15,5 +15,6 @@ urlpatterns = [
     path('summary', views.summary, name='summary'),
     path('topics', views.topics, name='topics'),
     path('onetopic', views.onetopic, name='onetopic'),
-    path('daysinput', views.daysinput, name='daysinput')
+    path('daysinput', views.daysinput, name='daysinput'),
+    path('settings', views.settings, name='settings'),
 ]

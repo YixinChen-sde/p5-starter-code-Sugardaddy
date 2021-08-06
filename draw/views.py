@@ -38,3 +38,6 @@ def onetopic(request):
 
 def daysinput(request):
     return render(request, 'draw/daysinput.html')
+
+def settings(request):
+    return render(request, 'draw/settings.html')
