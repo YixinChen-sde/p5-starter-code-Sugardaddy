@@ -17,4 +17,7 @@ urlpatterns = [
     path('onetopic', views.onetopic, name='onetopic'),
     path('daysinput', views.daysinput, name='daysinput'),
     path('settings', views.settings, name='settings'),
+    path('randomTopics_one', views.randomTopics_one, name='randomTopics_one'),
+    path('randomTopics_two', views.randomTopics_two, name='randomTopics_two')
+
 ]

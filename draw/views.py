@@ -41,3 +41,9 @@ def daysinput(request):
 
 def settings(request):
     return render(request, 'draw/settings.html')
+
+def randomTopics_one(request):
+    return render(request, 'draw/randomTopics_one.html')
+
+def randomTopics_two(request):
+    return render(request, 'draw/randomTopics_two.html')
