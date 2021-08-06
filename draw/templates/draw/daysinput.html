@@ -68,7 +68,76 @@
           background-color: #fff;
           padding: 3px 5px;
           box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-          width: 190px;
+          width: 50%;
+          height: 3cm;
+          font-size: 1.5cm;
+          
+        }
+        .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            }
+
+            .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+        #event-name{
+            width: 100%;
+            height: 3cm;
+            overflow: hidden;
+            
+            }
+
+        #since{
+            position: absolute;
+            top: 15cm;
+            left: 3cm;
+            width: 8cm;
+            height: 3cm;
+            border-radius: 30px;
+            font-size: 1cm;
+            box-shadow: 5px 10px #888888;
+
+        }
+
+        #countdown{
+            position: absolute;
+            top: 15cm;
+            right: 3cm;
+            width: 8cm;
+            height: 3cm;
+            border-radius: 30px;
+            font-size: 1cm;
+            box-shadow: 5px 10px #888888;
+
+        }
+
+        #submit{
+            position: absolute;
+            top: 20cm;
+            right: 9cm;
+            width: 8cm;
+            height: 4cm;
+            border-radius: 30px;
+            font-size: 1cm;
+            box-shadow: 5px 10px #888888;
+
+
+        }
+
+        #lovedate{
+            left: 10cm;
+
         }
 
     </style>
@@ -76,16 +145,16 @@
 
 </head>
 <body>
+    <br><br><br><br><br>
+    <input type="text" id="event-name" name="event-name" placeholder="Name of the event..." style="font-size: 1.6cm;"><br>
+    <br><br><br>
 
-    <input type="text" id="event-name" name="event-name" placeholder="Name of the event..."><br>
-
+    <input type="date" name="lovedate" id="lovedate">
     <button id = "countdown">Count Down </button>
     <button id = "since">Day since</button>
 
       <!-- Code for selecT DATE-->
-      <h1>Please select a date</h1>
-      <label for="lovedate">Please select a date</label>
-      <input type="date" name="lovedate" id="lovedate">
+     
       <button id="submit">Submit</button>
 
     <div class="navbar">
@@ -96,6 +165,14 @@
         <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
 
     </div>
+
+    <div class="topbar">
+        <a href="days"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+        <a href="days" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+        <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special Days</p></a>
+        <a href="days" style="padding-left: 6.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Done</p></a>
+    </div>
+ 
 
 </body>
 <script>
