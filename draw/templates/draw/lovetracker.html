@@ -131,27 +131,37 @@
 <script>
  var $container = $("#tracker");
  //store activity names in order
- var activityList =  [];
+ var activityList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
  //dictionary mapping activity names to img paths
- var nameToImg = {}
- $.getJSON('/static/draw/vendor/self/activities.json', function(a){
-     var rec = {}
-     for (var i in a) {
-         var keys = Object.keys(a[i]);
-         var N = Object.keys(a[i]).length;
-         var rand = Math.floor(Math.random() * N);
-         rec[keys[rand]] = a[i][keys[rand]];
-     }
-     // generate recommended section
-     createSection("recommended", rec, true);
-     for (var i in a) {
-         createSection(i, a[i], false);
-     }
- });
+ // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
+ var nameToImg = {};
+ //all the image names are just lowercase activity name without space
+ for (var i of activityList) {
+     nameToImg[i] = "/static/draw/img/tracker/" + i.toLowerCase().replace(/\s/g, ""));
+ }
 
- function buildTracker(activityList, nameToImg) {
+ function rebuildTracker() {
      $container.html(" ");
-
+     var N = activityList.length;
+     for (var i = 0; i < N; i += 1) {
+         var outerDiv = $("<div>").addClass("outerActivity");
+         var coolLine = $("<div>");
+         if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
+             outerDiv.addClass("lineRight");
+         }
+         if (i % 9 == 2 && i < N-3) {
+             outerDiv.addClass("squareLineRight");
+         }
+         if (i % 9 == 3 && i < N-3) {
+             outerDiv.addClass("squareLineLeft");
+         }
+         var imgElement = $("<img>").addClass("activityImg").attr("id", keys[i].replace(/\s/g, ""));
+         imgElement.attr("src", nameToImg[activityList[i]]);
+         var label = $("<p>" + activityList[i] + "</p>").addClass("activityLabel");
+         outerDiv.append(imgElement);
+         outerDiv.append(label);
+         $container.append(outerDiv);
+     }
  }
 
 </script>
