@@ -13,9 +13,38 @@
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
 
     <style type="text/css">
-
       body{
-        background-color: #D5E3EA;
+        background-color: #F6EEED;
+      }
+
+      .boxes{
+        text-align:center;
+        height:16vh;
+        font-size:3vh;
+      }
+      .top-button{
+        height:12vh;
+        width:33vw;
+        border-radius:9%;
+      }
+      .button{
+        height:12vh;
+        width:78vw;
+        border-radius:9%;
+      }
+      .text-padding1{
+        padding-left:11.5vw;
+        padding-right:11.5vw;
+      }
+      .text-padding2{
+        padding-left:5vw;
+        padding-right:5vw;
+      }
+      #add_btn{
+        height:6.75vh;
+        width:12vw;
+        border-radius:50%;
+        font-size:3.5vh;
       }
 
     .navbar {
@@ -50,10 +79,77 @@
             }
 
     </style>
-
-
 </head>
 <body>
+  <div style="height:7vh"> </div>
+  <div class="container-fluid" style="padding-left:6vw;padding-right:6vw">
+    <div class="row boxes">
+      <div class="col-6">
+        <a href="#">
+          <button class="top-button" style="background:#EFC7C2">Together for 40 days</button>
+        </a>
+      </div>
+      <div class="col-6">
+        <a href="#">
+          <button class="top-button" style="background:#F5ACAC">Anniversary in 325 Days</button>
+        </a>
+      </div>
+    </div>
+    <div class="row boxes">
+      <div class="col">
+        <a href="#">
+          <button class="button" style="background:#DFE7FD">
+            Next Date
+            <span class="text-padding1"></span>
+            4 days left
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row boxes">
+      <div class="col">
+        <a href="#">
+          <button class="button" style="background:#DFE7FD">
+            Trip to LA
+            <span class="text-padding1"></span>
+            30 days left
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row boxes">
+      <div class="col">
+        <a href="#">
+          <button class="button" style="background:#D8E2DC">
+            First Kiss
+            <span class="text-padding2"></span>
+            has been 40 days
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row boxes">
+      <div class="col">
+        <a href="#">
+          <button class="button" style="background:#D8E2DC">
+            First Date
+            <span class="text-padding2"></span>
+            has been 50 days
+          </button>
+        </a>
+      </div>
+    </div>
+
+     <div class="row boxes">
+       <div class="col">
+         <a href="#">
+         <a href="daysinput">
+           <button class="button" id="add_btn">+</button>
+         </a>
+       </div>
+    </div>
+  </div>
+
   <div class="navbar">
     <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
     <a href="days" class="active"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
@@ -94,6 +190,7 @@
   console.log(allEvents.length);
   for (let i = 0; i < allEvents.length; i++) {
     var event_information = JSON.parse(getCookie(allEvents[i]));   //for this list, index 0 is the days difference, index 1 is the type(count or since then)
+
     if (event_information[1] == "count") {
       var h = document.createElement('h1');
       var text_str = "Event Name: " + allEvents[i] + " " + event_information[0] + " days left";
