@@ -14,5 +14,6 @@ urlpatterns = [
     path('share', views.share, name='share'),
     path('summary', views.summary, name='summary'),
     path('topics', views.topics, name='topics'),
-    path('onetopic', views.onetopic, name='onetopic')
+    path('onetopic', views.onetopic, name='onetopic'),
+    path('daysinput', views.daysinput, name='daysinput')
 ]

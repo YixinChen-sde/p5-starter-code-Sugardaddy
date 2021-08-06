@@ -35,3 +35,6 @@ def topics(request):
 
 def onetopic(request):
     return render(request, 'draw/onetopic.html')
+
+def daysinput(request):
+    return render(request, 'draw/daysinput.html')
