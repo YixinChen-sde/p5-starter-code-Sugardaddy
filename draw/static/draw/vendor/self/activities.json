@@ -1,11 +1,11 @@
 {
     "adventures": {
         "Hiking together": "hiking.svg",
-        "Survival": "",
+        "Survival": "hiking.svg",
         "Time travel": "timetravel.svg",
-        "Gamble": "",
-        "Horror movie night": "",
-        "Escape room": ""
+        "Gamble": "hiking.svg",
+        "Horror movie night": "hiking.svg",
+        "Escape room": "hiking.svg"
     },
     "simple": {
         "Breakfast in bed": "",

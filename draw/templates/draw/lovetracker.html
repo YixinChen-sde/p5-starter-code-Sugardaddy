@@ -22,7 +22,8 @@
             overflow: hidden;
             position: fixed;
             bottom: 0;
-            width: 100%;
+         width: 100%;
+         z-index: 1000000000000;
             }
 
     /* Style the links inside the navigation bar */
@@ -48,11 +49,31 @@
             color: white;
             }
       
+    .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            }
+
+            .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
     </style>
 
 
 </head>
 <body>
+
+    <div id="pictures"></div>
+    <div id="tracker"></div>
 
   <div class="navbar">
     <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
@@ -63,10 +84,30 @@
 
 </div>
 
+<div class="topbar">
+  <a href="summary"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+  <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+  <a href="" style="padding-left:  4.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Relationship</p></a>
+</div>
+
 
 </body>
 <script>
-
+ var $container = $("#nonlinear");
+ $.getJSON('/static/draw/vendor/self/activities.json', function(a){
+     var rec = {}
+     for (var i in a) {
+         var keys = Object.keys(a[i]);
+         var N = Object.keys(a[i]).length;
+         var rand = Math.floor(Math.random() * N);
+         rec[keys[rand]] = a[i][keys[rand]];
+     }
+     // generate recommended section
+     createSection("recommended", rec, true);
+     for (var i in a) {
+         createSection(i, a[i], false);
+     }
+ });
 
 </script>
 
