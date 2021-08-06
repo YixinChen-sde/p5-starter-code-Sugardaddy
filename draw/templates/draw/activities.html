@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Activities</title>
-
+    <!-- <meta name="viewport" content="width=device-width"> -->
 
     <!-- icon credits to https://icon-library.com/
          https://thenounproject.com/
@@ -134,7 +134,15 @@
         display: none;
         } */
 
-
+     .catButton {
+         background: #edeeed;
+     }
+     .catButton:hover {
+         background: #ddd;
+     }
+     .activityLabel{
+         font-size: 1.5em;
+     }
      /* some navbar design inspired by W3school */
      .navbar {
             background-color: #EDEEED;
@@ -173,7 +181,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            }
+     }
 
     .topbar a {
             float: left;
@@ -185,7 +193,7 @@
             font-size: 17px;
             }
 
-     #space {
+     #space, .space {
          height: 17vw;
      }
 
@@ -196,7 +204,7 @@
 <body>
     <br><br><br><br><br><br>
     <div id="rec">
-        <h1>Recommended</h1>
+        <!-- <h1>Recommended</h1> -->
     </div>
     <div id="nonlinear"></div>
 
@@ -221,14 +229,25 @@
  var aList = {};
  var $container = $("#nonlinear");
  $.getJSON('/static/draw/vendor/self/activities.json', function(a){
+     var rec = {}
      for (var i in a) {
-         createSection(i, a[i]);
-
+         var keys = Object.keys(a[i]);
+         var N = Object.keys(a[i]).length;
+         var rand = Math.floor(Math.random() * N);
+         rec[keys[rand]] = a[i][keys[rand]];
+     }
+     // generate recommended section
+     createSection("recommended", rec, true);
+     for (var i in a) {
+         createSection(i, a[i], false);
      }
  });
- function createSection(label, entries) {
+ function createSection(label, entries, rec) {
      //cat=category
      var catDiv = $("<div>").addClass("cat");
+     if (rec) {
+         catDiv.addClass("rec");
+     }
      //create button
      var catButton = $("<p>"+label+"</p>").addClass("catButton");
      $container.append(catButton);
@@ -262,8 +281,12 @@
              $(this).css("background-color", "#FFDDDD");
          });
      }
+     var spaceDiv = $("<div>").addClass("space");
+     catDiv.append(spaceDiv);
      $container.append(catDiv);
-     // catDiv.hide();
+     if (!rec) {
+         catDiv.hide();
+     }
      catButton.click(function() {
          catDiv.toggle();
      });
