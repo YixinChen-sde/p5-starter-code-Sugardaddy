@@ -22,7 +22,8 @@
             overflow: hidden;
             position: fixed;
             bottom: 0;
-            width: 100%;
+         width: 100%;
+         z-index: 1000000000000;
             }
 
     /* Style the links inside the navigation bar */
@@ -71,6 +72,9 @@
 </head>
 <body>
 
+    <div id="pictures"></div>
+    <div id="tracker"></div>
+
   <div class="navbar">
     <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
     <a href="days"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
@@ -89,7 +93,21 @@
 
 </body>
 <script>
-
+ var $container = $("#nonlinear");
+ $.getJSON('/static/draw/vendor/self/activities.json', function(a){
+     var rec = {}
+     for (var i in a) {
+         var keys = Object.keys(a[i]);
+         var N = Object.keys(a[i]).length;
+         var rand = Math.floor(Math.random() * N);
+         rec[keys[rand]] = a[i][keys[rand]];
+     }
+     // generate recommended section
+     createSection("recommended", rec, true);
+     for (var i in a) {
+         createSection(i, a[i], false);
+     }
+ });
 
 </script>
 
