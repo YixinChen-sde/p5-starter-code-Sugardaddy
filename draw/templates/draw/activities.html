@@ -237,6 +237,7 @@
 //load list of activities and images from json
  var aList = {};
  var $container = $("#nonlinear");
+ var numCompleted = 0;
  $.getJSON('/static/draw/vendor/self/activities.json', function(a){
      var rec = {}
      for (var i in a) {
@@ -288,6 +289,8 @@
             //send stuff over websocket
             //change background
              $(this).css("background-color", "#FFDDDD");
+             // add as cookie to pass over to summary page
+             numCompleted += 1;
          });
      }
      var spaceDiv = $("<div>").addClass("space");

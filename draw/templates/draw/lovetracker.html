@@ -128,7 +128,10 @@
 </body>
 <script>
  var $container = $("#tracker");
+ //store activity names in order
  var activityList =  [];
+ //dictionary mapping activity names to img paths
+ var nameToImg = {}
  $.getJSON('/static/draw/vendor/self/activities.json', function(a){
      var rec = {}
      for (var i in a) {
@@ -146,6 +149,7 @@
 
  function buildTracker(activityList, nameToImg) {
      $container.html(" ");
+
  }
 
 </script>
