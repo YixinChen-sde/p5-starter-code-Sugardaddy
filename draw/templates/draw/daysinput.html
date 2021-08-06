@@ -48,7 +48,7 @@
             color: white;
             }
 
-         /* below is the code for a real-time date selector */
+        /* below is the code for a real-time date selector */
         [type="date"] {
           background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
         }
@@ -59,7 +59,7 @@
           opacity: 0;
         }
         /* custom styles */
-
+        
         label {
           display: block;
         }
@@ -102,15 +102,19 @@
 
 </body>
 <script>
-(function() {
-$('#submit').on('click', function(){
-  var date = new Date($('#lovedate').val());
-  day = date.getDate()+1;
-  month = date.getMonth() + 1;
-  year = date.getFullYear();
-  console.log(year);
-});
-})();
+  (function() {
+    $('#submit').on('click', function(){
+      var date = new Date($('#lovedate').val());
+      day = date.getDate()+1;
+      month = date.getMonth() + 1;
+      year = date.getFullYear();
+      document.cookie = "day="+day+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
+      document.cookie = "month="+month+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
+      document.cookie = "year="+year+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
+      console.log(year);
+    });
+  })();
+
 </script>
 
 </html>
