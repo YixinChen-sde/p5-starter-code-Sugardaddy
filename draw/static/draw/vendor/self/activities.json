@@ -1,0 +1,27 @@
+{
+    "adventures": {
+        "Hiking together": "hiking.svg",
+        "Survival": "",
+        "Time travel": "timetravel.svg",
+        "Gamble": "",
+        "Horror movie night": "",
+        "Escape room": ""
+    },
+    "simple": {
+        "Breakfast in bed": "",
+        "Make a vlog": "",
+        "Play a game": "",
+        "Play a prank": "",
+        "Write love letter": "",
+        "Dance in pajamas": "dance.svg"
+    },
+    "repair": {
+        "Take some time off": "",
+        "Share feelings": "",
+        "Seek therapy": "",
+        "Talk to friends": "talktofriends.svg",
+        "Prepare gifts": "",
+        "Compliment your partner": "",
+        "Chatbot therapy": ""
+    }
+}

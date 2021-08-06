@@ -4,8 +4,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Question Board</title>
+    <title>Activities</title>
 
+
+    <!-- icon credits to https://icon-library.com/
+         https://thenounproject.com/
+         https://icons-for-free.com/ -->
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
@@ -21,10 +25,22 @@
 
 </head>
 <body>
+    <div id="rec">
+        <h1>Recommended</h1>
+    </div>
+
 
 </body>
 <script>
+//load list of activities and images from json
 
+ $.getJSON('/static/coloring/vendors/self/activities.json', function(colors){
+     var keys = Object.keys(colors);
+     for (var i = keys.length - 1; i >= 0; i--) {
+         cp.options.push(colors[keys[i]][500]);
+     }
+     createColorPalette(cp.options);
+ });
 
 </script>
 
