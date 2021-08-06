@@ -136,9 +136,14 @@
 
      .catButton {
          background: #edeeed;
+         font-size: 3em;
+         padding: 30px;
      }
      .catButton:hover {
          background: #ddd;
+     }
+     .catButton:active {
+         background: #ccc;
      }
      .activityLabel{
          font-size: 1.5em;
@@ -149,7 +154,8 @@
             overflow: hidden;
             position: fixed;
             bottom: 0;
-            width: 100%;
+         width: 100%;
+         z-index: 1000000000000;
             }
 
     /* Style the links inside the navigation bar */
@@ -289,7 +295,14 @@
          catDiv.hide();
      }
      catButton.click(function() {
-         catDiv.toggle();
+         catDiv.slideToggle({
+             start: function () {
+                 catDiv.css("visibility", "hidden");
+             },
+             done: function() {
+                 catDiv.css("visibility", "visible");
+             }
+         });
      });
  }
 
