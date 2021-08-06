@@ -192,31 +192,54 @@
 
   </div>
 
-    <p id="day"></p>
-    <p id="month"></p>
-    <p id="year"></p>
+
 </body>
 <script>
 // function to getcookie(drew inspiration from stackoverflow)
-function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0;i < ca.length;i++) {
-      var c = ca[i];
-      while (c.charAt(0)==' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
   }
-  return null;
-}
-var day = getCookie("day");
-var month = getCookie("month");
-var year = getCookie("year");
-console.log(month);
-console.log(day);
-console.log(year);
-document.getElementById("day").innerHTML = day;
-document.getElementById("month").innerHTML = month;
-document.getElementById("year").innerHTML = year;
+  function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
+  var allEvents = JSON.parse(getCookie('event_list'));             //This is list has all of the event name now
+  //Loop through the event name and dynaically append to the DOM tree
+  console.log(allEvents.length);
+  for (let i = 0; i < allEvents.length; i++) {
+    var event_information = JSON.parse(getCookie(allEvents[i]));   //for this list, index 0 is the days difference, index 1 is the type(count or since then)
+    if (event_information[1] == "count") {
+      var h = document.createElement('h1');
+      var text_str = "Event Name: " + allEvents[i] + " " + event_information[0] + " days left";
+      var t = document.createTextNode(text_str);
+      h.appendChild(t);
+      document.body.appendChild(h);
+    } else if (event_information[1] == "since") {
+      var h = document.createElement('h1');
+      var text_str = "Event Name: " + allEvents[i] + "       has been " + event_information[0] + " days ";
+      var t = document.createTextNode(text_str);
+      h.appendChild(t);
+      document.body.appendChild(h);
+    }
+  }
+
+
+
 </script>
 
 </html>
