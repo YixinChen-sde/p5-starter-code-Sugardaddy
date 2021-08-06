@@ -4,8 +4,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Question Board</title>
+    <title>Home</title>
 
+    <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/js.cookie.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
@@ -131,7 +133,7 @@
     </div>
     <div class="col-6">
       <a href="activities">
-        <button class="button" style="background:#FEC3FF">Activities</button>
+        <button class="button" id="activities" style="background:#FEC3FF">Activities Completed</button>
       </a>
     </div>
   </div>
@@ -153,8 +155,12 @@
 </div>
 </body>
 <script>
-
-
+ var numCompleted = Cookies.get("numCompleted");
+ if (numCompleted == undefined) {
+     numCompleted = 0;
+ }
+ var activityCounter = $("<span>"+numCompleted+" </span>").css("font-size", "1.5em");
+ $("#activities").prepend(activityCounter);
 </script>
 
 </html>
