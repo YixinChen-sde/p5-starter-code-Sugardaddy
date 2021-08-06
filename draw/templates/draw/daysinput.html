@@ -41,12 +41,40 @@
             color: black;
             }
 
-            
+
             /* Show you are currently on this page */
             .navbar a.active {
             background-color: #C4C4C4;
             color: white;
             }
+
+            /* below is the code for a real-time date selector */
+        [type="date"] {
+          background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+        }
+        [type="date"]::-webkit-inner-spin-button {
+          display: none;
+        }
+        [type="date"]::-webkit-calendar-picker-indicator {
+          opacity: 0;
+        }
+        /* custom styles */
+        body {
+          padding: 4em;
+          background: #e5e5e5;
+          font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+        }
+        label {
+          display: block;
+        }
+        input {
+          border: 1px solid #c4c4c4;
+          border-radius: 5px;
+          background-color: #fff;
+          padding: 3px 5px;
+          box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+          width: 190px;
+        }
 
     </style>
 
@@ -62,7 +90,7 @@
     <button>Day since</button>
 
 
-    
+
     <div class="navbar">
         <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
         <a href="days" class="active"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
@@ -72,12 +100,22 @@
 
     </div>
 
-  
-  
+    <!-- Code for selecT DATE-->
+    <h1>Please select a date</h1>
+  <label for="lovedate">Please select a date</label>
+  <input type="date" name="lovedate" id="lovedate">
+  <button id="submit">Submit</button>
 </body>
 <script>
-
-
+(function() {
+$('#submit').on('click', function(){
+  var date = new Date($('#lovedate').val());
+  day = date.getDate()+1;
+  month = date.getMonth() + 1;
+  year = date.getFullYear();
+  console.log(year);
+});
+})();
 </script>
 
 </html>
