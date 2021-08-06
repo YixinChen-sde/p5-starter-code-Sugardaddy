@@ -32,3 +32,6 @@ def summary(request):
 
 def topics(request):
     return render(request, 'draw/topics.html')
+
+def onetopic(request):
+    return render(request, 'draw/onetopic.html')
