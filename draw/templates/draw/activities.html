@@ -45,6 +45,9 @@
          width: 180px;
          text-align: center;
      }
+     .cat .outerActivity:nth-child(3n+3) {
+
+     }
     </style>
 
 
@@ -63,6 +66,7 @@
  $.getJSON('/static/draw/vendor/self/activities.json', function(a){
      for (var i in a) {
          createSection(i, a[i]);
+
      }
  });
  function createSection(label, entries) {
@@ -75,13 +79,18 @@
      for (var i in entries) {
          var outerDiv = $("<div>").addClass("outerActivity");
          // var innerDiv = $("<div>").addClass("innerActivity");
-         var imgElement = $("<img>").addClass("activityImg");
+         var imgElement = $("<img>").addClass("activityImg").attr("id", i.replace(/\s/g, ""));
          imgElement.attr("src", "/static/draw/img/activities/" + entries[i]);
          // innerDiv.append(imgElement);
          var label = $("<p>" + i + "</p>").addClass("activityLabel");
          outerDiv.append(imgElement);
          outerDiv.append(label);
          catDiv.append(outerDiv);
+         imgElement.click(function () {
+            //send stuff over websocket
+            //change background
+             $(this).css("background-color", "#FFDDDD");
+         });
      }
      $container.append(catDiv);
      catDiv.hide();
