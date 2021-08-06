@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Question Board</title>
+    <title>Special Days</title>
 
     <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/js.cookie.min.js' %}"></script>
@@ -22,24 +22,29 @@
         height:16vh;
         font-size:3vh;
       }
+
       .top-button{
         height:12vh;
         width:33vw;
         border-radius:9%;
       }
+
       .button{
         height:12vh;
         width:78vw;
         border-radius:9%;
       }
+
       .text-padding1{
         padding-left:11.5vw;
         padding-right:11.5vw;
       }
+
       .text-padding2{
         padding-left:5vw;
         padding-right:5vw;
       }
+
       #add_btn{
         height:6.75vh;
         width:12vw;
@@ -78,10 +83,34 @@
             color: white;
             }
 
+    .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index:1;
+            }
+
+    .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
     </style>
 </head>
 <body>
-  <div style="height:7vh"> </div>
+  <div class="topbar">
+    <a href="summary"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+    <a href="" style="padding-left:  4.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Relationship</p></a>
+  </div>
+  <div style="height:9vh"> </div>
   <div class="container-fluid" style="padding-left:6vw;padding-right:6vw">
     <div class="row boxes">
       <div class="col-6">
@@ -155,7 +184,7 @@
     <a href="days" class="active"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
     <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics" ><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
 
   </div>
 
