@@ -7,91 +7,130 @@
     <title>Settings</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
-    <style type="text/css">
-
-    body{
-      background-color: #F6EEED;
-    }
-
-    .boxes{
-      text-align:center;
-      height:16vh;
-      font-size:3vh;
-    }
-
-    .top-button{
-      height:12vh;
-      width:33vw;
-      border-radius:9%;
-    }
-
-    .button{
-      height:12vh;
-      width:78vw;
-      border-radius:9%;
-    }
-
-    .text-padding1{
-      padding-left:11.5vw;
-      padding-right:11.5vw;
-    }
-
-    .text-padding2{
-      padding-left:5vw;
-      padding-right:5vw;
-    }
-
-    #add_btn{
-      height:6.75vh;
-      width:12vw;
-      border-radius:50%;
-      font-size:3.5vh;
-    }
-
-    .navbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            }
-
-    /* Style the links inside the navigation bar */
-    .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
-
-    .navbar a.hover {
-            background-color: #ddd;
-            color: black;
-            }
-
-
-    /* Show you are currently on this page */
-    .navbar a.active {
-            background-color: #C4C4C4;
-            color: white;
-            }
-
-    </style>
-
-
 </head>
-<body>
-  <div class="container-fluid" style="padding-left:6vw;padding-right:6vw;padding-top:6vh">
-    <div class="row">
-      
 
+<style>
+  body{
+    background-color: #F6EEED;
+  }
+
+  /* dropdown */
+  .dropbtn {
+    width:25vw;
+    height:5vh;
+    background-color: #EDEEED;
+    color: black;
+
+    font-size: 2vh;
+    border: none;
+    cursor: pointer;
+  }
+
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #C4C4C4;
+  }
+
+  #myInput {
+    box-sizing: border-box;
+    font-size: 2vh;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #myInput:focus {outline: 1px solid #ddd;}
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    width:25vw;
+    height:20vh;
+    font-size:2vh;
+    display: none;
+    position: absolute;
+    background-color: #EDEEED;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding-top:1vh;
+    text-align:center;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown a:hover {background-color: #C4C4C4;}
+
+  .show {display: block;}
+
+  .navbar {
+          background-color: #EDEEED;
+          overflow: hidden;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          }
+
+  /* Style the links inside the navigation bar */
+  .navbar a {
+          float: left;
+          display: block;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+          }
+
+  .navbar a.hover {
+          background-color: #ddd;
+          color: black;
+          }
+
+
+  /* Show you are currently on this page */
+  .navbar a.active {
+          background-color: #C4C4C4;
+          color: white;
+          }
+</style>
+
+<body>
+  <div class="container-fluid" style="padding-left:12vw;padding-right:12vw;padding-top:4vh">
+    <div class="row" style="text-align:center;font-size:9vh">
+      <div class="col">⚙️</div>
     </div>
+
+    <div class="row" style="font-size:4vh;padding-top:4vh">
+      <div class="col-6" style="text-align:left">Language</div>
+      <div class="col-6" style="text-align:right">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn" style="font-size:3vh">
+            English
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <a href="#Spanish">Spanish</a>
+            <a href="#Chinese">Chinese</a>
+            <a href="#Arabic">Arabic</a>
+            <a href="#Hindi">Hindi</a>
+            <a href="#Russian">Russain</a>
+            <a href="#Japanese">Japanese</a>
+            <a href="#Korean">Korean</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 
@@ -105,6 +144,26 @@
   </div>
 </body>
 <script>
+  // https://www.w3schools.com/howto/howto_js_dropdown.asp
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
 </script>
 
 </html>
