@@ -127,7 +127,8 @@
 
 </body>
 <script>
- var $container = $("#nonlinear");
+ var $container = $("#tracker");
+ var activityList =  [];
  $.getJSON('/static/draw/vendor/self/activities.json', function(a){
      var rec = {}
      for (var i in a) {
@@ -142,6 +143,10 @@
          createSection(i, a[i], false);
      }
  });
+
+ function buildTracker(activityList, nameToImg) {
+     $container.html(" ");
+ }
 
 </script>
 
