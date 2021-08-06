@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Special Days</title>
+    <title>Settings</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
@@ -87,114 +87,24 @@
 
 </head>
 <body>
-  <div style="height:7vh"> </div>
-  <div class="container-fluid" style="padding-left:6vw;padding-right:6vw">
-    <div class="row boxes">
-      <div class="col-6">
-        <a href="#">
-          <button class="top-button" style="background:#EFC7C2">Together for 40 days</button>
-        </a>
-      </div>
-      <div class="col-6">
-        <a href="#">
-          <button class="top-button" style="background:#F5ACAC">Anniversary in 325 Days</button>
-        </a>
-      </div>
-    </div>
+  <div class="container-fluid" style="padding-left:6vw;padding-right:6vw;padding-top:6vh">
+    <div class="row">
+      
 
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#DFE7FD">
-            Next Date
-            <span class="text-padding1"></span>
-            4 days left
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#DFE7FD">
-            Trip to LA
-            <span class="text-padding1"></span>
-            30 days left
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#D8E2DC">
-            First Kiss
-            <span class="text-padding2"></span>
-            has been 40 days
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#D8E2DC">
-            First Date
-            <span class="text-padding2"></span>
-            has been 50 days
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" id="add_btn">+</button>
-        </a>
-      </div>
     </div>
   </div>
-
 
 
   <div class="navbar">
     <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="days" class="active"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="days"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
     <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics" ><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="settings" class="active"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
 
   </div>
-
-    <p id="day"></p>
-    <p id="month"></p>
-    <p id="year"></p>
 </body>
 <script>
-// function to getcookie(drew inspiration from stackoverflow)
-function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0;i < ca.length;i++) {
-      var c = ca[i];
-      while (c.charAt(0)==' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-  }
-  return null;
-}
-var day = getCookie("day");
-var month = getCookie("month");
-var year = getCookie("year");
-console.log(month);
-console.log(day);
-console.log(year);
-document.getElementById("day").innerHTML = day;
-document.getElementById("month").innerHTML = month;
-document.getElementById("year").innerHTML = year;
 </script>
 
 </html>
