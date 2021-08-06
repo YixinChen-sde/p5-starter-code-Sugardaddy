@@ -160,7 +160,10 @@
     var rB = Math.floor(Math.random()*b.length);
     var name = a[rA] + b[rB];
     var url = window.location.href;
+    var counter = 3;                 // counter to check if the hardcoded questions is run out
 
+    //This is some hardcoded question for the ChatBox
+  var hard_msg = ["what is your favorite thing about each other", "How did you meet your partner", "Are you satisfying with the relationship"];
 
   var socket = new WebSocket('ws://' + window.location.host + '/ws/draw');
   // Append the new input to the original text string
@@ -168,14 +171,17 @@
 			var text = document.getElementById('responseText');
       var received = JSON.parse(event.data);
       var receivedUid = (received.uid).toString();
-      var receivedMSG = (received.msg).toString();
+      var receivedMSG = (received.msg).toString()
       var receivedNanme = (received.name).toString();
       if (!(receivedUid in userInfo)) {
-        text.value += '\n' + receivedNanme +" : "+ receivedMSG;
-        userInfo[receivedUid] = receivedNanme;
-        console.log(userInfo)
+          text.value += '\n' + receivedNanme +" : "+ receivedMSG;
+          userInfo[receivedUid] = receivedNanme;
       } else {
-        text.value += '\n' + userInfo[receivedUid] +" : "+ receivedMSG;
+          text.value += '\n' + userInfo[receivedUid] + " : "+ receivedMSG;
+      }
+      if (counter != 0) {
+        text.value += '\n\n' + "host" + " : " + hard_msg[counter - 1];
+        counter -= 1;
       }
 	};
   // when the websocket is ready, inform the user
