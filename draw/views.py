@@ -2,20 +2,13 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'draw/index.html')
+    return render(request, 'draw/summary.html')
 
 def chat(request):
     return render(request, 'draw/chat.html')
 
-def pie(request):
-    return render(request, 'draw/pie.html')
-
-def button(request):
-    return render(request, 'draw/button.html')
-
 def activities(request):
     return render(request, 'draw/activities.html')
-
 
 def days(request):
     return render(request, 'draw/days.html')
@@ -25,7 +18,6 @@ def lovetracker(request):
 
 def share(request):
     return render(request, 'draw/share.html')
-
 
 def summary(request):
     return render(request, 'draw/summary.html')
@@ -41,6 +33,12 @@ def daysinput(request):
 
 def settings(request):
     return render(request, 'draw/settings.html')
+
+def about(request):
+    return render(request, 'draw/about.html')
+
+def profile(request):
+    return render(request, 'draw/profile.html')
 
 def randomTopics_one(request):
     return render(request, 'draw/randomTopics_one.html')
