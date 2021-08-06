@@ -1,5 +1,5 @@
 """
-WSGI config for p4 project.
+WSGI config for p5 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
