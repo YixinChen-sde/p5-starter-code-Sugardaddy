@@ -17,15 +17,15 @@
     background-color: #F6EEED;
   }
 
-  /* dropdown */
+  /* Dropdown https://www.w3schools.com/howto/howto_js_dropdown.asp */
   .dropbtn {
     width:25vw;
     height:5vh;
     background-color: #EDEEED;
-    color: black;
 
     font-size: 2vh;
-    border: none;
+    border-radius: 7%;
+    border-color: #F6EEED;
     cursor: pointer;
   }
 
@@ -79,6 +79,76 @@
           width: 100%;
           }
 
+  /* Toggle Switch https://www.w3schools.com/howto/howto_css_switch.asp */
+  .switch {
+  position: relative;
+  display: inline-block;
+  width: 16vw;
+  height: 4.5vh;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #C4C4C4;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 4.5vh;
+    width: 8vw;
+    left: 0%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #28a745;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1vh gray;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(8vw);
+    -ms-transform: translateX(8vw);
+    transform: translateX(8vw);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 3vh;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  #profile{
+    width:30vw;
+    height:6vh;
+    background-color: #EDEEED;
+    font-size: 3vh;
+
+    border-radius: 10%;
+    border-color: black;
+  }
+
   /* Style the links inside the navigation bar */
   .navbar a {
           float: left;
@@ -109,15 +179,15 @@
       <div class="col">⚙️</div>
     </div>
 
-    <div class="row" style="font-size:4vh;padding-top:4vh">
-      <div class="col-6" style="text-align:left">Language</div>
+    <div class="row" style="padding-top:6vh">
+      <div class="col-6" style="text-align:left;font-size:3vh;">Language</div>
       <div class="col-6" style="text-align:right">
         <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn" style="font-size:3vh">
-            English
+          <button onclick="myFunction()" class="dropbtn" style="font-size:2.5vh">
+            English&nbsp&nbsp
             <i class="fa fa-caret-down"></i>
           </button>
-          <div id="myDropdown" class="dropdown-content">
+          <div id="languages" class="dropdown-content">
             <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
             <a href="#Spanish">Spanish</a>
             <a href="#Chinese">Chinese</a>
@@ -126,11 +196,57 @@
             <a href="#Russian">Russain</a>
             <a href="#Japanese">Japanese</a>
             <a href="#Korean">Korean</a>
-            <a href="#Newspeak">Newspeak</a>
+            <a href="#More">More</a>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="row" style="padding-top:6vh">
+      <div class="col-6" style="text-align:left;font-size:3vh;">Theme</div>
+      <div class="col-6" style="text-align:right">
+        <div class="dropdown">
+          <button onclick="myFunction2()" class="dropbtn" style="font-size:2.5vh">
+            Bright&nbsp&nbsp
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="themes" class="dropdown-content" style="height:12vh">
+            <a href="#Dark">Dark</a>
+            <a href="#Random">Random</a>
+            <a href="#Simple">Simple</a>
+            <a href="#Classic">Classic</a>
+            <a href="#Romantic">Romantic</a>
+            <a href="#More">More...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top:6vh">
+      <div class="col-6" style="text-align:left;font-size:3vh;">Location</div>
+      <div class="col-6" style="text-align:right;padding-right:6vw">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="row" style="padding-top:6vh">
+      <div class="col" style="text-align:center;">
+        <a href="#">
+          <button id="profile">
+            Profile
+          </button>
+        </a>
+      </div>
+    </div>
+
+
+
+
+
+
 
   </div>
 
@@ -147,14 +263,18 @@
 <script>
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
   function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("languages").classList.toggle("show");
+  }
+
+  function myFunction2() {
+    document.getElementById("themes").classList.toggle("show");
   }
 
   function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
+    div = document.getElementById("languages");
     a = div.getElementsByTagName("a");
     for (i = 0; i < a.length; i++) {
       txtValue = a[i].textContent || a[i].innerText;
