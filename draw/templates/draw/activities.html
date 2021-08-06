@@ -69,29 +69,29 @@
          content: "";
          position: absolute;
          width: 9.5vw;
-         border-bottom: 1px solid #000;
+         border-bottom: 3px solid #000;
          margin-top: 10vw;
          margin-left: 0;
      }
      .outerActivity.squareLineRight::after {
          content: "";
-         width: 9.5vw;
+         width: 8vw;
          height: 30vw;
-         border: 1px solid #000;
+         border: 3px solid #000;
          border-left: none;
          position: absolute;
          margin-left: 0;
-         margin-top: 10vw;
+         margin-top: 10.2vw;
      }
      .outerActivity.squareLineLeft::before {
          content: "";
-         width: 9.5vw;
+         width: 8vw;
          height: 30vw;
-         border: 1px solid #000;
+         border: 3px solid #000;
          border-right: none;
          position: absolute;
-         margin-left: -9.5vw;
-         margin-top: 10vw;
+         margin-left: -8vw;
+         margin-top: 10.1vw;
          z-index: 100;
      }
      .outerActivity.disappear::after {
@@ -166,7 +166,9 @@
             background-color: #C4C4C4;
             color: white;
             }
-
+     #space {
+         height: 17vw;
+     }
 
     </style>
 
@@ -178,7 +180,8 @@
     </div>
     <div id="nonlinear"></div>
 
-    
+
+    <div id="space"></div>
     <div class="navbar">
         <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
         <a href="days"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
