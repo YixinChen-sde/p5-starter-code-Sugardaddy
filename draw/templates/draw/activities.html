@@ -7,6 +7,8 @@
     <title>Activities</title>
     <!-- <meta name="viewport" content="width=device-width"> -->
 
+    <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/js.cookie.min.js' %}"></script>
     <!-- icon credits to https://icon-library.com/
          https://thenounproject.com/
          https://icons-for-free.com/ -->
@@ -235,8 +237,10 @@
 </body>
 <script>
 //load list of activities and images from json
- var aList = {};
+//list of completed activities
+ var completed = [];
  var $container = $("#nonlinear");
+ var numCompleted = 0;
  $.getJSON('/static/draw/vendor/self/activities.json', function(a){
      var rec = {}
      for (var i in a) {
@@ -288,6 +292,14 @@
             //send stuff over websocket
             //change background
              $(this).css("background-color", "#FFDDDD");
+             var thisID = $(this).attr('id');
+             // add as cookie to pass over to summary page
+             console.log(completed, i);
+             if (completed.indexOf(thisID) < 0) {
+                 completed.push(thisID);
+             }
+             Cookies.set('numCompleted', completed.length, { SameSite: 'Lax' });
+             console.log(Cookies.get("numCompleted"));
          });
      }
      var spaceDiv = $("<div>").addClass("space");
