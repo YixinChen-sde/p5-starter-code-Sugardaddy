@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'channels',
-    'draw',
+    'queue_t',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

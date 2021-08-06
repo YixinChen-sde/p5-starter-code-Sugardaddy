@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Home</title>
+
+    <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+
+      body{
+        background-color: #D5E3EA;
+      }
+
+      .boxes{
+        text-align:center;
+        height:24vh;
+        font-size:3vh;
+      }
+
+      .button{
+        height:18vh;
+        width:40vw;
+        border-radius:12%;
+      }
+
+        /* some navbar design inspired by W3school */
+     .navbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            }
+
+    /* Style the links inside the navigation bar */
+    .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+
+
+    /* Show you are currently on this page */
+    .navbar a.active {
+            background-color: #C4C4C4;
+            color: white;
+            }
+
+    .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            right: 0;
+            }
+
+    .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    #photo {
+      position: absolute;
+      top: 8cm;
+      left: 7cm;
+      width: 12cm;
+    }
+
+    .share{
+        height:4vh;
+        width:15vw;
+        border-radius:50px;
+        position: absolute;
+        top: 5cm;
+        left: 19cm;
+      }
+
+    </style>
+
+
+</head>
+<body>
+
+
+
+  <img id="photo" src="{% static 'queue_t/img/couple.png' %}" alt="">
+  <div class="col-6">
+    <a href="share">
+      <button class="share" style="background:#C4C4C4"><img style=" width: 1cm; " src="{% static 'queue_t/img/share.png' %}" alt=""></button>
+    </a>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="row boxes">
+    <div class="col-6">
+      <a href="lovetracker">
+        <button class="button" style="background:#EBB4B4"> <img src="{% static 'queue_t/img/statusquo.png' %}" alt=""> <br> Status Quo</button>
+      </a>
+    </div>
+    <div class="col-6">
+      <a href="days">
+        <button class="button" style="background:#B7CBFF"><img style="width: 4cm; padding-bottom:.5cm ;padding-top:1cm;" src="{% static 'queue_t/img/anniversary.png' %}" alt=""> <br>Anniversary</button>
+      </a>
+    </div>
+  </div>
+  <div class="row boxes">
+    <div class="col-6">
+      <a href="days">
+        <button class="button" style="background:#F4E8BB">2 Days left til next Date</button>
+      </a>
+    </div>
+    <div class="col-6">
+      <a href="activities">
+        <button class="button" id="activities" style="background:#FEC3FF">Activities Completed</button>
+      </a>
+    </div>
+  </div>
+
+  <img src="" alt="">
+
+  <div class="navbar">
+    <a href="summary"  class="active"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="days"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="lovetracker"><img src="{% static 'queue_t/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="topics"><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+
+
+  <div class="topbar">
+    <a href="" style="padding-left:  9.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.5cm; padding-left: 0%;">Queue&lt;T></p></a>
+  </div>
+
+</div>
+</body>
+<script>
+ var numCompleted = Cookies.get("numCompleted");
+ if (numCompleted == undefined) {
+     numCompleted = 0;
+ }
+ var activityCounter = $("<span>"+numCompleted+" </span>").css("font-size", "1.5em");
+ $("#activities").prepend(activityCounter);
+</script>
+
+</html>
