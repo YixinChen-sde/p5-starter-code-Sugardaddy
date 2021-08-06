@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Question Board</title>
+    <title>P5 ChatBox</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
@@ -13,14 +13,14 @@
     <style type="text/css">
 
       body{
-        background-color: #D5E3EA;
+        background-color: #F6EEED;
         /* background-image: url("/static/draw/img/whitewood.jpg");; */
       }
 
       #form {
         height: 100vh;
         width: 26cm;
-        background-color: #D5E3EA;
+        background-color: #F6EEED;
         /* background-image: url("/static/draw/img/whitewood.jpg");; */
       }
 
@@ -29,9 +29,9 @@
         left: 5px;
         height: 80vh;
         width: 26.2cm;
-        top: 5cm;
+        top: 13cm;
         border-radius: 8px;
-        background-color: #D5E3EA;
+        background-color: #F6EEED;
 
         /* background-image: url("/static/draw/img/whitewood.jpg");; */
       }
@@ -43,7 +43,7 @@
         font-size: 25px;
         padding: 15px 32px;
         border-radius: 8px;
-        background-color: lightblue;
+        background-color: #F6EEED;
         font-family:Georgia, 'Times New Roman', Times, serif;
       }
 
@@ -57,7 +57,7 @@
 
       #textbox{
         position: absolute;
-        bottom: 3cm;
+        top: 4.5cm;
         left: 5px;
         width: 26.2cm;
         height: 3cm;
@@ -77,7 +77,7 @@
         top: 43cm;
         left: 20px;
         font-family:Georgia, 'Times New Roman', Times, serif;
-        background-color: lightblue;
+        background-color: #F6EEED;
 
       }
       #buttonPageS {
@@ -87,7 +87,7 @@
         top: 44.8cm;
         left: 20px;
         font-family:Georgia, 'Times New Roman', Times, serif;
-        background-color: lightblue;
+        background-color: #F6EEED;
 
       }
 
@@ -99,7 +99,7 @@
         height: 5cm;
         left: 20px;
         font-family:Georgia, 'Times New Roman', Times, serif;
-        background-color: lightblue;
+        background-color: #F6EEED;
 
       }
       #clear-btn {
@@ -109,7 +109,7 @@
         top: 43cm;
         left: 8px;
         font-family:Georgia, 'Times New Roman', Times, serif;
-        background-color: lightblue;
+        background-color: #F6EEED;
 
       }
 
@@ -118,29 +118,10 @@
       {
         height:100%;
         width:15cm;
-        background-color: lightblue;
+        background-color: #F6EEED;
         position:fixed!important;
         z-index:1;
         overflow:auto
-      }
-      .w3-bar-block .w3-bar-item{
-        font-size: 1.6cm;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        width:100%;
-        display:block;
-        padding:8px 16px;
-        text-align:left;
-        border:none;
-        white-space:normal;
-        float:none;
-        outline:0
-      }
-
-      .w3-bar-block.w3-center .w3-bar-item{
-        text-align:center
-      }
-      .w3-block{
-        display:block;width:100%
       }
 
       .message_text {
@@ -148,34 +129,16 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
       }
 
-      #logo {
-        /* size determined by the scale of our logo */
-        width: 166.6px;
-        height: 62.6px;
-        position: absolute;
-        top: 10px;
-        left: 20px;
-      }
     </style>
 
 
 </head>
 <body>
   <!-- /* sidebar borrowed from w3school */ -->
-  <img src="{% static 'draw/img/logo.png' %}" id="logo" alt="" sizes=10%>
-  <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
-    <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-    <a href="#" class="w3-bar-item w3-button" style="color: black;">Classes:</a>
-    <a href="#" class="w3-bar-item w3-button">Compsci 160</a>
-    <a href="#" class="w3-bar-item w3-button">Compsci 189</a>
-    <a href="#" class="w3-bar-item w3-button">Data 100</a>
-    <a href="#" class="w3-bar-item w3-button">Econ 140</a>
-  </div>
     <form onsubmit="return false;" id="form">
-      <button id="home-btn" onclick="w3_open()">☰</button>
-      <center><h2 id="class-name">CS 160 Questions</h2></center>
+      <input type="text" name="message" id="textbox" placeholder="Please type in here...">
+      <center><h2 id="class-name">Name of the user</h2></center>
       <center><textarea id="responseText" class = "message_text"></textarea></center>
-      <input type="text" name="message" id="textbox" placeholder="Ask a question...">
 
       <div class="row">
         <div class="col">
@@ -183,16 +146,6 @@
         </div>
         <div class="col">
           <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <a href="button?small">
-            <input id="buttonPageS" type="button" value="Rate your understanding">
-          </a>
-          <a href="button?large">
-            <input id="buttonPageL" type="button" value="Rate your understanding">
-          </a>
         </div>
       </div>
 	</form>
@@ -228,7 +181,7 @@
   // when the websocket is ready, inform the user
 	socket.onopen = function (event) {
 			var text = document.getElementById('responseText');
-			text.value = "Please ask your questions here!";
+			text.value = "Connected ( ͡♥ ͜ʖ ͡♥)";
 	};
   // When the websocket is no longer active, inform the user
 	socket.onclose = function (event) {
@@ -248,35 +201,15 @@
 
   /* sidebar borrowed from w3school */
   function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-
-
-if (url.indexOf("large") > -1) {
-	  document.getElementById('textbox').style.display = 'none';
-    document.getElementById('send-btn').style.display = 'none';
-    document.getElementById('clear-btn').style.display = 'none';
-    document.getElementById('home-btn').style.display = 'none';
-    document.getElementById('buttonPageS').style.display = 'none';
+    document.getElementById("mySidebar").style.display = "block";
   }
 
-if (url.indexOf("large") == -1) {
-  document.getElementById('buttonPageL').style.display = 'none';
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
   }
 
-  $('#like').on('click', () => {
-     $('#like').toggleClass("like-select")
-     document.getElementById('box').style.display = '';
-    });
 
-  $('#dislike').on('click', () => {
-     $('#dislike').toggleClass("dislike-select")
-     document.getElementById('box').style.display = '';
-    });
+
 </script>
 
 </html>
