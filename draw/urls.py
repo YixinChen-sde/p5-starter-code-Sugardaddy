@@ -13,5 +13,6 @@ urlpatterns = [
     path('lovetracker', views.lovetracker, name='lovetracker'),
     path('share', views.share, name='share'),
     path('summary', views.summary, name='summary'),
-    path('topics', views.topics, name='topics')
+    path('topics', views.topics, name='topics'),
+    path('onetopic', views.onetopic, name='onetopic')
 ]
