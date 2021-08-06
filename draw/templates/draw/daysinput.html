@@ -84,12 +84,10 @@
 
     <form>
         <input type="text" id="event-name" name="event-name" placeholder="Name of the event..."><br>
-      </form>
+    </form>
 
-    <button>Count Down </button>
-    <button>Day since</button>
-
-
+    <button id = "down">Count Down </button>
+    <button id = "since">Day since</button>
 
     <div class="navbar">
         <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
@@ -107,15 +105,19 @@
   <button id="submit">Submit</button>
 </body>
 <script>
-(function() {
-$('#submit').on('click', function(){
-  var date = new Date($('#lovedate').val());
-  day = date.getDate()+1;
-  month = date.getMonth() + 1;
-  year = date.getFullYear();
-  console.log(year);
-});
-})();
+  (function() {
+    $('#submit').on('click', function(){
+      var date = new Date($('#lovedate').val());
+      day = date.getDate()+1;
+      month = date.getMonth() + 1;
+      year = date.getFullYear();
+      document.cookie = "day="+day+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
+      document.cookie = "month="+month+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
+      document.cookie = "year="+year+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
+      console.log(year);
+    });
+  })();
+
 </script>
 
 </html>
