@@ -199,8 +199,11 @@
             font-size: 17px;
             }
 
-     #space, .space {
+     .space {
          height: 17vw;
+     }
+     #space {
+         height: 25vw;
      }
 
     </style>
@@ -297,6 +300,10 @@
          catDiv.slideToggle({
              start: function () {
                  catDiv.css("visibility", "hidden");
+                 //https://stackoverflow.com/questions/6677035/jquery-scroll-to-element
+                 $([document.documentElement, document.body]).animate({
+                     scrollTop: catDiv.offset().top
+                 }, 800);
              },
              done: function() {
                  catDiv.css("visibility", "visible");
