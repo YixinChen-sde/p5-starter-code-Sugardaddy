@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Special Days</title>
+    <title>P4 Question Board</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
@@ -12,44 +12,9 @@
 
     <style type="text/css">
 
-    body{
-      background-color: #F6EEED;
-    }
-
-    .boxes{
-      text-align:center;
-      height:16vh;
-      font-size:3vh;
-    }
-
-    .top-button{
-      height:12vh;
-      width:33vw;
-      border-radius:9%;
-    }
-
-    .button{
-      height:12vh;
-      width:78vw;
-      border-radius:9%;
-    }
-
-    .text-padding1{
-      padding-left:11.5vw;
-      padding-right:11.5vw;
-    }
-
-    .text-padding2{
-      padding-left:5vw;
-      padding-right:5vw;
-    }
-
-    #add_btn{
-      height:6.75vh;
-      width:12vw;
-      border-radius:50%;
-      font-size:3.5vh;
-    }
+      body{
+        background-color: #D5E3EA;
+      }
 
     .navbar {
             background-color: #EDEEED;
@@ -70,7 +35,7 @@
             font-size: 17px;
             }
 
-    .navbar a.hover {
+    .navbar a:hover {
             background-color: #ddd;
             color: black;
             }
@@ -82,141 +47,66 @@
             color: white;
             }
 
-    .topbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            }
-
-            .topbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
     </style>
 
 
 </head>
 <body>
-  <div style="height:7vh"> </div>
-  <div class="container-fluid" style="padding-left:6vw;padding-right:6vw">
-    <div class="row boxes">
-      <div class="col-6">
-        <a href="#">
-          <button class="top-button" style="background:#EFC7C2">Together for 40 days</button>
-        </a>
-      </div>
-      <div class="col-6">
-        <a href="#">
-          <button class="top-button" style="background:#F5ACAC">Anniversary in 325 Days</button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#DFE7FD">
-            Next Date
-            <span class="text-padding1"></span>
-            4 days left
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#DFE7FD">
-            Trip to LA
-            <span class="text-padding1"></span>
-            30 days left
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#D8E2DC">
-            First Kiss
-            <span class="text-padding2"></span>
-            has been 40 days
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#D8E2DC">
-            First Date
-            <span class="text-padding2"></span>
-            has been 50 days
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <div class="row boxes">
-      <div class="col">
-        <a href="daysinput">
-          <button class="button" id="add_btn">+</button>
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="topbar">
-    <a href="summary"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
-    <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special Days</p></a>
-  </div>
-
   <div class="navbar">
     <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
     <a href="days" class="active"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
     <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics" ><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
 
   </div>
 
-    <p id="day"></p>
-    <p id="month"></p>
-    <p id="year"></p>
+
 </body>
 <script>
 // function to getcookie(drew inspiration from stackoverflow)
-function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0;i < ca.length;i++) {
-      var c = ca[i];
-      while (c.charAt(0)==' ') c = c.substring(1,c.length);
-      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
   }
-  return null;
-}
-var day = getCookie("day");
-var month = getCookie("month");
-var year = getCookie("year");
-console.log(month);
-console.log(day);
-console.log(year);
-document.getElementById("day").innerHTML = day;
-document.getElementById("month").innerHTML = month;
-document.getElementById("year").innerHTML = year;
+  function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
+  var allEvents = JSON.parse(getCookie('event_list'));             //This is list has all of the event name now
+  //Loop through the event name and dynaically append to the DOM tree
+  console.log(allEvents.length);
+  for (let i = 0; i < allEvents.length; i++) {
+    var event_information = JSON.parse(getCookie(allEvents[i]));   //for this list, index 0 is the days difference, index 1 is the type(count or since then)
+    if (event_information[1] == "count") {
+      var h = document.createElement('h1');
+      var text_str = "Event Name: " + allEvents[i] + " " + event_information[0] + " days left";
+      var t = document.createTextNode(text_str);
+      h.appendChild(t);
+      document.body.appendChild(h);
+    } else if (event_information[1] == "since") {
+      var h = document.createElement('h1');
+      var text_str = "Event Name: " + allEvents[i] + "       has been " + event_information[0] + " days ";
+      var t = document.createTextNode(text_str);
+      h.appendChild(t);
+      document.body.appendChild(h);
+    }
+  }
+
 </script>
 
 </html>
