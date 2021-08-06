@@ -25,6 +25,24 @@
             width: 100%;
             }
 
+            .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            }
+
+            .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
             /* Style the links inside the navigation bar */
             .navbar a {
             float: left;
@@ -35,6 +53,7 @@
             text-decoration: none;
             font-size: 17px;
             }
+
 
             .navbar a:hover {
             background-color: #ddd;
@@ -76,7 +95,7 @@
 
 </head>
 <body>
-
+        <br><br><br><br><br><br>
     <form>
         <input type="text" id="event-name" name="event-name" placeholder="Name of the event..."><br>
       </form>
@@ -90,20 +109,28 @@
       <input type="date" name="lovedate" id="lovedate">
       <button id="submit">Submit</button>
 
+      <div class="topbar">
+        <a href="days"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+        <a href="days" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+        <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special Days</p></a>
+        <a href="days" style="padding-left: 6.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Done</p></a>
+    </div>
+ 
+
     <div class="navbar">
         <a href="summary"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
         <a href="days" class="active"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
         <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
         <a href="topics"><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
         <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
-
     </div>
+
 
 </body> 
 <script>
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); 
   var yyyy = today.getFullYear();
 
 
