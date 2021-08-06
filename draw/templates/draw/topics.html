@@ -68,6 +68,24 @@
             color: white;
             }
 
+    .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            }
+
+    .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
     </style>
 
 
@@ -136,6 +154,13 @@
     <a href="topics" class="active"><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
     <a href="settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
 
+</div>
+
+
+<div class="topbar">
+  <a href="summary"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+  <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+  <a href="" style="padding-left:  5.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Topics</p></a>
 </div>
 
 </body>
