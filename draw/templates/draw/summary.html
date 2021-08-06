@@ -16,12 +16,52 @@
         background-color: #D5E3EA;
       }
 
+        /* some navbar design inspired by W3school */
+     .navbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            }
+
+    /* Style the links inside the navigation bar */
+    .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+
+            
+    /* Show you are currently on this page */
+    .navbar a.active {
+            background-color: #C4C4C4;
+            color: white;
+            }
+      
+
     </style>
 
 
 </head>
 <body>
+  <div class="navbar">
+    <a href="summary"  class="active"><img src="{% static 'draw/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="days"><img src="{% static 'draw/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="topics"><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
 
+</div>
 </body>
 <script>
 
