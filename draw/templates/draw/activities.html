@@ -19,7 +19,32 @@
       body{
         background-color: #D5E3EA;
       }
-
+     .cat {
+         margin-left: 90px;
+     }
+     .outerActivity {
+         width: 180px;
+         display: inline-block;
+         /* padding: 100px; */
+         margin: 40px;
+     }
+     .innerActivity {
+         border: 1px solid #000;
+         width: 150px;
+         height: 150px;
+         border-radius: 100px;
+     }
+     .activityImg {
+         width: 180px;
+         height: 180px;
+         border: 1px solid #000;
+         border-radius: 100px;
+         padding: 25px;
+     }
+     .activityLabel {
+         width: 180px;
+         text-align: center;
+     }
     </style>
 
 
@@ -41,22 +66,28 @@
      }
  });
  function createSection(label, entries) {
+     //cat=category
      var catDiv = $("<div>").addClass("cat");
      //create button
-
-     //create all the circles
+     var catButton = $("<p>"+label+"</p>").addClass("catButton");
+     $container.append(catButton);
+     console.log("catButton");
      for (var i in entries) {
          var outerDiv = $("<div>").addClass("outerActivity");
-         var innerDiv = $("<div>").addClass("innerActivity");
+         // var innerDiv = $("<div>").addClass("innerActivity");
          var imgElement = $("<img>").addClass("activityImg");
          imgElement.attr("src", "/static/draw/img/activities/" + entries[i]);
-         innerDiv.append(imgElement);
-         var label = $("<p>" + i + "</p>");
-         outerDiv.append(innerDiv);
+         // innerDiv.append(imgElement);
+         var label = $("<p>" + i + "</p>").addClass("activityLabel");
+         outerDiv.append(imgElement);
          outerDiv.append(label);
          catDiv.append(outerDiv);
      }
      $container.append(catDiv);
+     catDiv.hide();
+     catButton.click(function() {
+         catDiv.toggle();
+     });
  }
 
  // create a color palette with the given colors
