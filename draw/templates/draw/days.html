@@ -58,7 +58,12 @@
     <a href="lovetracker"><img src="{% static 'draw/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics" ><img src="{% static 'draw/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
     <a href="#settings"><img src="{% static 'draw/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+
   </div>
+
+    <p id="day"></p>
+    <p id="month"></p>
+    <p id="year"></p>
 </body>
 <script>
 // function to getcookie(drew inspiration from stackoverflow)
@@ -78,6 +83,9 @@ var year = getCookie("year");
 console.log(month);
 console.log(day);
 console.log(year);
+document.getElementById("day").innerHTML = day;
+document.getElementById("month").innerHTML = month;
+document.getElementById("year").innerHTML = year;
 </script>
 
 </html>
