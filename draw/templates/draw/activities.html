@@ -45,9 +45,42 @@
          width: 180px;
          text-align: center;
      }
-     .cat .outerActivity:nth-child(3n+3) {
-
+     .cat .outerActivity:nth-child(9n+3)::after {
+         content: "";
+         width: 100px;
+         height: 330px;
+         border: 1px solid #000;
+         border-left: none;
+         position: absolute;
+         margin-left: 180px;
+         margin-top: -150px;
      }
+     .cat .outerActivity:nth-child(9n+4)::before {
+         content: "";
+         width: 100px;
+         height: 330px;
+         border: 1px solid #000;
+         border-right: none;
+         position: absolute;
+         margin-left: -100px;
+         margin-top: 88px;
+         z-index: 100;
+     }
+
+     .cat .outerActivity:nth-child(3n+1)::after,
+     .cat .outerActivity:nth-child(3n+2)::after {
+         content: "";
+         position: absolute;
+         width: 82px;
+         border-bottom: 1px solid #000;
+         margin-top: -140px;
+         margin-left: 180px;
+     }
+
+     .cat .outerActivity:last-of-type::after {
+         display: none;
+     }
+
     </style>
 
 
