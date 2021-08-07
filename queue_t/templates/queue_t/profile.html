@@ -1,0 +1,131 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Settings</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
+</head>
+
+<style>
+  body{
+    background-color: #F6EEED;
+  }
+
+  /* Dropdown https://www.w3schools.com/howto/howto_js_dropdown.asp */
+  .dropbtn {
+    width:25vw;
+    height:5vh;
+    background-color: #EDEEED;
+
+    font-size: 2vh;
+    border-radius: 7%;
+    border-color: #F6EEED;
+    cursor: pointer;
+  }
+
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #C4C4C4;
+  }
+
+  #myInput {
+    box-sizing: border-box;
+    font-size: 2vh;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #myInput:focus {outline: 1px solid #ddd;}
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    width:25vw;
+    height:20vh;
+    font-size:2vh;
+    display: none;
+    position: absolute;
+    background-color: #EDEEED;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding-top:0.5vh;
+    padding-bottom:0.5vh;
+    text-align:center;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown a:hover {background-color: #C4C4C4;}
+
+  .show {display: block;}
+
+  .backbtn a {
+    font-size: 3vh;
+    color:black;
+    text-decoration:none;
+  }
+
+  ::placeholder {
+    color:black;
+    text-align:center;
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: #6c757d;
+  }
+
+  input[type=text] {
+    text-align:center;
+    border:none;
+    background-color:transparent;
+    width:90%;
+  }
+
+  input[type=text]:focus {
+    color: black;
+  }
+
+
+</style>
+
+<body>
+  <div class="container-fluid" style="padding-left:7vw;padding-top:2.5vh;">
+
+    <div class="row">
+      <div class="col backbtn">
+        <a href="settings"> ＜&nbsp&nbspBack </a>
+      </div>
+    </div>
+
+    <div class="row" style=";padding-top:4vh;padding-bottom:2vh">
+      <div class="col-6" style="font-size:4vh">
+        Name
+      </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+        <input id="name" type="text" placeholder="Donald Chuan"></input>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</body>
+<script>
+</script>
+
+</html>
