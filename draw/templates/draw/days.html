@@ -1,0 +1,149 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Special Days</title>
+
+    <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+      body{
+        background-color: #F6EEED;
+      }
+
+
+    .navbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            }
+
+    /* Style the links inside the navigation bar */
+    .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+
+
+    /* Show you are currently on this page */
+    .navbar a.active {
+            background-color: #C4C4C4;
+            color: white;
+            }
+
+
+
+    .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    </style>
+</head>
+<body>
+
+
+  <div class="navbar">
+    <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="days" class="active"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="lovetracker"><img src="{% static 'queue_t/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="topics" ><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+  </div>
+  <br><br>
+
+</body>
+<script>
+// function to getcookie(drew inspiration from stackoverflow)
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+  }
+  function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
+  var allEvents = JSON.parse(getCookie('event_list'));             //This is list has all of the event name now
+  //Loop through the event name and dynaically append to the DOM tree
+  console.log(allEvents.length);
+  for (let i = 0; i < allEvents.length; i++) {
+    var event_information = JSON.parse(getCookie(allEvents[i]));   //for this list, index 0 is the days difference, index 1 is the type(count or since then)
+
+    if (event_information[1] == "count") {
+      var br = document.createElement('br');
+      document.body.appendChild(br);
+      var h = document.createElement('p');
+      var div = document.createElement('div');
+      var space = "\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"
+      +"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0";
+      var text_str = allEvents[i] + space + event_information[0] + " days left";   //\u00A0 is the unicode for space!!!
+      var colors = ['#b3ffb3', '#ffffcc', '#DFE7FD', '#D8E2DC'];
+      var random_color = colors[Math.floor(Math.random() * colors.length)];   //select a random color from this list
+      h.textContent = text_str;
+      h.style.cssText = "font-size:400%;border-style:solid;border-radius:25% 10%;border-color: black;padding-left:20px;border-width:5px;text-align:center;padding-top:50px;padding-bottom: 50px";
+      h.style.backgroundColor = random_color;
+      div.style.cssText = "margin-left:40px;margin-right:40px;";
+      div.appendChild(h);
+      div.appendChild(br);
+      document.body.appendChild(div);
+      document.body.appendChild(br);
+      // css for the events
+    } else if (event_information[1] == "since") {
+      var br = document.createElement('br');
+      document.body.appendChild(br);
+      var h = document.createElement('p');
+      var div = document.createElement('div');
+      var space = "\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0";
+      var text_str = "\u00A0" + allEvents[i] + space + "has been " + event_information[0] + " days";
+      var colors = ['#b3ffb3', '#ffffcc', '#DFE7FD', '#D8E2DC'];
+      var random_color = colors[Math.floor(Math.random() * colors.length)];   //select a random color from this list
+      h.textContent = text_str;
+      h.style.cssText = "font-size:400%;border-style:solid;border-radius:25% 10%;border-color: black;padding-top:50px;padding-bottom: 50px;padding-left:20px;border-width:5px;text-align:center;border-collapse:separate;border-spacing:20px";
+      h.style.backgroundColor = random_color;
+      div.style.cssText = "margin-left:40px;margin-right:40px;";
+      div.appendChild(h);
+      div.appendChild(br);
+      document.body.appendChild(div);
+    }
+  }
+
+</script>
+
+</html>
