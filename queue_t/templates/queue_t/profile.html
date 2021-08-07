@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    <div class="row" style=";padding-top:4vh;padding-bottom:2vh">
+    <div class="row" style=";padding-top:5vh;padding-bottom:3vh">
       <div class="col-6" style="font-size:4vh">
         Name
       </div>
@@ -118,6 +118,73 @@
         <input id="name" type="text" placeholder="Donald Chuan"></input>
       </div>
     </div>
+
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        Partner
+      </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+        <input id="partner" type="text" placeholder="Sophia Pu"></input>
+      </div>
+    </div>
+
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        Gender
+      </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;text-align:center">
+        <div class="dropdown">
+          <button onclick="genders()" class="dropbtn" style="font-size:2.5vh">
+            Male&nbsp&nbsp
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="genders" class="dropdown-content" style="height:12vh">
+            <a href="#Male">Female</a>
+            <a href="#Intersex">Intersex</a>
+            <a href="#Trans">Trans</a>
+            <a href="N/A">N/A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        Email
+      </div>
+      <div class="col-6" style="font-size:2.5vh; padding-top:1vh;">
+        <input id="email" type="text" placeholder="chuan160@qt.com"></input>
+      </div>
+    </div>
+
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        Birthdate
+      </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;text-align:center">
+        <div class="dropdown">
+          <button onclick="genders()" class="dropbtn" style="font-size:2.5vh">
+            Male&nbsp&nbsp
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div id="genders" class="dropdown-content" style="height:12vh">
+            <a href="#Male">Female</a>
+            <a href="#Intersex">Intersex</a>
+            <a href="#Trans">Trans</a>
+            <a href="N/A">N/A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
   </div>
 
 
@@ -126,6 +193,32 @@
 
 </body>
 <script>
+  // https://www.w3schools.com/howto/howto_js_dropdown.asp
+  function genders() {
+    document.getElementById("genders").classList.toggle("show");
+  }
+
+  function myFunction2() {
+    document.getElementById("themes").classList.toggle("show");
+  }
+
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("languages");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
+
 </script>
 
 </html>
