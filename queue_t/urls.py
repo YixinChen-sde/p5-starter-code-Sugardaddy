@@ -14,6 +14,7 @@ urlpatterns = [
     path('topics', views.topics, name='topics'),
     path('onetopic', views.onetopic, name='onetopic'),
     path('daysinput', views.daysinput, name='daysinput'),
+    path('activitiesinput', views.activitiesinput, name='activitiesinput'),
     path('settings', views.settings, name='settings'),
     path('profile', views.profile, name='profile'),
     path('about_us', views.about_us, name='about_us'),
