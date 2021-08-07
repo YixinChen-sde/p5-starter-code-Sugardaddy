@@ -17,40 +17,6 @@
         background-color: #F6EEED;
       }
 
-      .boxes{
-        text-align:center;
-        height:16vh;
-        font-size:3vh;
-      }
-
-      .top-button{
-        height:12vh;
-        width:33vw;
-        border-radius:9%;
-      }
-
-      .button{
-        height:12vh;
-        width:78vw;
-        border-radius:9%;
-      }
-
-      .text-padding1{
-        padding-left:11.5vw;
-        padding-right:11.5vw;
-      }
-
-      .text-padding2{
-        padding-left:5vw;
-        padding-right:5vw;
-      }
-
-      #add_btn{
-        height:6.75vh;
-        width:12vw;
-        border-radius:50%;
-        font-size:3.5vh;
-      }
 
     .navbar {
             background-color: #EDEEED;
@@ -83,14 +49,7 @@
             color: white;
             }
 
-    .topbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index:1;
-            }
+
 
     .topbar a {
             float: left;
@@ -105,79 +64,7 @@
     </style>
 </head>
 <body>
-  <div class="topbar">
-    <a href="summary"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
-    <a href="" style="padding-left:  4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special Days</p></a>
-  </div>
-  <div style="height:9vh"> </div>
-  <div class="container-fluid" style="padding-left:6vw;padding-right:6vw">
-    <div class="row boxes">
-      <div class="col-6">
-        <a href="#">
-          <button class="top-button" style="background:#EFC7C2">Together for 40 days</button>
-        </a>
-      </div>
-      <div class="col-6">
-        <a href="#">
-          <button class="top-button" style="background:#F5ACAC">Anniversary in 325 Days</button>
-        </a>
-      </div>
-    </div>
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#DFE7FD">
-            Next Date
-            <span class="text-padding1"></span>
-            2 days left
-          </button>
-        </a>
-      </div>
-    </div>
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#DFE7FD">
-            Trip to LA
-            <span class="text-padding1"></span>
-            30 days left
-          </button>
-        </a>
-      </div>
-    </div>
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#D8E2DC">
-            First Kiss
-            <span class="text-padding2"></span>
-            has been 40 days
-          </button>
-        </a>
-      </div>
-    </div>
-    <div class="row boxes">
-      <div class="col">
-        <a href="#">
-          <button class="button" style="background:#D8E2DC">
-            First Date
-            <span class="text-padding2"></span>
-            has been 50 days
-          </button>
-        </a>
-      </div>
-    </div>
 
-     <div class="row boxes">
-       <div class="col">
-         <a href="#">
-         <a href="daysinput">
-           <button class="button" id="add_btn">+</button>
-         </a>
-       </div>
-    </div>
-  </div>
 
   <div class="navbar">
     <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
@@ -185,9 +72,8 @@
     <a href="lovetracker"><img src="{% static 'queue_t/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics" ><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
     <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
-
   </div>
-
+  <br><br>
 
 </body>
 <script>
@@ -221,17 +107,40 @@
     var event_information = JSON.parse(getCookie(allEvents[i]));   //for this list, index 0 is the days difference, index 1 is the type(count or since then)
 
     if (event_information[1] == "count") {
-      var h = document.createElement('h1');
-      var text_str = "Event Name: " + allEvents[i] + " " + event_information[0] + " days left";
-      var t = document.createTextNode(text_str);
-      h.appendChild(t);
-      document.body.appendChild(h);
+      var br = document.createElement('br');
+      document.body.appendChild(br);
+      var h = document.createElement('p');
+      var div = document.createElement('div');
+      var space = "\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"
+      +"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0";
+      var text_str = allEvents[i] + space + event_information[0] + " days left";   //\u00A0 is the unicode for space!!!
+      var colors = ['#b3ffb3', '#ffffcc', '#DFE7FD', '#D8E2DC'];
+      var random_color = colors[Math.floor(Math.random() * colors.length)];   //select a random color from this list
+      h.textContent = text_str;
+      h.style.cssText = "font-size:400%;border-style:solid;border-radius:25% 10%;border-color: black;padding-left:20px;border-width:5px;text-align:center;padding-top:50px;padding-bottom: 50px";
+      h.style.backgroundColor = random_color;
+      div.style.cssText = "margin-left:40px;margin-right:40px;";
+      div.appendChild(h);
+      div.appendChild(br);
+      document.body.appendChild(div);
+      document.body.appendChild(br);
+      // css for the events
     } else if (event_information[1] == "since") {
-      var h = document.createElement('h1');
-      var text_str = "Event Name: " + allEvents[i] + "       has been " + event_information[0] + " days ";
-      var t = document.createTextNode(text_str);
-      h.appendChild(t);
-      document.body.appendChild(h);
+      var br = document.createElement('br');
+      document.body.appendChild(br);
+      var h = document.createElement('p');
+      var div = document.createElement('div');
+      var space = "\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0"+"\u00A0";
+      var text_str = "\u00A0" + allEvents[i] + space + "has been " + event_information[0] + " days";
+      var colors = ['#b3ffb3', '#ffffcc', '#DFE7FD', '#D8E2DC'];
+      var random_color = colors[Math.floor(Math.random() * colors.length)];   //select a random color from this list
+      h.textContent = text_str;
+      h.style.cssText = "font-size:400%;border-style:solid;border-radius:25% 10%;border-color: black;padding-top:50px;padding-bottom: 50px;padding-left:20px;border-width:5px;text-align:center;border-collapse:separate;border-spacing:20px";
+      h.style.backgroundColor = random_color;
+      div.style.cssText = "margin-left:40px;margin-right:40px;";
+      div.appendChild(h);
+      div.appendChild(br);
+      document.body.appendChild(div);
     }
   }
 
