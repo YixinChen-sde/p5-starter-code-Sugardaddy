@@ -187,9 +187,13 @@
 
 </body>
 <script>
+    var socket = new WebSocket(
+        'ws://' + window.location.host + '/ws/queue_t');
+ // socket.onopen = () => socket.send("hello!")
+ var myUID = Date.now() % 10000;
  var $container = $("#lovemap");
  //store activity names in order
- var datingList =  ["First date", "Hold hands", "First kiss", "More dates"]//, "Cuddle", "Sleepover"]// "Introduce to friends", "Share secrets", "Exclusive"];
+ var datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
  //dictionary mapping activity names to img paths
  // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
  var nameToImg = {};
@@ -217,6 +221,7 @@
          }
          for (var k = 0; k < 3 && 3*j+k < N; k += 1) {
              var i = 3*j + k;
+             var originalIndex = datingList.indexOf(zigzagList[i]);
              console.log(zigzagList);
              var outerDiv = $("<div>").addClass("outerActivity");
              // add lines
@@ -235,7 +240,13 @@
              // } else {
              //     outerDiv.addClass("rightAlign");
              // }
-             var innerDiv = $("<div>").addClass("innerActivity").addClass("locked").attr("id", i.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
+             var innerDiv = $("<div>").addClass("innerActivity").attr("id", originalIndex.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
+             if (i <= latestCommon) {
+                 innerDiv.addClass("unlocked");
+             } else {
+                 innerDiv.addClass("locked");
+             }
+
              var imgElement = $("<img>").addClass("activityImg");
              if (!zigzagList[i] in nameToImg) {
                  imgElement.attr("src", "/static/queue_t/img/tracker/custom.svg");
@@ -255,17 +266,22 @@
  // progress
  $(".innerActivity").on("click", (e) => {
      // console.log(e.currentTarget);
+     console.log(latestCommon, "hi");
      var t = $(e.currentTarget);
      if (parseInt(t.attr("id")) == latestCommon + 1) {
          //update variable + bg
          t.removeClass("locked");
+         t.removeClass("pending");
          if (otherAhead) {
              otherAhead = false;
              ahead = false;
-             t.addClass("unlocked")
+             latestCommon += 1;
+             t.addClass("unlocked");
+             gottaGoFast();
          } else {
              ahead = true;
              t.addClass("pending");
+             gottaGoFast();
          }
          //store cookies
          //send websocket
@@ -287,7 +303,10 @@
      }
      return b;
  }
-
+// for when one person advances, send over websocket
+ function gottaGoFast() {
+     socket.send("{\"uid\" : " + myUID + ",\"ahead\" : " + true + "}" );
+ }
 
  //store some things in cookies
  //list of activities in order
@@ -296,6 +315,29 @@
 
  function rewriteCookies() {
 
+ }
+
+
+ //handle websocket receive
+
+ socket.onmessage = function(receivedMessage) {
+     console.log(receivedMessage.data);
+     var received = JSON.parse(receivedMessage.data);
+     if (received.uid != myUID) {
+         if (received.ahead != undefined) {
+             if (received.ahead && ahead) {
+                 ahead = false;
+                 otherAhead = false;
+                 latestCommon += 1;
+                 $("#"+latestCommon).removeClass("pending");
+                 $("#"+latestCommon).addClass("unlocked");
+             } else if (received.ahead && !ahead) {
+                 otherAhead = true;
+             } else if (!received.ahead) {
+                 //do nothing
+             }
+         }
+     }
  }
 </script>
 

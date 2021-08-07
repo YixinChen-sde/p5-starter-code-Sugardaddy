@@ -71,8 +71,8 @@
 <body>
     
   <div class="topbar">
-    <a href="summary"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+    <a href="topics"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="topics" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
     <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Random Topics</p></a>
   </div>
   </div>
@@ -88,6 +88,8 @@
 </body>
 <script>
 
+    var url = window.location.href;
+
     var topics = [
         "What are some random fun facts about you",
         "What’s Something You Want to Learn or Wish You Were Better At",
@@ -96,13 +98,139 @@
         "What’s Something That Bugs You?",
         "What’s the Most Embarrassing Thing You Can Remember That’s Happened to You?",
         "Who Are the Special People in Your Life?",
-        "What’s Something You’re Proud of?"
+        "What’s Something You’re Proud of?",
+        "What’s the best / worst practical joke that you’ve played on someone or that was played on you?",
+        "What food is delicious but a pain to eat?",
+        "What “old person” things do you do?",
+        "What was the last photo you took?",
+        "What’s the spiciest thing you’ve ever eaten?",
+        "What unethical experiment would have the biggest positive impact on society as a whole?",
+        "Where are some unusual places you’ve been?",
+        "What movie can you watch over and over without ever getting tired of?",
+        "When you are old, what do you think children will ask you to tell stories about?",
+        "What’s something that will always be in fashion, no matter how much time passes?",
+        "What are your most important rules when going on a date?",
+        "What’s wrong but sounds right?",
+        "Who do you go out of your way to be nice to?",
+        "What makes you roll your eyes every time you hear it?",
+        "How do you judge a person?",
+        "What was the most unsettling film you’ve seen?",
+        "What secret conspiracy would you like to start?",
+        "What’s invisible but you wish people could see?",
+        "What’s the weirdest smell you have ever smelled?",
+        "Is a hotdog a sandwich? Why or why not?",
+        "What’s the best Wi-Fi name you’ve seen?",
+        "What’s the most ridiculous fact you know?",
+        "What animal would be cutest if scaled down to the size of a cat?",
+        "What’s the most epic way you’ve seen someone quit or be fired?",
+        "If you couldn’t be convicted of any one type of crime, what criminal charge would you like to be immune to?",
+        "If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days?",
+        "What’s something people don’t worry about but really should?",
+        "Do you think that children born today will have better or worse lives than their parents?",
+        "When was the last time you felt you had a new lease on life?"
+    ]
+
+    var popular = [
+        "What’s the best / worst practical joke that you’ve played on someone or that was played on you?",
+        "What food is delicious but a pain to eat?",
+        "What “old person” things do you do?",
+        "What was the last photo you took?",
+        "What’s the spiciest thing you’ve ever eaten?",
+        "What unethical experiment would have the biggest positive impact on society as a whole?"
 
     ]
-    newTopic();
-    function newTopic() {
-        var randomNumber = Math.floor(Math.random() * (topics.length));
-        document.getElementById("topicsDisplay").innerHTML = topics[randomNumber];
+
+    var classics = [
+        "Where are some unusual places you’ve been?",
+        "What movie can you watch over and over without ever getting tired of?",
+        "When you are old, what do you think children will ask you to tell stories about?",
+        "What’s something that will always be in fashion, no matter how much time passes?",
+        "What are your most important rules when going on a date?"
+
+    ]
+
+    var sensitive = [
+        "What’s wrong but sounds right?",
+        "Who do you go out of your way to be nice to?",
+        "What makes you roll your eyes every time you hear it?",
+        "How do you judge a person?",
+        "What was the most unsettling film you’ve seen?"
+    ]
+
+    var meaningful = [
+        "If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days?",
+        "What’s something people don’t worry about but really should?",
+        "Do you think that children born today will have better or worse lives than their parents?",
+        "When was the last time you felt you had a new lease on life?"
+    ]
+    var funny = [
+        "What secret conspiracy would you like to start?",
+        "What’s invisible but you wish people could see?",
+        "What’s the weirdest smell you have ever smelled?",
+        "Is a hotdog a sandwich? Why or why not?",
+        "What’s the best Wi-Fi name you’ve seen?",
+        "What’s the most ridiculous fact you know?"
+    ]
+    var weird = [
+        "What animal would be cutest if scaled down to the size of a cat?",
+        "What’s the most epic way you’ve seen someone quit or be fired?",
+        "If you couldn’t be convicted of any one type of crime, what criminal charge would you like to be immune to?",
+    ]
+
+    if (url.indexOf("justRandom") > -1) {
+        newTopic();
+        function newTopic() {
+            var randomNumber = Math.floor(Math.random() * (topics.length));
+            document.getElementById("topicsDisplay").innerHTML = topics[randomNumber];
+        }
+    }
+
+    if (url.indexOf("popular") > -1) {
+        newTopic();
+        function newTopic() {
+        var randomNumber = Math.floor(Math.random() * (popular.length));
+        document.getElementById("topicsDisplay").innerHTML = popular[randomNumber];
+         }
+    }
+
+    if (url.indexOf("classic") > -1) {
+        newTopic();
+        function newTopic() {
+        var randomNumber = Math.floor(Math.random() * (classics.length));
+        document.getElementById("topicsDisplay").innerHTML = classics[randomNumber];
+        }
+    }
+
+    if (url.indexOf("sensitive") > -1) {
+        newTopic();
+        function newTopic() {
+        var randomNumber = Math.floor(Math.random() * (sensitive.length));
+        document.getElementById("topicsDisplay").innerHTML = sensitive[randomNumber];
+        }
+    }
+
+    if (url.indexOf("meaningful") > -1) {
+        newTopic();
+        function newTopic() {
+        var randomNumber = Math.floor(Math.random() * (meaningful.length));
+        document.getElementById("topicsDisplay").innerHTML = meaningful[randomNumber];
+        }
+    }
+    
+    if (url.indexOf("funny") > -1) {
+        newTopic();
+        function newTopic() {
+        var randomNumber = Math.floor(Math.random() * (funny.length));
+        document.getElementById("topicsDisplay").innerHTML = funny[randomNumber];
+        }
+    }
+
+    if (url.indexOf("weird") > -1) {
+        newTopic();
+        function newTopic() {
+        var randomNumber = Math.floor(Math.random() * (weird.length));
+        document.getElementById("topicsDisplay").innerHTML = weird[randomNumber];
+        }
     }
 </script>
 
