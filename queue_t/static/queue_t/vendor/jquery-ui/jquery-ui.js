@@ -11217,7 +11217,7 @@ $.extend( Datepicker.prototype, {
 
 	/* Generate the HTML for the current state of the date picker. */
 	_generateHTML: function( inst ) {
-		var maxQueue_t, prevText, prev, nextText, next, currentText, gotoDate,
+		var maxQueue_T, prevText, prev, nextText, next, currentText, gotoDate,
 			controls, buttonPanel, firstDay, showWeek, dayNames, dayNamesMin,
 			monthNames, monthNamesShort, beforeShowDay, showOtherMonths,
 			selectOtherMonths, defaultDate, html, dow, row, group, col, selectedDate,
@@ -11246,10 +11246,10 @@ $.extend( Datepicker.prototype, {
 			queue_tYear--;
 		}
 		if ( maxDate ) {
-			maxQueue_t = this._daylightSavingAdjust( new Date( maxDate.getFullYear(),
+			maxQueue_T = this._daylightSavingAdjust( new Date( maxDate.getFullYear(),
 				maxDate.getMonth() - ( numMonths[ 0 ] * numMonths[ 1 ] ) + 1, maxDate.getDate() ) );
-			maxQueue_t = ( minDate && maxQueue_t < minDate ? minDate : maxQueue_t );
-			while ( this._daylightSavingAdjust( new Date( queue_tYear, queue_tMonth, 1 ) ) > maxQueue_t ) {
+			maxQueue_T = ( minDate && maxQueue_T < minDate ? minDate : maxQueue_T );
+			while ( this._daylightSavingAdjust( new Date( queue_tYear, queue_tMonth, 1 ) ) > maxQueue_T ) {
 				queue_tMonth--;
 				if ( queue_tMonth < 0 ) {
 					queue_tMonth = 11;
