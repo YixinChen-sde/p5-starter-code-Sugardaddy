@@ -45,3 +45,7 @@ def randomTopics_one(request):
 
 def randomTopics_two(request):
     return render(request, 'queue_t/randomTopics_two.html')
+
+def randomTopics(request):
+    return render(request, 'queue_t/randomTopics.html')
+

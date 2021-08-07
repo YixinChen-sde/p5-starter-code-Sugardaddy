@@ -18,6 +18,8 @@ urlpatterns = [
     path('profile', views.profile, name='profile'),
     path('about', views.about, name='about'),
     path('randomTopics_one', views.randomTopics_one, name='randomTopics_one'),
-    path('randomTopics_two', views.randomTopics_two, name='randomTopics_two')
+    path('randomTopics_two', views.randomTopics_two, name='randomTopics_two'),
+    path('randomTopics', views.randomTopics, name='randomTopics')
+
 
 ]
