@@ -138,7 +138,26 @@
          width: 90%;
          left: 5%;
      }
-
+     .rightAlign {
+         float: right;
+         margin-right: 1.8vw;
+         /* width: 100%; */
+     }
+     /* .rightAlign .outerActivity {
+        display: inline-block;
+        } */
+     .locked {
+         border: 1vw solid #888;
+         background: #aaa;
+     }
+     .unlocked {
+         border: 1vw solid #F99EAB;
+         background: #F7CAD0;
+     }
+     .pending {
+         border: 1vw solid #F99EAB;
+         background: #aaa;
+     }
     </style>
 
 
@@ -170,7 +189,7 @@
 <script>
  var $container = $("#lovemap");
  //store activity names in order
- var datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
+ var datingList =  ["First date", "Hold hands", "First kiss", "More dates"]//, "Cuddle", "Sleepover"]// "Introduce to friends", "Share secrets", "Exclusive"];
  //dictionary mapping activity names to img paths
  // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
  var nameToImg = {};
@@ -178,32 +197,80 @@
  for (var i of datingList) {
      nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "") + ".svg";
  }
+ //index of latest common activity
+ var latestCommon = -1;
+ //whether current user is ahead of other user
+ var ahead = false;
+ var otherAhead = false;
+
  rebuildTracker();
  function rebuildTracker() {
      var zigzagList = zigzagOrder(datingList);
      $container.html(" ");
      var N = zigzagList.length;
-     for (var i = 0; i < N; i += 1) {
-         var outerDiv = $("<div>").addClass("outerActivity");
-         if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
-             outerDiv.addClass("lineRight");
+     console.log(N);
+     for (var j = 0; j < N/3; j += 1) {
+         var tripleDiv = $("<div>").addClass("outerTriple");
+         //if the path stops but N is not div by 3, and it is going right to left, float things right
+         if (j % 2 == 1 && j+1 > N/3 && (N%3 != 0)) {
+             tripleDiv.addClass("rightAlign");
          }
-         if (i % 9 == 2 && i < N-3) {
-             outerDiv.addClass("squareLineRight");
+         for (var k = 0; k < 3 && 3*j+k < N; k += 1) {
+             var i = 3*j + k;
+             console.log(zigzagList);
+             var outerDiv = $("<div>").addClass("outerActivity");
+             // add lines
+             if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
+                 outerDiv.addClass("lineRight");
+             }
+             // add square things at ends of lines
+             if (i % 9 == 2 && i < N-1) {
+                 outerDiv.addClass("squareLineRight");
+             }
+             if (i % 9 == 3 && i < N-3) {
+                 outerDiv.addClass("squareLineLeft");
+             }
+             // if ((i % 6) < 3) {
+             //     outerDiv.addClass("leftAlign");
+             // } else {
+             //     outerDiv.addClass("rightAlign");
+             // }
+             var innerDiv = $("<div>").addClass("innerActivity").addClass("locked").attr("id", i.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
+             var imgElement = $("<img>").addClass("activityImg");
+             if (!zigzagList[i] in nameToImg) {
+                 imgElement.attr("src", "/static/queue_t/img/tracker/custom.svg");
+             } else {
+                 imgElement.attr("src", nameToImg[zigzagList[i]]);
+             }
+             var label = $("<p>" + zigzagList[i] + "</p>").addClass("activityLabel");
+             innerDiv.append(imgElement);
+             outerDiv.append(innerDiv);
+             outerDiv.append(label);
+             // $container.append(outerDiv);
+             tripleDiv.append(outerDiv);
          }
-         if (i % 9 == 3 && i < N-3) {
-             outerDiv.addClass("squareLineLeft");
-         }
-         var innerDiv = $("<div>").addClass("innerActivity");
-         var imgElement = $("<img>").addClass("activityImg").attr("id", zigzagList[i].replace(/\s/g, ""));
-         imgElement.attr("src", nameToImg[zigzagList[i]]);
-         var label = $("<p>" + zigzagList[i] + "</p>").addClass("activityLabel");
-         innerDiv.append(imgElement);
-         outerDiv.append(innerDiv);
-         outerDiv.append(label);
-         $container.append(outerDiv);
+         $container.append(tripleDiv);
      }
  }
+ // progress
+ $(".innerActivity").on("click", (e) => {
+     // console.log(e.currentTarget);
+     var t = $(e.currentTarget);
+     if (parseInt(t.attr("id")) == latestCommon + 1) {
+         //update variable + bg
+         t.removeClass("locked");
+         if (otherAhead) {
+             otherAhead = false;
+             ahead = false;
+             t.addClass("unlocked")
+         } else {
+             ahead = true;
+             t.addClass("pending");
+         }
+         //store cookies
+         //send websocket
+     }
+ });
  // since the path goes left to right, right to left, etc.
  // convert the list into the order we want to display the actions top to bottom, left to right
  //
@@ -215,12 +282,21 @@
              [b[6*i + 3], b[6*i + 5]] = [b[6*i + 5], b[6*i + 3]];
          } else if (6*i + 4 < a.length) {
              //swap 3 mod 6 and 4 mod 6 elements of array if last element is 4 mod 6
-             [b[6*i + 3], b[6*i + 5]] = [b[6*i + 5], b[6*i + 3]];
+             [b[6*i + 3], b[6*i + 4]] = [b[6*i + 4], b[6*i + 3]];
          }
      }
      return b;
  }
 
+
+ //store some things in cookies
+ //list of activities in order
+ // the number of the most recently completed activity 0-indexed, if none then -1
+ // whether current user is ahead or other user is ahead
+
+ function rewriteCookies() {
+
+ }
 </script>
 
 </html>
