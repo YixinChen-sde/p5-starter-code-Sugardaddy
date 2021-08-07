@@ -49,3 +49,5 @@ def randomTopics_two(request):
 def randomTopics(request):
     return render(request, 'queue_t/randomTopics.html')
 
+def activitiesinput(request):
+    return render(request, 'queue_t/activitiesinput.html')
