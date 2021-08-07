@@ -187,6 +187,9 @@
 
 </body>
 <script>
+    var socket = new WebSocket(
+        'ws://' + window.location.host + '/ws/queue_t');
+ socket.onopen = () => socket.send("hello!")
  var $container = $("#lovemap");
  //store activity names in order
  var datingList =  ["First date", "Hold hands", "First kiss", "More dates"]//, "Cuddle", "Sleepover"]// "Introduce to friends", "Share secrets", "Exclusive"];
@@ -288,6 +291,9 @@
      return b;
  }
 
+ function gottaGoFast() {
+
+ }
 
  //store some things in cookies
  //list of activities in order
@@ -296,6 +302,27 @@
 
  function rewriteCookies() {
 
+ }
+
+
+ //handle websocket receive
+
+ socket.onmessage = function(receivedMessage) {
+     var received = JSON.parse(receivedMessage.data);
+     if (received.uid != myUID) {
+         if (received.ahead != undefined) {
+             if (received.ahead && ahead) {
+                 ahead = false;
+                 otherAhead = false;
+                 latestCommon += 1;
+                 rebuildTracker();
+             } else if (received.ahead && !ahead) {
+                 otherAhead = true;
+             } else if (!received.ahead) {
+                 //do nothing
+             }
+         }
+     }
  }
 </script>
 
