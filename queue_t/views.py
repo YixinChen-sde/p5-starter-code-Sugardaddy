@@ -34,8 +34,8 @@ def daysinput(request):
 def settings(request):
     return render(request, 'queue_t/settings.html')
 
-def about(request):
-    return render(request, 'queue_t/about.html')
+def about_us(request):
+    return render(request, 'queue_t/about_us.html')
 
 def profile(request):
     return render(request, 'queue_t/profile.html')
