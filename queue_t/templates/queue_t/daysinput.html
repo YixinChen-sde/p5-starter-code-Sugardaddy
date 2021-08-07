@@ -136,7 +136,14 @@
 
 
         }
+     #since:active, #countdown:active, #submit:active {
+         box-shadow: 5px 10px #233333;
+         background: #ccc;
 
+     }
+     .button-selected {
+         background: #ddd;
+     }
         #lovedate{
             left: 10cm;
 
@@ -233,12 +240,14 @@
          enteredDate = new Date(date_str);
          const diffTime = Math.abs(enteredDate - today);
          diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+         window.location.href = "/queue_t/days";
      });
  })();
 
  //if the user clicked the count down button, save how many days left till the event and the event information
  (function() {
      $('#countdown').on('click', function(){
+         $(this).addClass("button-selected");
          var date = new Date($('#lovedate').val());
          day = date.getDate()+1;
          month = date.getMonth() + 1;
@@ -263,6 +272,7 @@
  //if the user clicked the count down button, save how many days left till the event and the event information
  (function() {
      $('#since').on('click', function(){
+         $(this).addClass("button-selected");
          var date = new Date($('#lovedate').val());
          day = date.getDate()+1;
          month = date.getMonth() + 1;
