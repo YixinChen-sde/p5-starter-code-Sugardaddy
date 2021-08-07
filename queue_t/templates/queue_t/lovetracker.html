@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Question Board</title>
+    <title></title>
 
     <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
@@ -14,77 +14,99 @@
 
     <style type="text/css">
 
-      body{
-        background-color: #D5E3EA;
-      }
+     body{
+         background-color: #D5E3EA;
+     }
 
-       /* some navbar design inspired by W3school */
+     /* some navbar design inspired by W3school */
      .navbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            bottom: 0;
+         background-color: #EDEEED;
+         overflow: hidden;
+         position: fixed;
+         bottom: 0;
          width: 100%;
          z-index: 1000000000000;
-            }
+     }
 
-    /* Style the links inside the navigation bar */
-    .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
+     /* Style the links inside the navigation bar */
+     .navbar a {
+         float: left;
+         display: block;
+         color: #f2f2f2;
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+     }
 
-    .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-            }
-
-
-    /* Show you are currently on this page */
-    .navbar a.active {
-            background-color: #C4C4C4;
-            color: white;
-            }
-
-    .topbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            }
-
-            .topbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
+     .navbar a:hover {
+         background-color: #ddd;
+         color: black;
+     }
 
 
+     /* Show you are currently on this page */
+     .navbar a.active {
+         background-color: #C4C4C4;
+         color: white;
+     }
+
+     .topbar {
+         background-color: #EDEEED;
+         overflow: hidden;
+         position: fixed;
+         top: 0;
+         width: 100%;
+     }
+
+     .topbar a {
+         float: left;
+         display: block;
+         color: #f2f2f2;
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+     }
+
+     .outerActivity {
+         /* width: 180px; */
+         display: inline-block;
+         /* padding: 100px; */
+         margin: 4.7vw;
+     }
+
+     .activityImg {
+         width: 20vw;
+         height: 20vw;
+         border: 1px solid #000;
+         border-radius: 1000px;
+         padding: 2vw;
+     }
+     .activityLabel {
+         width: 20vw;
+         text-align: center;
+         position: absolute;
+         margin-top: 10px;
+     }
+     .activityLabel{
+         font-size: 1.5em;
+     }
 
      /* for drawing the fancy lines */
      .outerActivity.lineRight::after {
          content: "";
          position: absolute;
          width: 9.5vw;
-         border-bottom: 3px solid #000;
+         border-bottom: 15px solid #555;
          margin-top: 10vw;
          margin-left: 0;
      }
      .outerActivity.squareLineRight::after {
          content: "";
-         width: 8vw;
+         width: 7vw;
          height: 30vw;
-         border: 3px solid #000;
+         border: 15px solid #555;
          border-left: none;
          position: absolute;
          margin-left: 0;
@@ -92,14 +114,20 @@
      }
      .outerActivity.squareLineLeft::before {
          content: "";
-         width: 8vw;
+         width: 7vw;
          height: 30vw;
-         border: 3px solid #000;
+         border: 15px solid #555;
          border-right: none;
          position: absolute;
-         margin-left: -8vw;
+         margin-left: -7vw;
          margin-top: 10.1vw;
          z-index: 100;
+     }
+     #lovemap {
+         position: absolute;
+         top: 50vw;
+         width: 90%;
+         left: 5%;
      }
 
     </style>
@@ -138,30 +166,31 @@
  // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
  var nameToImg = {};
  //all the image names are just lowercase activity name without space
- for (var i of activityList) {
-     nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, ""));
+ for (var i of datingList) {
+     nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "");
  }
  rebuildTracker();
  function rebuildTracker() {
+     var zigzagList = zigzagOrder(datingList);
      $container.html(" ");
-     var N = datingList.length;
+     var N = zigzagList.length;
      for (var i = 0; i < N; i += 1) {
          var outerDiv = $("<div>").addClass("outerActivity");
-         // if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
-         //     outerDiv.addClass("lineRight");
-         // }
-         // if (i % 9 == 2 && i < N-3) {
-         //     outerDiv.addClass("squareLineRight");
-         // }
-         // if (i % 9 == 3 && i < N-3) {
-         //     outerDiv.addClass("squareLineLeft");
-         // }
+         if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
+             outerDiv.addClass("lineRight");
+         }
+         if (i % 9 == 2 && i < N-3) {
+             outerDiv.addClass("squareLineRight");
+         }
+         if (i % 9 == 3 && i < N-3) {
+             outerDiv.addClass("squareLineLeft");
+         }
          var innerDiv = $("<div>").addClass("innerActivity");
-         var imgElement = $("<img>").addClass("activityImg").attr("id", datingList[i].replace(/\s/g, ""));
-         // imgElement.attr("src", nameToImg[datingList[i]]);
-         var label = $("<p>" + datingList[i] + "</p>").addClass("activityLabel");
-         innerDiv.append(imgElement);
-         outerDiv.append(innerDiv);
+         var imgElement = $("<img>").addClass("activityImg").attr("id", zigzagList[i].replace(/\s/g, ""));
+         // imgElement.attr("src", nameToImg[zigzagList[i]]);
+         var label = $("<p>" + zigzagList[i] + "</p>").addClass("activityLabel");
+         // innerDiv.append(imgElement);
+         outerDiv.append(imgElement);
          outerDiv.append(label);
          $container.append(outerDiv);
      }
@@ -170,15 +199,17 @@
  // convert the list into the order we want to display the actions top to bottom, left to right
  //
  function zigzagOrder(a) {
-     for (var i = 0; i < a/6; i += 1) {
+     var b = Array.from(a);
+     for (var i = 0; i < b.length/6; i += 1) {
          if (6*i + 5 < a.length) {
              //swap 3 mod 6 and 5 mod 6 elements of array
-             [a[6*i + 3], a[6*i + 5]] = [a[6*i + 5], a[6*i + 3]];
+             [b[6*i + 3], b[6*i + 5]] = [b[6*i + 5], b[6*i + 3]];
          } else if (6*i + 4 < a.length) {
              //swap 3 mod 6 and 4 mod 6 elements of array if last element is 4 mod 6
-             [a[6*i + 3], a[6*i + 5]] = [a[6*i + 5], a[6*i + 3]];
+             [b[6*i + 3], b[6*i + 5]] = [b[6*i + 5], b[6*i + 3]];
          }
      }
+     return b;
  }
 
 </script>
