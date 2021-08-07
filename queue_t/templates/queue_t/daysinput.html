@@ -200,7 +200,7 @@
  var yyyy = today.getFullYear();
  var enteredDate;
  var diffDays = 0;
- var allEvents = [];
+ var allEvents;
 
  function createCookie(name, value, days) {
      var expires;
@@ -240,7 +240,7 @@
          enteredDate = new Date(date_str);
          const diffTime = Math.abs(enteredDate - today);
          diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        //  window.location.href = "/queue_t/days";
+         //window.location.href = "/queue_t/days";
      });
  })();
 
@@ -248,31 +248,44 @@
  (function() {
      $('#countdown').on('click', function(){
          // $(this).addClass("button-selected");
-         var date = new Date($('#lovedate').val());
-         day = date.getDate()+1;
-         month = date.getMonth() + 1;
-         year = date.getFullYear();
+         if (getCookie('event_list') != null) {
+           allEvents = getCookie('event_list');
+           allEvents = JSON.parse(allEvents);
+           console.log(typeof(allEvents));
+         } else {
+           allEvents = [];
+         }
+           var date = new Date($('#lovedate').val());
+           day = date.getDate()+1;
+           month = date.getMonth() + 1;
+           year = date.getFullYear();
 
-         var date_str = month + '/' + day + '/' + year;
-         enteredDate = new Date(date_str);
-         const diffTime = Math.abs(enteredDate - today);
-         diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+           var date_str = month + '/' + day + '/' + year;
+           enteredDate = new Date(date_str);
+           const diffTime = Math.abs(enteredDate - today);
+           diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-         var enteredEvent = document.getElementById('event-name').value;
-         allEvents.push(enteredEvent);
-         var Json_events = JSON.stringify(allEvents);
-         createCookie('event_list', Json_events);           //This cookies has all of the event names
-         var event_info = [];
-         event_info.push(diffDays);
-         event_info.push("count");
-         var json_info = JSON.stringify(event_info);
-         createCookie(enteredEvent, json_info);            //This cookies has the information of current event
+           var enteredEvent = document.getElementById('event-name').value;
+           allEvents.push(enteredEvent);
+           var Json_events = JSON.stringify(allEvents);
+           createCookie('event_list', Json_events);           //This cookies has all of the event names
+           var event_info = [];
+           event_info.push(diffDays);
+           event_info.push("count");
+           var json_info = JSON.stringify(event_info);
+           createCookie(enteredEvent, json_info);            //This cookies has the information of current event
+
      });
  })();
  //if the user clicked the count down button, save how many days left till the event and the event information
  (function() {
      $('#since').on('click', function(){
          // $(this).addClass("button-selected");
+         if (getCookie('event_list') != null) {
+           allEvents = JSON.parse(getCookie('event_list'));
+         } else {
+           allEvents = [];
+         }
          var date = new Date($('#lovedate').val());
          day = date.getDate()+1;
          month = date.getMonth() + 1;
