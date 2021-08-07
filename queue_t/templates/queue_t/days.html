@@ -51,7 +51,15 @@
 
 
 
-    .topbar a {
+            .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            }
+
+            .topbar a {
             float: left;
             display: block;
             color: #f2f2f2;
@@ -74,6 +82,11 @@
     <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
   </div>
   <br><br>
+  <div class="topbar">
+    <a href="summary"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+    <a href="" style="padding-left:  5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special</p></a>
+  </div>
 
 </body>
 <script>
@@ -119,7 +132,7 @@
       h.textContent = text_str;
       h.style.cssText = "font-size:400%;border-style:solid;border-radius:25% 10%;border-color: black;padding-left:20px;border-width:5px;text-align:center;padding-top:50px;padding-bottom: 50px";
       h.style.backgroundColor = random_color;
-      div.style.cssText = "margin-left:40px;margin-right:40px;";
+      div.style.cssText = "margin-left:40px;margin-right:40px; margin-top: 100px";
       div.appendChild(h);
       div.appendChild(br);
       document.body.appendChild(div);
@@ -137,7 +150,7 @@
       h.textContent = text_str;
       h.style.cssText = "font-size:400%;border-style:solid;border-radius:25% 10%;border-color: black;padding-top:50px;padding-bottom: 50px;padding-left:20px;border-width:5px;text-align:center;border-collapse:separate;border-spacing:20px";
       h.style.backgroundColor = random_color;
-      div.style.cssText = "margin-left:40px;margin-right:40px;";
+      div.style.cssText = "margin-left:40px;margin-right:40px; margin-top: 100px";
       div.appendChild(h);
       div.appendChild(br);
       document.body.appendChild(div);
