@@ -158,6 +158,15 @@
          border: 1vw solid #F99EAB;
          background: #aaa;
      }
+     .outerActivity.done.squareLineLeft::before {
+         border: 15px solid #F99EAB !important;
+     }
+     .outerActivity.done.squareLineRight::after{
+         border: 15px solid #F99EAB !important;
+     }
+     .outerActivity.done.lineRight::after{
+         border-bottom: 15px solid #F99EAB !important;
+     }
     </style>
 
 
@@ -306,6 +315,10 @@
 // for when one person advances, send over websocket
  function gottaGoFast() {
      socket.send("{\"uid\" : " + myUID + ",\"ahead\" : " + true + "}" );
+ }
+ // update border colors
+ function updateBorder(i) {
+
  }
 
  //store some things in cookies
