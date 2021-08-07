@@ -76,12 +76,21 @@
          margin: 4.7vw;
      }
 
-     .activityImg {
+     .innerActivity {
          width: 20vw;
          height: 20vw;
-         border: 1px solid #000;
+         border: 1vw solid #F99EAB;
+         background: #F7CAD0;
          border-radius: 1000px;
          padding: 2vw;
+         display: inline-block;
+     }
+     .activityImg {
+         width:14vw;
+         height:14vw;
+         margin-left: 0.4vw;
+         margin-top: 0.4vw;
+         opacity: 0.8;
      }
      .activityLabel {
          width: 20vw;
@@ -104,7 +113,7 @@
      }
      .outerActivity.squareLineRight::after {
          content: "";
-         width: 7vw;
+         width: 6vw;
          height: 30vw;
          border: 15px solid #555;
          border-left: none;
@@ -114,12 +123,12 @@
      }
      .outerActivity.squareLineLeft::before {
          content: "";
-         width: 7vw;
+         width: 6vw;
          height: 30vw;
          border: 15px solid #555;
          border-right: none;
          position: absolute;
-         margin-left: -7vw;
+         margin-left: -6vw;
          margin-top: 10.1vw;
          z-index: 100;
      }
@@ -167,7 +176,7 @@
  var nameToImg = {};
  //all the image names are just lowercase activity name without space
  for (var i of datingList) {
-     nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "");
+     nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "") + ".svg";
  }
  rebuildTracker();
  function rebuildTracker() {
@@ -187,10 +196,10 @@
          }
          var innerDiv = $("<div>").addClass("innerActivity");
          var imgElement = $("<img>").addClass("activityImg").attr("id", zigzagList[i].replace(/\s/g, ""));
-         // imgElement.attr("src", nameToImg[zigzagList[i]]);
+         imgElement.attr("src", nameToImg[zigzagList[i]]);
          var label = $("<p>" + zigzagList[i] + "</p>").addClass("activityLabel");
-         // innerDiv.append(imgElement);
-         outerDiv.append(imgElement);
+         innerDiv.append(imgElement);
+         outerDiv.append(innerDiv);
          outerDiv.append(label);
          $container.append(outerDiv);
      }
