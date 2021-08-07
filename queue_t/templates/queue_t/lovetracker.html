@@ -193,7 +193,7 @@
  var myUID = Date.now() % 10000;
  var $container = $("#lovemap");
  //store activity names in order
- var datingList =  ["First date", "Hold hands", "First kiss", "More dates"]//, "Cuddle", "Sleepover"]// "Introduce to friends", "Share secrets", "Exclusive"];
+ var datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
  //dictionary mapping activity names to img paths
  // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
  var nameToImg = {};
@@ -221,6 +221,7 @@
          }
          for (var k = 0; k < 3 && 3*j+k < N; k += 1) {
              var i = 3*j + k;
+             var originalIndex = datingList.indexOf(zigzagList[i]);
              console.log(zigzagList);
              var outerDiv = $("<div>").addClass("outerActivity");
              // add lines
@@ -239,7 +240,7 @@
              // } else {
              //     outerDiv.addClass("rightAlign");
              // }
-             var innerDiv = $("<div>").addClass("innerActivity").attr("id", i.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
+             var innerDiv = $("<div>").addClass("innerActivity").attr("id", originalIndex.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
              if (i <= latestCommon) {
                  innerDiv.addClass("unlocked");
              } else {
