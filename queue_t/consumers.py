@@ -2,7 +2,7 @@ from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 import json
 
-class Queue_tConsumer(WebsocketConsumer):
+class Queue_TConsumer(WebsocketConsumer):
     def connect(self):
         # Join room group
         async_to_sync(self.channel_layer.group_add)(
