@@ -152,7 +152,7 @@
       <div class="col-6" style="font-size:4vh">
         Email
       </div>
-      <div class="col-6" style="font-size:2.5vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh; padding-top:1.5vh;">
         <input id="email" type="text" placeholder="chuan160@qt.com"></input>
       </div>
     </div>
@@ -161,28 +161,37 @@
       <div class="col-6" style="font-size:4vh">
         Birthdate
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;text-align:center">
-        <div class="dropdown">
-          <button onclick="genders()" class="dropbtn" style="font-size:2.5vh">
-            Male&nbsp&nbsp
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div id="genders" class="dropdown-content" style="height:12vh">
-            <a href="#Male">Female</a>
-            <a href="#Intersex">Intersex</a>
-            <a href="#Trans">Trans</a>
-            <a href="N/A">N/A</a>
-          </div>
-        </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+        <input id="birthdate" type="text" placeholder="08/04/2021"></input>
       </div>
     </div>
 
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        Phone
+      </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+        <input id="phone" type="text" placeholder="(081)-220-2160"></input>
+      </div>
+    </div>
 
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        Facebook
+      </div>
+      <div class="col-6" style="font-size:2.5vh; padding-top:1.5vh;">
+        <input id="facebook" type="text" placeholder="chuan160@qt.com"></input>
+      </div>
+    </div>
 
-
-
-
-
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:4vh">
+        WeChat ID
+      </div>
+      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+        <input id="wechat" type="text" placeholder="chuan160"></input>
+      </div>
+    </div>
 
 
   </div>
@@ -196,10 +205,6 @@
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
   function genders() {
     document.getElementById("genders").classList.toggle("show");
-  }
-
-  function myFunction2() {
-    document.getElementById("themes").classList.toggle("show");
   }
 
   function filterFunction() {
