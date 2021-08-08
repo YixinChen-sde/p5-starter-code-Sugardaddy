@@ -227,6 +227,46 @@
          background-color:  #c1a3da;/*#5b2160;*/
          border-color: #a779cf;
      }
+
+         /* #girl {
+        border-radius: 50%;
+        width: 200px;
+        position: absolute;
+        top: 210px;
+        left: 290px;
+    }
+
+    #boy {
+        border-radius: 50%;
+        width: 200px;
+        position: absolute;
+        top: 210px;
+        right: 290px;
+    }
+
+    #circlegirl {
+    background: #F7CAD0;
+    border-radius: 50%;
+    width: 20%;
+    position: absolute;
+    top: 200px;
+    left: 280px;
+    width: 220px;
+    height: 220px;
+    border: 1vw solid black;
+}
+
+    #circleboy {
+    background: #F7CAD0;
+    border-radius: 50%;
+    width: 20%;
+    position: absolute;
+    top: 200px;
+    right: 280px;
+    width: 220px;
+    height: 220px;
+    border: 1vw solid black;
+} */
     </style>
 
 
@@ -249,10 +289,22 @@
     </div>
 
     <div class="topbar">
-        <a href="summary"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+        <a href="lovetracker"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+        <a href="lovetracker" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
         <a href="" style="padding-left:  5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Activities</p></a>
       </div>
+
+      <!-- tried adding boys girls photos on top to make the space, but seems to require too much scrolling lol -->
+    <!-- <div id="circlegirl"></div>
+    <div id="circleboy"></div>
+
+    <div id="profilePic">
+        <img id="girl" src="{% static 'queue_t/img/girl.png' %}" alt="Avatar">
+        <img id="boy" src="{% static 'queue_t/img/boy.png' %}" alt="Avatar">
+
+    </div> -->
+
+      
 </body>
 <script>
 //load list of activities and images from json
