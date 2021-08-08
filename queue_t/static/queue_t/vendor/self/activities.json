@@ -1,27 +1,27 @@
 {
     "adventures": {
         "Hiking together": "hiking.svg",
-        "Survival": "hiking.svg",
+        "Survival": "survival.svg",
         "Time travel": "timetravel.svg",
-        "Gamble": "hiking.svg",
-        "Horror movie night": "hiking.svg",
-        "Escape room": "hiking.svg"
+        "Gamble": "gamble.svg",
+        "Horror movie night": "horrorMovie.svg",
+        "Escape room": "escapeRoom.svg"
     },
     "simple": {
-        "Breakfast in bed": "",
-        "Make a vlog": "",
-        "Play a game": "",
-        "Play a prank": "",
-        "Write love letter": "",
+        "Breakfast in bed": "breakfast.svg",
+        "Make a vlog": "vlog.svg",
+        "Play a game": "game.svg",
+        "Play a prank": "prank.svg",
+        "Write love letter": "letter.svg",
         "Dance in pajamas": "dance.svg"
     },
     "repair": {
-        "Take some time off": "",
-        "Share feelings": "",
-        "Seek therapy": "",
+        "Take some time off": "taketimeoff.svg",
+        "Share feelings": "shareFeelings.svg",
+        "Seek therapy": "therapy.svg",
         "Talk to friends": "talktofriends.svg",
-        "Prepare gifts": "",
-        "Compliment your partner": "",
-        "Chatbot therapy": ""
+        "Prepare gifts": "preparegift.svg",
+        "Compliment your partner": "compliment.svg",
+        "Chatbot therapy": "chatbot.svg"
     }
 }
