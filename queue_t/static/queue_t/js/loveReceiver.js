@@ -14,9 +14,9 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
 // love may not be eternal
 // but your love data is!
  socket.onmessage = function(receivedMessage) {
-   // console.log(receivedMessage.data);
+   console.log(receivedMessage.data);
      var received = JSON.parse(receivedMessage.data);
-     console.log()
+     // console.log();
      if (received.uid != myUID) {
        // info for lovetracker
          if (received.ahead) {
@@ -46,12 +46,21 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
          }
        }
        // info for activities
-
+       if (received.completedActivities) {
+         let ca = received.completedActivities;
+         Cookies.set('completedActivities', JSON.stringify(ca), { SameSite: 'Lax' });
+         Cookies.set('numCompleted', ca.length, { SameSite: 'Lax' });
+       }
 
        // update pages live
        // update special days page
        if (typeof rebuildPage === "function") {
          rebuildPage();
+       }
+
+       // update activities page
+       if (typeof updateActivityColors === "function") {
+         updateActivityColors();
        }
 
      }

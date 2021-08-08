@@ -190,7 +190,7 @@
         <a href="days"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
         <a href="days" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
         <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special Days</p></a>
-        <a href="days" style="padding-left: 6.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Done</p></a>
+        <a href="days" style="padding-left: 5.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Done</p></a>
     </div>
 
 
@@ -204,7 +204,7 @@
  var enteredDate;
  var diffDays = 0;
  var allEvents;
-
+ 
  function createCookie(name, value, days) {
      var expires;
      if (days) {
@@ -250,6 +250,7 @@
  //if the user clicked the count down button, save how many days left till the event and the event information
  (function() {
      $('#countdown').on('click', function(){
+         $(".simple-keyboard").hide();
          // $(this).addClass("button-selected");
          if (getCookie('event_list') != null) {
            allEvents = getCookie('event_list');
@@ -283,6 +284,7 @@
  //if the user clicked the count down button, save how many days left till the event and the event information
  (function() {
      $('#since').on('click', function(){
+         $(".simple-keyboard").hide();
          // $(this).addClass("button-selected");
          if (getCookie('event_list') != null) {
            allEvents = JSON.parse(getCookie('event_list'));
@@ -356,6 +358,8 @@
      socket.send("{\"uid\" : " + myUID + ",\"eventData\" : " + JSON.stringify(eventData) + "}" );
      // socket.send("{\"uid\" : " + myUID + ",\"events\" : " + getCookie('event_list') + "}" );
  }
+
+ $("#lovedate").on("focus", (e) =>  {$(".simple-keyboard").hide()});
 </script>
 
 </html>

@@ -42,12 +42,23 @@
         height: 150px;
         border-radius: 100px;
         } */
-     .activityImg {
+     .innerActivity {
          width: 20vw;
          height: 20vw;
-         border: 1px solid #000;
+         border: 1vw solid #888;
+         background: #aaa;
          border-radius: 1000px;
          padding: 2vw;
+         display: inline-block;
+     }
+     .activityImg {
+         width: 14vw;
+         height: 14vw;
+         /* border: 1px solid #000;
+            border-radius: 1000px; */
+         /* padding: 2vw; */
+         margin-left: 0.2vw;
+         margin-top: 0.2vw;
      }
      .activityLabel {
          width: 20vw;
@@ -208,7 +219,14 @@
      #space {
          height: 25vw;
      }
-
+     .recommendedActivity {
+         background-color: #accdff;
+         border-color: #71a2f0 ;
+     }
+     .completedActivity {
+         background-color:  #c1a3da;/*#5b2160;*/
+         border-color: #a779cf;
+     }
     </style>
 
 
@@ -239,24 +257,38 @@
 <script>
 //load list of activities and images from json
 //list of completed activities
- var completed = [];
+
+ var completed = Cookies.get("completedActivities");
+ if (!completed) {
+     completed = [];
+ }
  var $container = $("#nonlinear");
- var numCompleted = 0;
- $.getJSON('/static/queue_t/vendor/self/activities.json', function(a){
-     var rec = {}
-     for (var i in a) {
-         var keys = Object.keys(a[i]);
-         var N = Object.keys(a[i]).length;
-         var rand = Math.floor(Math.random() * N);
-         rec[keys[rand]] = a[i][keys[rand]];
-         console.log("rec[keys[rand]]: "+ rec[keys[rand]]);
+ rebuildActivities();
+ function rebuildActivities() {
+     completed = Cookies.get("completedActivities");
+     if (!completed) {
+         completed = [];
+     } else {
+         completed = JSON.parse(completed);
      }
-     // generate recommended section
-     createSection("recommended", rec, true);
-     for (var i in a) {
-         createSection(i, a[i], false);
-     }
- });
+     $container.html(" ");
+     var numCompleted = 0;
+     $.getJSON('/static/queue_t/vendor/self/activities.json', function(a){
+         var rec = {}
+         for (var i in a) {
+             var keys = Object.keys(a[i]);
+             var N = Object.keys(a[i]).length;
+             var rand = Math.floor(Math.random() * N);
+             rec[keys[rand]] = a[i][keys[rand]];
+             console.log("rec[keys[rand]]: "+ rec[keys[rand]]);
+         }
+         // generate recommended section
+         createSection("recommended", rec, true);
+         for (var i in a) {
+             createSection(i, a[i], false);
+         }
+     });
+ }
  function createSection(label, entries, rec) {
      //cat=category
      var catDiv = $("<div>").addClass("cat");
@@ -271,29 +303,39 @@
      var N = Object.keys(entries).length;
      for (var i = 0; i < N; i += 1) {
          var outerDiv = $("<div>").addClass("outerActivity");
-         var coolLine = $("<div>");
-         if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
-             outerDiv.addClass("lineRight");
-         }
-         if (i % 9 == 2 && i < N-3) {
-             outerDiv.addClass("squareLineRight");
-         }
-         if (i % 9 == 3 && i < N-3) {
-             outerDiv.addClass("squareLineLeft");
-         }
+         // var coolLine = $("<div>");
+         // if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
+         //     outerDiv.addClass("lineRight");
+         // }
+         // if (i % 9 == 2 && i < N-3) {
+         //     outerDiv.addClass("squareLineRight");
+         // }
+         // if (i % 9 == 3 && i < N-3) {
+         //     outerDiv.addClass("squareLineLeft");
+         // }
 
          // var innerDiv = $("<div>").addClass("innerActivity");
-         var imgElement = $("<img>").addClass("activityImg").attr("id", keys[i].replace(/\s/g, ""));
+         var thisID = keys[i].replace(/\s/g, "");
+         var innerDiv = $("<div>").addClass("innerActivity").attr("id", thisID);
+         var imgElement = $("<img>").addClass("activityImg");//.attr("id", thisID);
          imgElement.attr("src", "/static/queue_t/img/activities/" + entries[keys[i]]);
-         // innerDiv.append(imgElement);
+         if (completed.indexOf(thisID) >= 0) {
+             innerDiv.addClass("completedActivity");
+         }
+         if (rec) {
+             innerDiv.removeClass("completedActivity");
+             innerDiv.addClass("recommendedActivity");
+         }
+         innerDiv.append(imgElement);
          var label = $("<p>" + keys[i] + "</p>").addClass("activityLabel");
-         outerDiv.append(imgElement);
+         outerDiv.append(innerDiv);
          outerDiv.append(label);
          catDiv.append(outerDiv);
-         imgElement.click(function () {
+         innerDiv.click(function () {
             //send stuff over websocket
             //change background
-             $(this).css("background-color", "#FFDDDD");
+             $(this).removeClass("recommendedActivity");
+             $(this).addClass("completedActivity");
              var thisID = $(this).attr('id');
              // add as cookie to pass over to summary page
              console.log(completed, i);
@@ -302,6 +344,8 @@
              }
              Cookies.set('numCompleted', completed.length, { SameSite: 'Lax' });
              console.log(Cookies.get("numCompleted"));
+             Cookies.set('completedActivities', JSON.stringify(completed), { SameSite: 'Lax' });
+             sendActivities();
          });
      }
      var spaceDiv = $("<div>").addClass("space");
@@ -324,6 +368,25 @@
              }
          });
      });
+ }
+
+ function updateActivityColors() {
+     completed = Cookies.get("completedActivities");
+     if (!completed) {
+         completed = [];
+     } else {
+         completed = JSON.parse(completed);
+     }
+     console.log('lmao');console.log(completed);
+     for (var a of completed) {
+         console.log('lmao');
+         var thisID = a.replace(/\s/g, "");
+         console.log(thisID);
+         $("#"+thisID).addClass("completedActivity");
+     }
+ }
+ function sendActivities() {
+     socket.send("{\"uid\" : " + myUID + ",\"completedActivities\" : " + JSON.stringify(completed) + "}" );
  }
 
  // create a color palette with the given colors
