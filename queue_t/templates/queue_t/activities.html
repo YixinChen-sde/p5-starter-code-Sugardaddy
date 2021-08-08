@@ -152,6 +152,7 @@
          background: #edeeed;
          font-size: 3em;
          padding: 30px;
+         border-radius: 5px;
      }
      .catButton:hover {
          background: #ddd;
@@ -339,27 +340,50 @@
          for (var i in a) {
              createSection(i, a[i], false);
          }
-     });
-     var custom = getCookie("selected_icons");
-     if (custom != undefined) {
-         custom = JSON.parse(custom);
-         for (var i of custom) {
 
-         }
-     }
+         rebuildCustom();
+     });
  }
 
 
+ function rebuildCustom() {
+     var hidden = true;
+     if ($(".customBlock").is(":visible")) {
+         hidden = false;
+     }
+     $(".customBlock").remove();
+     $(".customButton").remove();
+     var custom = getCookie("selected_icons");
+     var customEntries = {};
+     if (custom != null) {
+         custom = JSON.parse(custom);
+         for (var i of custom) {
+             var customEvent = getCookie(i);
+             if (customEvent != null) {
+                 customEntries[i] = JSON.parse(customEvent);
+             }
+         }
+     }
+     createSection("custom", customEntries, false, true);
+     if (!hidden) {
+         $(".customBlock").show();
+     }
+ }
 
-
- function createSection(label, entries, rec) {
+ function createSection(label, entries, rec, custom=false) {
      //cat=category
      var catDiv = $("<div>").addClass("cat");
      if (rec) {
          catDiv.addClass("rec");
      }
+     if (custom) {
+         catDiv.addClass("customBlock");
+     }
      //create button
      var catButton = $("<p>"+label+"</p>").addClass("catButton");
+     if (custom) {
+         catButton.addClass("customButton");
+     }
      $container.append(catButton);
      console.log("catButton");
      var keys = Object.keys(entries);
@@ -381,7 +405,11 @@
          var thisID = keys[i].replace(/\s/g, "");
          var innerDiv = $("<div>").addClass("innerActivity").attr("id", thisID);
          var imgElement = $("<img>").addClass("activityImg");//.attr("id", thisID);
-         imgElement.attr("src", "/static/queue_t/img/activities/" + entries[keys[i]]);
+         if (custom) {
+             imgElement.attr("src", entries[keys[i]]);
+         } else {
+             imgElement.attr("src", "/static/queue_t/img/activities/" + entries[keys[i]]);
+         }
          if (completed.indexOf(thisID) >= 0) {
              innerDiv.addClass("completedActivity");
          }

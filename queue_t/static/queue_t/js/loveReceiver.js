@@ -57,7 +57,17 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
        Cookies.set('completedActivities', JSON.stringify(ca), { SameSite: 'Lax' });
        Cookies.set('numCompleted', ca.length, { SameSite: 'Lax' });
      }
-
+     // the custom activities
+     if (received.selected_icons) {
+       let si = received.selected_icons;
+       createCookie("selected_icons", JSON.stringify(si));
+     }
+     if (received.customActivities) {
+       let activityData = received.customActivities;
+       for (var a in activityData) {
+         createCookie(a, JSON.stringify(activityData[a]));
+       }
+     }
      // update pages live
      // update special days page
      if (typeof rebuildPage === "function") {
@@ -76,6 +86,9 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
        updateTrackerColors();
      }
 
+     if (typeof rebuildCustom === "function") {
+       rebuildCustom();
+     }
    }
  }
 

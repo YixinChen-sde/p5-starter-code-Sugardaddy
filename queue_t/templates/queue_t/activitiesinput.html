@@ -90,6 +90,7 @@
     .icon{
         width: 10vh;
         height: 10vh;
+        padding: 0.5vh;
     }
 
     
@@ -103,7 +104,10 @@
         text-align: center;
       }
 
-
+     .selectedIcon {
+         background: #ccc;
+         border-radius: 10px;
+     }
      
     </style>
 
@@ -251,6 +255,10 @@ function createCookie(name, value) {
 
  })();
 
+ $(".icon").click(function () {
+    $(".icon").removeClass("selectedIcon");
+    $(this).addClass("selectedIcon");
+ });
 
 function icon_selected(path) {
 
@@ -291,7 +299,7 @@ function icon_selected(path) {
          // socket.send("{\"uid\" : " + myUID + ",\"" +allEvents[i] + "\" : " + ei + "}" );
          eventData[allEvents[i]] = ei;
      }
-     socket.send("{\"uid\" : " + myUID + ",\"selected_icons\" : " + JSON.stringify(eventData) + "}" );
+     socket.send("{\"uid\" : " + myUID + ",\"customActivities\" : " + JSON.stringify(eventData) + "}" );
      // socket.send("{\"uid\" : " + myUID + ",\"events\" : " + getCookie('event_list') + "}" );
  }
 
@@ -324,6 +332,9 @@ function icon_selected(path) {
      if ($(".simple-keyboard").is(":hidden")) {
          $(".simple-keyboard").slideToggle(100, "linear");
      }
+ });
+ $("#event-name").focusout(() => {
+    $(".simple-keyboard").slideToggle(100, "linear");
  });
 </script>
 
