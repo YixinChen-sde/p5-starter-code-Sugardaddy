@@ -4,13 +4,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Random Topics One</title>
+    <title>About Us</title>
 
     <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'queue_t/js/loveReceiver.js' %}"></script>
 
     <style type="text/css">
@@ -19,45 +19,19 @@
       background-color: #F6EEED;
     }
 
-    
+    .backbtn a {
+      font-size: 3vh;
+      color:black;
+      text-decoration:none;
+      position:fixed;
+    }
+
     #photo{
         position: absolute;
         width: 55vh;
         height: 55vh;
         top: 25vh;
         left: 0vh;
-      }
-
-    .topbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            }
-
-            .topbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
-
-      .text{
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        line-height: 50px;
-        color: #000000;
-      }
-
-      .container {
-        position: relative;
-        text-align: center;
-        color: white;
       }
 
       .centered {
@@ -73,31 +47,28 @@
         font-style: normal;
         font-weight: normal;
         line-height: 50px;
-        color: rgb(21, 209, 115);
+        color: black;
       }
+
 
     </style>
 
 
 </head>
 <body>
-  <div style="height:7vh"> </div>
-  <div class="container-fluid" style="padding-left:0vw;padding-right:6vw">
-    
-  <div class="topbar">
-    <a href="summary"><img src="{% static 'draw/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
-    <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">About us</p></a>
-  </div>
-  </div>
 
-  <div class="container">
-    <img src="{% static 'draw/img/couple.png' %}" style="width:100%">
-  </br></br></br></br></br></br>
-    <div id="text" style="font-size: 80px;">About Queue&lt;T&gt;</div>
-  </br></br></br></br></br>
-    <div id="text" style="font-size: 40px;">Feeling bored in a relationship? Use our app to find out how much a couple can do in a relationship! The concept of relationship varies from one person to another, but our app is dedicated to tackling this concept and making the users rethink about relationships in an enjoyable way. </div>
+  <div class="container-fluid" style="padding-left:7vw;padding-top:2vh;">
+    <div class="row">
+      <div class="col backbtn">
+        <a href="settings"> ＜&nbsp&nbspBack </a>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <img src="{% static 'queue_t/img/couple.png' %}" style="width:50%; padding-top: 10vh; padding-bottom:10vh"> </img>
+    </div>
+    <div id="text" style="font-size: 5vh;text-align:center">Queue&lt;T&gt;</div>
 
+    <div id="text" style="font-size: 3vh;padding-top: 5vh;line-height:3.5vh;text-align:justify;width:90%">Feeling bored in a relationship? <br>Use our app to find out how much a couple can do in a relationship! The concept of relationship varies from one person to another, but our app is dedicated to tackling this concept and making the users rethink about relationships in an enjoyable way. </div>
   </div>
 
 
