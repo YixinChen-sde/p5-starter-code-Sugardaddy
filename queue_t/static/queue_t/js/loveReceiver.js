@@ -15,55 +15,62 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
 // but your love data is!
  socket.onmessage = function(receivedMessage) {
    console.log(receivedMessage.data);
-     var received = JSON.parse(receivedMessage.data);
-     // console.log();
-     if (received.uid != myUID) {
-       // info for lovetracker
-         if (received.ahead) {
-             let ahead = Cookies.get("ahead");
-             if (received.ahead && ahead) {
-               let latestCommon = Cookies.get("latestCommon");
-               Cookies.set('ahead', false, { SameSite: 'Lax' });
-               Cookies.set('otherAhead', false, { SameSite: 'Lax' });
-               Cookies.set('latestCommon', latestCommon + 1, { SameSite: 'Lax' });
-             } else if (received.ahead && !ahead) {
-               Cookies.set('otherAhead', true, { SameSite: 'Lax' });
-             }
-         }
-       // info for special days
-       // overwrite the event list
-       if (received.eventList) {
-         // Cookies.set("event_list", JSON.parse(received.eventList));
-         console.log(received.eventList)
-         let el = received.eventList;
-         createCookie('event_list', JSON.stringify(el));
+   var received = JSON.parse(receivedMessage.data);
+   // console.log();
+   if (received.uid != myUID) {
+     // info for lovetracker
+     if (received.ahead) {
+       let ahead = Cookies.get("ahead");
+       if (received.ahead && ahead) {
+         let lc = Cookies.get("latestCommon");
+         Cookies.set('ahead', false, { SameSite: 'Lax' });
+         Cookies.set('otherAhead', false, { SameSite: 'Lax' });
+         Cookies.set("latestCommon", parseInt(lc) + 1, { SameSite: 'Lax' });
+       } else if (received.ahead && !ahead) {
+         Cookies.set('otherAhead', true, { SameSite: 'Lax' });
        }
-       // the event infos
-       if (received.eventData) {
-         let eventData = received.eventData;
-         for (var a in eventData) {
-           createCookie(a, JSON.stringify(eventData[a]));
-         }
-       }
-       // info for activities
-       if (received.completedActivities) {
-         let ca = received.completedActivities;
-         Cookies.set('completedActivities', JSON.stringify(ca), { SameSite: 'Lax' });
-         Cookies.set('numCompleted', ca.length, { SameSite: 'Lax' });
-       }
-
-       // update pages live
-       // update special days page
-       if (typeof rebuildPage === "function") {
-         rebuildPage();
-       }
-
-       // update activities page
-       if (typeof updateActivityColors === "function") {
-         updateActivityColors();
-       }
-
      }
+     // info for special days
+     // overwrite the event list
+     if (received.eventList) {
+       // Cookies.set("event_list", JSON.parse(received.eventList));
+       console.log(received.eventList)
+       let el = received.eventList;
+       createCookie('event_list', JSON.stringify(el));
+     }
+     // the event infos
+     if (received.eventData) {
+       let eventData = received.eventData;
+       for (var a in eventData) {
+         createCookie(a, JSON.stringify(eventData[a]));
+       }
+     }
+     // info for activities
+     if (received.completedActivities) {
+       let ca = received.completedActivities;
+       Cookies.set('completedActivities', JSON.stringify(ca), { SameSite: 'Lax' });
+       Cookies.set('numCompleted', ca.length, { SameSite: 'Lax' });
+     }
+
+     // update pages live
+     // update special days page
+     if (typeof rebuildPage === "function") {
+       rebuildPage();
+     }
+
+     // update activities page
+     if (typeof updateActivityColors === "function") {
+       updateActivityColors();
+     }
+
+     // if (typeof rebuildTracker === "function") {
+     //   rebuildTracker();
+     // }
+     if (typeof updateTrackerColors === "function") {
+       updateTrackerColors();
+     }
+
+   }
  }
 
 

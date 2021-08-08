@@ -197,10 +197,10 @@
 
 </body>
 <script>
-    var socket = new WebSocket(
-        'ws://' + window.location.host + '/ws/queue_t');
- // socket.onopen = () => socket.send("hello!")
- var myUID = Date.now() % 10000;
+ // var socket = new WebSocket(
+ //     'ws://' + window.location.host + '/ws/queue_t');
+ //  // socket.onopen = () => socket.send("hello!")
+ //  var myUID = Date.now() % 10000;
  var $container = $("#lovemap");
  //store activity names in order
  var datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
@@ -212,13 +212,29 @@
      nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "") + ".svg";
  }
  //index of latest common activity
- var latestCommon = -1;
+ var latestCommon = Cookies.get("latestCommon");
+ if (!latestCommon) {
+     latestCommon = -1;
+     } else {
+         latestCommon = parseInt(latestCommon);
+     }
  //whether current user is ahead of other user
- var ahead = false;
- var otherAhead = false;
+ var ahead = Cookies.get("ahead");
+ if (!ahead) {
+     ahead = false;
+     } else {
+         ahead = (ahead === 'true');
+     }
+ var otherAhead = Cookies.get("otherAhead");
+ if (!otherAhead) {
+     otherAhead = false;
+     } else {
+         otherAhead = (otherAhead === 'true');
+     }
 
  rebuildTracker();
  function rebuildTracker() {
+     updateVarFromCookies();
      var zigzagList = zigzagOrder(datingList);
      $container.html(" ");
      var N = zigzagList.length;
@@ -276,7 +292,6 @@
  // progress
  $(".innerActivity").on("click", (e) => {
      // console.log(e.currentTarget);
-     console.log(latestCommon, "hi");
      var t = $(e.currentTarget);
      if (parseInt(t.attr("id")) == latestCommon + 1) {
          //update variable + bg
@@ -294,7 +309,7 @@
              gottaGoFast();
          }
          //store cookies
-         //send websocket
+         rewriteCookies();
      }
  });
  // since the path goes left to right, right to left, etc.
@@ -321,41 +336,72 @@
  function updateBorder(i) {
 
  }
+ function updateTrackerColors() {
+     updateVarFromCookies();
+     for (var i = 0; i <= latestCommon; i += 1) {
+         $("#" +i).removeClass("locked");
+         $("#" +i).removeClass("pending");
+         $("#" +i).addClass("unLocked");
 
+     }
+ }
  //store some things in cookies
  //list of activities in order
  // the number of the most recently completed activity 0-indexed, if none then -1
  // whether current user is ahead or other user is ahead
-
+ function updateVarFromCookies() {
+     latestCommon = Cookies.get("latestCommon");
+     if (!latestCommon) {
+         console.log("yeeeet");
+         latestCommon = -1;
+     } else {
+         console.log("asdasdasdf");
+         latestCommon = parseInt(latestCommon);
+     }
+     //whether current user is ahead of other user
+     ahead = Cookies.get("ahead");
+     if (!ahead) {
+         ahead = false;
+     } else {
+         ahead = (ahead === 'true');
+     }
+     otherAhead = Cookies.get("otherAhead");
+     if (!otherAhead) {
+         otherAhead = false;
+     } else {
+         otherAhead = (otherAhead === 'true');
+     }
+ }
  function rewriteCookies() {
-     Cookies.set('latestCommon', latestCommon, { SameSite: 'Lax' });
+     Cookies.set("latestCommon", latestCommon, { SameSite: 'Lax' });
+     console.log(Cookies.get("latestCommon"));
      Cookies.set('ahead', ahead, { SameSite: 'Lax' });
      Cookies.set('otherAhead', otherAhead, { SameSite: 'Lax' });
-     Cookies.set('datingList', datingList, { SameSite: 'Lax' });
+     // Cookies.set('datingList', JSON.stringify(datingList), { SameSite: 'Lax' });
  }
 
 
  //handle websocket receive
 
- socket.onmessage = function(receivedMessage) {
-     console.log(receivedMessage.data);
-     var received = JSON.parse(receivedMessage.data);
-     if (received.uid != myUID) {
-         if (received.ahead != undefined) {
-             if (received.ahead && ahead) {
-                 ahead = false;
-                 otherAhead = false;
-                 latestCommon += 1;
-                 $("#"+latestCommon).removeClass("pending");
-                 $("#"+latestCommon).addClass("unlocked");
-             } else if (received.ahead && !ahead) {
-                 otherAhead = true;
-             } else if (!received.ahead) {
-                 //do nothing
-             }
-         }
-     }
- }
+ // socket.onmessage = function(receivedMessage) {
+ //     console.log(receivedMessage.data);
+ //     var received = JSON.parse(receivedMessage.data);
+ //     if (received.uid != myUID) {
+ //         if (received.ahead != undefined) {
+ //             if (received.ahead && ahead) {
+ //                 ahead = false;
+ //                 otherAhead = false;
+ //                 latestCommon += 1;
+ //                 $("#"+latestCommon).removeClass("pending");
+ //                 $("#"+latestCommon).addClass("unlocked");
+ //             } else if (received.ahead && !ahead) {
+ //                 otherAhead = true;
+ //             } else if (!received.ahead) {
+ //                 //do nothing
+ //             }
+ //         }
+ //     }
+ // }
 </script>
 
 </html>
