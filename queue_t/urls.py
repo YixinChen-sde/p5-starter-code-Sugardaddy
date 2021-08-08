@@ -20,7 +20,8 @@ urlpatterns = [
     path('about_us', views.about_us, name='about_us'),
     path('randomTopics_one', views.randomTopics_one, name='randomTopics_one'),
     path('randomTopics_two', views.randomTopics_two, name='randomTopics_two'),
-    path('randomTopics', views.randomTopics, name='randomTopics')
+    path('randomTopics', views.randomTopics, name='randomTopics'),
+    path('trackerinput', views.trackerinput, name='trackerinput')
 
 
 ]

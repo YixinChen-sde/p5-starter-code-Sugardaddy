@@ -51,3 +51,7 @@ def randomTopics(request):
 
 def activitiesinput(request):
     return render(request, 'queue_t/activitiesinput.html')
+
+def trackerinput(request):
+    return render(request, 'queue_t/trackerinput.html')
+
