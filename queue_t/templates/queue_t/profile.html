@@ -32,7 +32,7 @@
     cursor: pointer;
   }
 
-  .dropbtn:hover, .dropbtn:focus {
+  .dropbtn:hover {
     background-color: #C4C4C4;
   }
 
@@ -113,6 +113,9 @@
     color: black;
   }
 
+  #pic {
+    width:60%;
+  }
 
 </style>
 
@@ -122,6 +125,17 @@
     <div class="row">
       <div class="col backbtn">
         <a href="settings"> ＜&nbsp&nbspBack </a>
+      </div>
+    </div>
+
+    <div class="row" style="text-align:right;padding-top:3vh;padding-bottom:3vh">
+      <div class="col">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile">
+          <label for="customFile">
+            <img id="pic" src="{% static 'queue_t/img/boy.png' %}" alt="Avatar">
+          </label>
+        </div>
       </div>
     </div>
 
