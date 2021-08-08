@@ -249,6 +249,7 @@
          var N = Object.keys(a[i]).length;
          var rand = Math.floor(Math.random() * N);
          rec[keys[rand]] = a[i][keys[rand]];
+         console.log("rec[keys[rand]]: "+ rec[keys[rand]]);
      }
      // generate recommended section
      createSection("recommended", rec, true);
