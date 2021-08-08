@@ -204,6 +204,7 @@
  var $container = $("#lovemap");
  //store activity names in order
  var datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
+ var zigzagList = zigzagOrder(datingList);
  //dictionary mapping activity names to img paths
  // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
  var nameToImg = {};
@@ -212,30 +213,31 @@
      nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "") + ".svg";
  }
  //index of latest common activity
- var latestCommon = Cookies.get("latestCommon");
- if (!latestCommon) {
-     latestCommon = -1;
-     } else {
-         latestCommon = parseInt(latestCommon);
-     }
- //whether current user is ahead of other user
- var ahead = Cookies.get("ahead");
- if (!ahead) {
-     ahead = false;
-     } else {
-         ahead = (ahead === 'true');
-     }
- var otherAhead = Cookies.get("otherAhead");
- if (!otherAhead) {
-     otherAhead = false;
-     } else {
-         otherAhead = (otherAhead === 'true');
-     }
+ var latestCommon, ahead, otherAhead;
+ updateVarFromCookies();
+ // var latestCommon = Cookies.get("latestCommon");
+ // if (!latestCommon) {
+ //     latestCommon = -1;
+ //     } else {
+ //         latestCommon = parseInt(latestCommon);
+ //     }
+ // //whether current user is ahead of other user
+ // var ahead = Cookies.get("ahead");
+ // if (!ahead) {
+ //     ahead = false;
+ //     } else {
+ //         ahead = (ahead === 'true');
+ //     }
+ // var otherAhead = Cookies.get("otherAhead");
+ // if (!otherAhead) {
+ //     otherAhead = false;
+ //     } else {
+ //         otherAhead = (otherAhead === 'true');
+ //     }
 
  rebuildTracker();
  function rebuildTracker() {
-     updateVarFromCookies();
-     var zigzagList = zigzagOrder(datingList);
+     // updateVarFromCookies();
      $container.html(" ");
      var N = zigzagList.length;
      console.log(N);
@@ -269,7 +271,9 @@
              var innerDiv = $("<div>").addClass("innerActivity").attr("id", originalIndex.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
              if (i <= latestCommon) {
                  innerDiv.addClass("unlocked");
-             } else {
+             } else if (i == latestCommon + 1 && ahead) {
+                 innerDiv.addClass("pending");}
+             else {
                  innerDiv.addClass("locked");
              }
 
@@ -294,6 +298,7 @@
      // console.log(e.currentTarget);
      var t = $(e.currentTarget);
      if (parseInt(t.attr("id")) == latestCommon + 1) {
+         updateVarFromCookies();
          //update variable + bg
          t.removeClass("locked");
          t.removeClass("pending");
@@ -339,9 +344,10 @@
  function updateTrackerColors() {
      updateVarFromCookies();
      for (var i = 0; i <= latestCommon; i += 1) {
-         $("#" +i).removeClass("locked");
-         $("#" +i).removeClass("pending");
-         $("#" +i).addClass("unLocked");
+         var o = datingList.indexOf(zigzagList[i]);
+         $("#" +o).removeClass("locked");
+         $("#" +o).removeClass("pending");
+         $("#" +o).addClass("unLocked");
 
      }
  }
@@ -350,7 +356,8 @@
  // the number of the most recently completed activity 0-indexed, if none then -1
  // whether current user is ahead or other user is ahead
  function updateVarFromCookies() {
-     latestCommon = Cookies.get("latestCommon");
+     latestCommon = Cookies.get("latestCommon1");
+     // latestCommon = getCookie("latestCommon");
      if (!latestCommon) {
          console.log("yeeeet");
          latestCommon = -1;
@@ -360,12 +367,15 @@
      }
      //whether current user is ahead of other user
      ahead = Cookies.get("ahead");
+     console.log(ahead);
+     // ahead = getCookie("ahead");
      if (!ahead) {
          ahead = false;
      } else {
-         ahead = (ahead === 'true');
+         ahead = (ahead == 'true');
      }
      otherAhead = Cookies.get("otherAhead");
+     // otherAhead = getCookie("otherAhead");
      if (!otherAhead) {
          otherAhead = false;
      } else {
@@ -373,11 +383,15 @@
      }
  }
  function rewriteCookies() {
-     Cookies.set("latestCommon", latestCommon, { SameSite: 'Lax' });
-     console.log(Cookies.get("latestCommon"));
-     Cookies.set('ahead', ahead, { SameSite: 'Lax' });
+     Cookies.set("latestCommon1", latestCommon, { SameSite: 'Lax' });
+     // console.log(Cookies.get("latestCommon"));
+     Cookies.set("ahead", ahead, { SameSite: 'Lax' });
+     console.log(Cookies.get("ahead"));
      Cookies.set('otherAhead', otherAhead, { SameSite: 'Lax' });
-     // Cookies.set('datingList', JSON.stringify(datingList), { SameSite: 'Lax' });
+     // createCookie("latestCommon", latestCommon.toString());
+     // createCookie("ahead", ahead);
+     // createCookie("otherAhead", otherAhead);
+     Cookies.set('datingList', JSON.stringify(datingList), { SameSite: 'Lax' });
  }
 
 
@@ -402,6 +416,32 @@
  //         }
  //     }
  // }
+
+
+// helper cookie functions from days.html(drew inspiration from stackoverflow)
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+  }
+  function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
+
 </script>
 
 </html>
