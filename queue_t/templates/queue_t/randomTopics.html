@@ -6,9 +6,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Random Topics Two</title>
 
+    <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/js/loveReceiver.js' %}"></script>
 
     <style type="text/css">
 
@@ -127,7 +130,8 @@
         "If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days?",
         "What’s something people don’t worry about but really should?",
         "Do you think that children born today will have better or worse lives than their parents?",
-        "When was the last time you felt you had a new lease on life?"
+        "When was the last time you felt you had a new lease on life?",
+        "Can you be my sugar daddy/momma?"
     ]
 
     var popular = [
@@ -136,7 +140,10 @@
         "What “old person” things do you do?",
         "What was the last photo you took?",
         "What’s the spiciest thing you’ve ever eaten?",
-        "What unethical experiment would have the biggest positive impact on society as a whole?"
+        "What unethical experiment would have the biggest positive impact on society as a whole?",
+        "If you could have a song play every time you enter a room, what would it be?",
+        "If you had infinite money, what would you do with life?",
+        "If you had infinite time, what would you do the first 100,000 years?"
 
     ]
 
@@ -146,7 +153,6 @@
         "When you are old, what do you think children will ask you to tell stories about?",
         "What’s something that will always be in fashion, no matter how much time passes?",
         "What are your most important rules when going on a date?"
-
     ]
 
     var sensitive = [
@@ -154,14 +160,19 @@
         "Who do you go out of your way to be nice to?",
         "What makes you roll your eyes every time you hear it?",
         "How do you judge a person?",
-        "What was the most unsettling film you’ve seen?"
+        "What was the most unsettling film you’ve seen?",
+        "Share a secret you've never told anyone",
+        "When was the last time you cried? What happened?"
     ]
 
     var meaningful = [
         "If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days?",
         "What’s something people don’t worry about but really should?",
         "Do you think that children born today will have better or worse lives than their parents?",
-        "When was the last time you felt you had a new lease on life?"
+        "When was the last time you felt you had a new lease on life?",
+        "What do you like most about yourself?",
+        "What is the worst thing about yourself?",
+        "Would you rather live in a world without music or laughter?"
     ]
     var funny = [
         "What secret conspiracy would you like to start?",
@@ -169,12 +180,16 @@
         "What’s the weirdest smell you have ever smelled?",
         "Is a hotdog a sandwich? Why or why not?",
         "What’s the best Wi-Fi name you’ve seen?",
-        "What’s the most ridiculous fact you know?"
+        "What’s the most ridiculous fact you know?",
+        "Would you rather fight an angry goose or 15 mosquitoes?",
+        "If you were a flavor, which one would you be?"
     ]
     var weird = [
         "What animal would be cutest if scaled down to the size of a cat?",
         "What’s the most epic way you’ve seen someone quit or be fired?",
         "If you couldn’t be convicted of any one type of crime, what criminal charge would you like to be immune to?",
+        "If there was a clone of you that was a gender suiting your orientation, would you date them?",
+        "What does your mouth taste like?"
     ]
 
     if (url.indexOf("justRandom") > -1) {
@@ -232,6 +247,7 @@
         document.getElementById("topicsDisplay").innerHTML = weird[randomNumber];
         }
     }
+    newTopic();
 </script>
 
 </html>
