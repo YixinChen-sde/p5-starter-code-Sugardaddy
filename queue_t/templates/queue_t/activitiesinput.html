@@ -21,48 +21,6 @@
         background-color: #F6EEED;
       }
 
-            /* some navbar design inspired by W3school */
-            .navbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            }
-
-            /* Style the links inside the navigation bar */
-            .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
-
-            .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-            }
-
-
-            /* Show you are currently on this page */
-            .navbar a.active {
-            background-color: #C4C4C4;
-            color: white;
-            }
-
-        /* below is the code for a real-time date selector */
-        [type="date"] {
-          background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
-        }
-        [type="date"]::-webkit-inner-spin-button {
-          display: none;
-        }
-        [type="date"]::-webkit-calendar-picker-indicator {
-          opacity: 0;
-        }
         /* custom styles */
         label {
           display: block;
@@ -103,54 +61,12 @@
 
             }
 
-        #since{
-            position: absolute;
-            top: 15cm;
-            left: 3cm;
-            width: 8cm;
-            height: 3cm;
-            border-radius: 30px;
-            font-size: 1cm;
-            box-shadow: 5px 10px #888888;
+ 
 
-        }
-
-        #countdown{
-            position: absolute;
-            top: 15cm;
-            right: 3cm;
-            width: 8cm;
-            height: 3cm;
-            border-radius: 30px;
-            font-size: 1cm;
-            box-shadow: 5px 10px #888888;
-
-        }
-
-        #submit{
-            position: absolute;
-            top: 20cm;
-            right: 9cm;
-            width: 8cm;
-            height: 4cm;
-            border-radius: 30px;
-            font-size: 1cm;
-            box-shadow: 5px 10px #888888;
-
-
-        }
-     #since:active, #countdown:active, #submit:active {
-         box-shadow: 5px 10px #233333;
-         background: #ccc;
-
-     }
      .button-selected {
          background: #ddd;
      }
-        #lovedate{
-            left: 10cm;
 
-        }
      .simple-keyboard {
          position: fixed;
          bottom: 13vw;
@@ -199,45 +115,190 @@
     <br><br><br>
 
 <div class="simple-keyboard"></div>
-    <div class="navbar">
-        <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="days" class="active"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="lovetracker"><img src="{% static 'queue_t/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="topics"><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
-
-    </div>
 
     <div class="topbar">
-        <a href="days"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="days" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+        <a href=""><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+        <a href="activities" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
         <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Activities</p></a>
-        <a href="days" style="padding-left: 7.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Done</p></a>
+        <a href="activities" style="padding-left: 7.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;" id="Done">Done</p></a>
     </div>
 
     <h1 class="text"> Choose icon</h1>
     </br></br> </br> </br></br>
     <div class="container">
-        <img class="item icon" src="{% static 'queue_t/img/Amusement park.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/archery.png' %}" alt="Example"> 
-        <img class="item icon" src="{% static 'queue_t/img/target.png' %}" alt="Example"> 
-        <img class="item icon" src="{% static 'queue_t/img/55.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/66.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/77.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/climbing.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/bakery.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/lineal.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/muffin.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/11.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/22.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/33.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/44.png' %}" alt="Example">
-        <img class="item icon" src="{% static 'queue_t/img/bicycle.png' %}" alt="Example">
+        <img class="item icon" id="1_png" src="{% static 'queue_t/img/Amusement park.png' %}" alt="Example">
+        <img class="item icon" id="2_png" src="{% static 'queue_t/img/archery.png' %}" alt="Example"> 
+        <img class="item icon" id="3_png" src="{% static 'queue_t/img/target.png' %}" alt="Example"> 
+        <img class="item icon" id="4_png" src="{% static 'queue_t/img/55.png' %}" alt="Example">
+        <img class="item icon" id="5_png" src="{% static 'queue_t/img/66.png' %}" alt="Example">
+        <img class="item icon" id="6_png" src="{% static 'queue_t/img/77.png' %}" alt="Example">
+        <img class="item icon" id="7_png" src="{% static 'queue_t/img/climbing.png' %}" alt="Example">
+        <img class="item icon" id="8_png" src="{% static 'queue_t/img/bakery.png' %}" alt="Example">
+        <img class="item icon" id="9_png" src="{% static 'queue_t/img/lineal.png' %}" alt="Example">
+        <img class="item icon" id="10_png" src="{% static 'queue_t/img/muffin.png' %}" alt="Example">
+        <img class="item icon" id="11_png" src="{% static 'queue_t/img/11.png' %}" alt="Example">
+        <img class="item icon" id="12_png" src="{% static 'queue_t/img/22.png' %}" alt="Example">
+        <img class="item icon" id="13_png" src="{% static 'queue_t/img/33.png' %}" alt="Example">
+        <img class="item icon" id="14_png" src="{% static 'queue_t/img/44.png' %}" alt="Example">
+        <img class="item icon" id="15_png" src="{% static 'queue_t/img/bicycle.png' %}" alt="Example">
      </div>
 
 
 </body>
 <script>
+
+
+ //(drew inspiration from daysinput.html)
+function createCookie(name, value) {
+     document.cookie = name + "=" + value;
+     console.log("document.cookie:  " + document.cookie);
+ }
+
+ //(drew inspiration from daysinput.html)
+ // function to getcookie(drew inspiration from stackoverflow)
+ function getCookie(name) {
+     var nameEQ = name + "=";
+     var ca = document.cookie.split(';');
+     for(var i=0;i < ca.length;i++) {
+         var c = ca[i];
+         while (c.charAt(0)==' ') c = c.substring(1,c.length);
+         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+     }
+     return null;
+ }
+
+
+ //(drew inspiration from daysinput.html)
+ //if the user clicked the Done button, save how many days left till the event and the event information
+ (function() {
+
+    var path;
+         $("#1_png").on("click", function(){
+            path = document.getElementById("1_png").src; 
+            icon_selected(path);
+         });
+
+         $("#2_png").on("click", function(){
+            path = document.getElementById("2_png").src;  
+            icon_selected(path);
+         });
+
+         $("#3_png").on("click", function(){
+            path = document.getElementById("3_png").src;
+            icon_selected(path);
+         });
+
+         $("#4_png").on("click", function(){
+            path = document.getElementById("4_png").src;
+            icon_selected(path);
+         });
+
+         $("#5_png").on("click", function(){
+            path = document.getElementById("5_png").src;
+            icon_selected(path); 
+         });
+
+         $("#6_png").on("click", function(){
+            path = document.getElementById("6_png").src; 
+            icon_selected(path);
+         });
+
+         $("#7_png").on("click", function(){
+            path = document.getElementById("7_png").src;  
+            icon_selected(path);
+         });
+
+         $("#8_png").on("click", function(){
+            path = document.getElementById("8_png").src;  
+            icon_selected(path);
+         });
+
+         $("#9_png").on("click", function(){
+            path = document.getElementById("9_png").src;  
+            icon_selected(path);
+         });
+
+         $("#10_png").on("click", function(){
+            path = document.getElementById("10_png").src; 
+            icon_selected(path); 
+         });
+
+         $("#11_png").on("click", function(){
+            path = document.getElementById("11_png").src;  
+            icon_selected(path);
+         });
+
+         $("#12_png").on("click", function(){
+            path = document.getElementById("12_png").src;  
+            icon_selected(path);
+         });
+
+         $("#13_png").on("click", function(){
+            path = document.getElementById("13_png").src;  
+            icon_selected(path);
+         });
+
+         $("#14_png").on("click", function(){
+            path = document.getElementById("14_png").src;  
+            icon_selected(path);
+         });
+
+         $("#15_png").on("click", function(){
+            path = document.getElementById("15_png").src;  
+            icon_selected(path);
+         });
+
+
+ })();
+
+
+function icon_selected(path) {
+
+         $(".simple-keyboard").hide();
+         if (getCookie('selected_icons') != null) {
+           allEvents = getCookie('selected_icons');
+           allEvents = JSON.parse(allEvents);
+           console.log(allEvents);
+         } else {
+           allEvents = [];
+         }
+
+           var acvitity_name = document.getElementById('event-name').value;
+           allEvents.push(acvitity_name);
+           var Json_events = JSON.stringify(allEvents);
+           console.log("2: " + Json_events);
+           createCookie('selected_icons', Json_events);           //This cookies has all of the activity names
+           var activity_location = [];                  
+           activity_location.push(path);
+           console.log("img path: " + activity_location)
+           var json_info = JSON.stringify(activity_location);
+           createCookie(acvitity_name, json_info);            //This cookies has the information of current activities
+           sendActivity();
+
+}
+
+
+
+
+ function sendActivity() {
+     //send selected_icons cookie
+     socket.send("{\"uid\" : " + myUID + ",\"selected_icons\" : " + getCookie('selected_icons') + "}" );
+     //send all the things in selected_icons cookies
+     let allEvents = JSON.parse(getCookie('selected_icons'));
+     let eventData = {};
+     for (var i = 0; i < allEvents.length; i += 1){
+         var ei = JSON.parse(getCookie(allEvents[i]));
+         // socket.send("{\"uid\" : " + myUID + ",\"" +allEvents[i] + "\" : " + ei + "}" );
+         eventData[allEvents[i]] = ei;
+     }
+     socket.send("{\"uid\" : " + myUID + ",\"selected_icons\" : " + JSON.stringify(eventData) + "}" );
+     // socket.send("{\"uid\" : " + myUID + ",\"events\" : " + getCookie('event_list') + "}" );
+ }
+
+
+
+
+
 
  // credit to https://github.com/hodgef/simple-keyboard for the keyboard
  // and inspired by the demo https://hodgef.com/simple-keyboard/getting-started/
