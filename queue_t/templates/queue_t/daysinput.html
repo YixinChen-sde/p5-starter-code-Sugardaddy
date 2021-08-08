@@ -216,6 +216,7 @@
          expires = "";
      }
      document.cookie = name + "=" + value + expires + "; path=/";
+     console.log("document.cookie:" + document.cookie);
  }
  // function to getcookie(drew inspiration from stackoverflow)
  function getCookie(name) {
@@ -252,10 +253,11 @@
      $('#countdown').on('click', function(){
          $(".simple-keyboard").hide();
          // $(this).addClass("button-selected");
+         console.log("1: " + getCookie('event_list'));
          if (getCookie('event_list') != null) {
            allEvents = getCookie('event_list');
            allEvents = JSON.parse(allEvents);
-           console.log(typeof(allEvents));
+           console.log(allEvents);
          } else {
            allEvents = [];
          }
@@ -272,16 +274,18 @@
            var enteredEvent = document.getElementById('event-name').value;
            allEvents.push(enteredEvent);
            var Json_events = JSON.stringify(allEvents);
+           console.log("2:" + Json_events);
            createCookie('event_list', Json_events);           //This cookies has all of the event names
            var event_info = [];
            event_info.push(diffDays);
            event_info.push("count");
            var json_info = JSON.stringify(event_info);
+           console.log("3:" + json_info);
            createCookie(enteredEvent, json_info);            //This cookies has the information of current event
            sendDates();
      });
  })();
- //if the user clicked the count down button, save how many days left till the event and the event information
+ //if the user clicked the Day Since button, save how many days left till the event and the event information
  (function() {
      $('#since').on('click', function(){
          $(".simple-keyboard").hide();
