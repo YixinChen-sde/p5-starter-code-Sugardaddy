@@ -121,28 +121,87 @@
          padding: 15px;
          z-index: 10000;
      }
-     #inputText:focus {
+     /* #inputText:focus {
          height: 26vw;
         transition: 0.5s;
-     }
+     } */
+
+     .topbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            }
+
+            .topbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+    .navbar {
+            background-color: #EDEEED;
+            overflow: hidden;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            }
+
+            /* Style the links inside the navigation bar */
+            .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+            .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            }
     </style>
 
 
 </head>
 <body>
+
+  <div class="navbar">
+    <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="days" class="active"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="lovetracker"><img src="{% static 'queue_t/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="topics" ><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
+  </div>
+  <br><br>
+  <div class="topbar">
+    <a href="summary"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+    <a href="" style="padding-left:  5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Bot Therapy</p></a>
+  </div>
+
   <!-- /* sidebar borrowed from w3school */ -->
+  
     <form onsubmit="return false;" id="form">
         <!-- <input type="text" name="message" id="textbox" placeholder="Please type in here..."> -->
-     <textarea id="inputText" name="message" placeholder="Please type here..."></textarea>
-      <center><h2 id="class-name">Name of the user</h2></center>
-      <center><textarea id="responseText" class = "message_text"></textarea></center>
+     <textarea id="inputText" name="message" placeholder="Please type here..." style="position: absolute; top: 1450px;"></textarea>
+     
+      <center><h2 id="class-name" style="position: absolute; top: 200px;">Your Bot 🤖</h2></center>
+      <center><textarea id="responseText" class = "message_text" style="position: absolute; top: 300px;"></textarea></center>
 
       <div class="row">
         <div class="col">
-          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)">
+          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)" style="position: absolute; top: 1530px;">
         </div>
         <div class="col">
-          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board">
+          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board" style="position: absolute; top: 1530px;">
         </div>
       </div>
 	</form>
