@@ -55,3 +55,8 @@ def activitiesinput(request):
 def trackerinput(request):
     return render(request, 'queue_t/trackerinput.html')
 
+def dark(request):
+    return render(request, 'queue_t/dark.html')
+
+def simple(request):
+    return render(request, 'queue_t/simple.html')

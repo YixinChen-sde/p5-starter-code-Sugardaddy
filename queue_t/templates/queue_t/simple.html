@@ -17,14 +17,15 @@
 
 <style>
   body{
-    background-color: #F6EEED;
+    background-color: #ffffff;
   }
 
   /* Dropdown https://www.w3schools.com/howto/howto_js_dropdown.asp */
   .dropbtn {
     width:25vw;
     height:5vh;
-    background-color: #EDEEED;
+    background-color: white;
+  }
 
     font-size: 2vh;
     border-radius: 7%;
@@ -56,7 +57,7 @@
     font-size:2vh;
     display: none;
     position: absolute;
-    background-color: #EDEEED;
+    background-color: white;
     overflow: auto;
     border: 1px solid #ddd;
     z-index: 1;
@@ -74,14 +75,6 @@
   .dropdown a:hover {background-color: #C4C4C4;}
 
   .show {display: block;}
-
-  .navbar {
-          background-color: #EDEEED;
-          overflow: hidden;
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          }
 
   /* Toggle Switch https://www.w3schools.com/howto/howto_css_switch.asp */
   .switch {
@@ -104,7 +97,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #C4C4C4;
+    background-color: black;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -121,7 +114,7 @@
   }
 
   input:checked + .slider {
-    background-color: #28a745;
+    background-color: white;
   }
 
   input:focus + .slider {
@@ -129,6 +122,7 @@
   }
 
   input:checked + .slider:before {
+    background-color: #28a745;
     -webkit-transform: translateX(8vw);
     -ms-transform: translateX(8vw);
     transform: translateX(8vw);
@@ -146,14 +140,22 @@
   #profile{
     width:30vw;
     height:6vh;
-    background-color: #EDEEED;
+    background-color: white;
     font-size: 3vh;
 
     border-radius: 10%;
     border-color: black;
   }
 
-  /* Style the links inside the navigation bar */
+  /* nav bar */
+  .navbar {
+          background-color: white;
+          overflow: hidden;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          }
+
   .navbar a {
           float: left;
           display: block;
@@ -172,7 +174,7 @@
 
   /* Show you are currently on this page */
   .navbar a.active {
-          background-color: #C4C4C4;
+          background-color: #EDEEED;
           color: white;
           }
 </style>
@@ -188,12 +190,12 @@
       <div class="col-6" style="text-align:right">
         <div class="dropdown">
           <button onclick="themes()" class="dropbtn" style="font-size:2.5vh">
-            Classic&nbsp&nbsp
+            Simple&nbsp&nbsp
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="themes" class="dropdown-content" style="height:12vh">
+            <a href="settings">Classic</a>
             <a href="dark">Dark</a>
-            <a href="simple">Simple</a>
             <a href="#Random">Random</a>
             <a href="#Bright">Bright</a>
             <a href="#Romantic">Romantic</a>

@@ -21,7 +21,9 @@ urlpatterns = [
     path('randomTopics_one', views.randomTopics_one, name='randomTopics_one'),
     path('randomTopics_two', views.randomTopics_two, name='randomTopics_two'),
     path('randomTopics', views.randomTopics, name='randomTopics'),
-    path('trackerinput', views.trackerinput, name='trackerinput')
+    path('trackerinput', views.trackerinput, name='trackerinput'),
+    path('dark', views.dark, name='dark'),
+    path('simple', views.simple, name='simple'),
 
 
 ]

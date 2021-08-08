@@ -17,14 +17,16 @@
 
 <style>
   body{
-    background-color: #F6EEED;
+    background-color: #000000;
+    color:white;
   }
 
   /* Dropdown https://www.w3schools.com/howto/howto_js_dropdown.asp */
   .dropbtn {
     width:25vw;
     height:5vh;
-    background-color: #EDEEED;
+    background-color: #C4C4C4;
+  }
 
     font-size: 2vh;
     border-radius: 7%;
@@ -56,7 +58,7 @@
     font-size:2vh;
     display: none;
     position: absolute;
-    background-color: #EDEEED;
+    background-color: #C4C4C4;
     overflow: auto;
     border: 1px solid #ddd;
     z-index: 1;
@@ -85,10 +87,10 @@
 
   /* Toggle Switch https://www.w3schools.com/howto/howto_css_switch.asp */
   .switch {
-  position: relative;
-  display: inline-block;
-  width: 16vw;
-  height: 4.5vh;
+    position: relative;
+    display: inline-block;
+    width: 16vw;
+    height: 4.5vh;
   }
 
   .switch input {
@@ -115,13 +117,13 @@
     height: 4.5vh;
     width: 8vw;
     left: 0%;
-    background-color: white;
+    background-color: #404040;
     -webkit-transition: .4s;
     transition: .4s;
   }
 
   input:checked + .slider {
-    background-color: #28a745;
+    background-color: #005e19;
   }
 
   input:focus + .slider {
@@ -146,7 +148,7 @@
   #profile{
     width:30vw;
     height:6vh;
-    background-color: #EDEEED;
+    background-color: #C4C4C4;
     font-size: 3vh;
 
     border-radius: 10%;
@@ -188,11 +190,11 @@
       <div class="col-6" style="text-align:right">
         <div class="dropdown">
           <button onclick="themes()" class="dropbtn" style="font-size:2.5vh">
-            Classic&nbsp&nbsp
+            Dark&nbsp&nbsp
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="themes" class="dropdown-content" style="height:12vh">
-            <a href="dark">Dark</a>
+            <a href="settings">Classic</a>
             <a href="simple">Simple</a>
             <a href="#Random">Random</a>
             <a href="#Bright">Bright</a>
@@ -247,11 +249,11 @@
     </div>
 
     <div class="row" style="padding-top:8vh">
-      <a href="about_us" class="col" style="text-align:left;font-size:3vh;color:black"><u>About</u></a>
+      <a href="about_us" class="col" style="text-align:left;font-size:3vh;color:#EDEEED"><u>About</u></a>
     </div>
 
     <div class="row" style="padding-top:8vh">
-      <a href="#" class="col" style="text-decoration:none;text-align:left;font-size:3vh;color:black">Sign Out</a>
+      <a href="#" class="col" style="text-decoration:none;text-align:left;font-size:3vh;color:#EDEEED">Sign Out</a>
     </div>
   </div>
 
