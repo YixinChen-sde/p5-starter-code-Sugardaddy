@@ -6,12 +6,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>P5 input page</title>
 
+    <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
+    <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
     <!-- credit to https://github.com/hodgef/simple-keyboard for the keyboard -->
     <link rel="stylesheet" href="{% static 'queue_t/vendor/simple-keyboard/index.css' %}">
     <script src="{% static 'queue_t/vendor/simple-keyboard/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/js/loveReceiver.js' %}"></script>
     <style type="text/css">
 
       body{
@@ -274,7 +277,7 @@
            event_info.push("count");
            var json_info = JSON.stringify(event_info);
            createCookie(enteredEvent, json_info);            //This cookies has the information of current event
-
+           sendDates();
      });
  })();
  //if the user clicked the count down button, save how many days left till the event and the event information
@@ -305,6 +308,7 @@
          event_info.push("since");
          var json_info = JSON.stringify(event_info);
          createCookie(enteredEvent, json_info);
+         sendDates();
      });
  })();
 
@@ -334,6 +338,24 @@
          $(".simple-keyboard").slideToggle(100, "linear");
      }
  });
+
+
+
+ function sendDates() {
+     //send event_list cookie
+     socket.send("{\"uid\" : " + myUID + ",\"eventList\" : " + getCookie('event_list') + "}" );
+     //send all the things in allEvents cookies
+
+     let allEvents = JSON.parse(getCookie('event_list'));
+     let eventData = {};
+     for (var i = 0; i < allEvents.length; i += 1){
+         var ei = JSON.parse(getCookie(allEvents[i]));
+         // socket.send("{\"uid\" : " + myUID + ",\"" +allEvents[i] + "\" : " + ei + "}" );
+         eventData[allEvents[i]] = ei;
+     }
+     socket.send("{\"uid\" : " + myUID + ",\"eventData\" : " + JSON.stringify(eventData) + "}" );
+     // socket.send("{\"uid\" : " + myUID + ",\"events\" : " + getCookie('event_list') + "}" );
+ }
 </script>
 
 </html>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'queue_t/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'queue_t/js/loveReceiver.js' %}"></script>
 
     <style type="text/css">
 
@@ -157,6 +158,15 @@
      .pending {
          border: 1vw solid #F99EAB;
          background: #aaa;
+     }
+     .outerActivity.done.squareLineLeft::before {
+         border: 15px solid #F99EAB !important;
+     }
+     .outerActivity.done.squareLineRight::after{
+         border: 15px solid #F99EAB !important;
+     }
+     .outerActivity.done.lineRight::after{
+         border-bottom: 15px solid #F99EAB !important;
      }
     </style>
 
@@ -307,6 +317,10 @@
  function gottaGoFast() {
      socket.send("{\"uid\" : " + myUID + ",\"ahead\" : " + true + "}" );
  }
+ // update border colors
+ function updateBorder(i) {
+
+ }
 
  //store some things in cookies
  //list of activities in order
@@ -314,7 +328,10 @@
  // whether current user is ahead or other user is ahead
 
  function rewriteCookies() {
-
+     Cookies.set('latestCommon', latestCommon, { SameSite: 'Lax' });
+     Cookies.set('ahead', ahead, { SameSite: 'Lax' });
+     Cookies.set('otherAhead', otherAhead, { SameSite: 'Lax' });
+     Cookies.set('datingList', datingList, { SameSite: 'Lax' });
  }
 
 
