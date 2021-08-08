@@ -168,14 +168,15 @@
     <br><br><br><br><br>
     <input type="text" id="event-name" name="event-name" placeholder="Name of the event..." style="font-size: 1.6cm;"><br>
     <br><br><br>
+    <input type="text" id="position-num" name="event-name" placeholder="Position of the event..." style="font-size: 1.6cm;"><br>
 
-    <input type="date" name="lovedate" id="lovedate">
-    <button id = "countdown">Count Down </button>
-    <button id = "since">Day since</button>
+
+    <button id = "countdown">Add </button>
+    <button id = "since">Delete</button>
 
       <!-- Code for selecT DATE-->
 
-      <button id="submit">Submit</button>
+      <!-- <button id="submit">Submit</button> -->
 <div class="simple-keyboard"></div>
     <div class="navbar">
         <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
@@ -187,8 +188,8 @@
     </div>
 
     <div class="topbar">
-        <a href="days"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
-        <a href="days" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
+        <a href="lovetracker"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
+        <a href="lovetracker" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
         <a href="" style="padding-left: 4cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Special Days</p></a>
         <a href="days" style="padding-left: 5.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Done</p></a>
     </div>
@@ -221,57 +222,22 @@
      }
      return null;
  }
- // Save the user entered date information to cookies
- (function() {
-     $('#submit').on('click', function(){
-         var date = new Date($('#lovedate').val());
-         day = date.getDate()+1;
-         month = date.getMonth() + 1;
-         year = date.getFullYear();
-         // The user entered information
-         //document.cookie = "day="+day+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
-         //document.cookie = "month="+month+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
-         //document.cookie = "year="+year+'; expires=Wed, 1 Jan 2070 13:47:11 UTC; path=/';
-         var date_str = month + '/' + day + '/' + year;
-         enteredDate = new Date(date_str);
-         const diffTime = Math.abs(enteredDate - today);
-         diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-         window.location.href = "/queue_t/days";
-     });
- })();
 
  //if the user clicked the count down button, save how many days left till the event and the event information
  (function() {
      $('#countdown').on('click', function(){
          $(".simple-keyboard").hide();
-         // $(this).addClass("button-selected");
-         if (getCookie('event_list') != null) {
-           allEvents = getCookie('event_list');
-           allEvents = JSON.parse(allEvents);
-           console.log(typeof(allEvents));
+         let datingList = Cookies.get("datingList");
+         if (datingList == undefined) {
+             datingList = [];
          } else {
-           allEvents = [];
+             datingList = JSON.parse(datingList);
          }
-           var date = new Date($('#lovedate').val());
-           day = date.getDate()+1;
-           month = date.getMonth() + 1;
-           year = date.getFullYear();
-
-           var date_str = month + '/' + day + '/' + year;
-           enteredDate = new Date(date_str);
-           const diffTime = Math.abs(enteredDate - today);
-           diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-           var enteredEvent = document.getElementById('event-name').value;
-           allEvents.push(enteredEvent);
-           var Json_events = JSON.stringify(allEvents);
-           createCookie('event_list', Json_events);           //This cookies has all of the event names
-           var event_info = [];
-           event_info.push(diffDays);
-           event_info.push("count");
-           var json_info = JSON.stringify(event_info);
-           createCookie(enteredEvent, json_info);            //This cookies has the information of current event
-           sendDates();
+         var enteredEvent = document.getElementById('event-name').value;
+         var positionNum = parseInt(document.getElementById('position-num').value);
+         datingList.splice(positionNum, 0, enteredEvent);
+         Cookies.set("datingList", JSON.stringify(datingList));
+         console.log(JSON.parse(Cookies.get("datingList")));
      });
  })();
  //if the user clicked the count down button, save how many days left till the event and the event information

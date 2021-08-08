@@ -17,6 +17,7 @@
 
      body{
          background-color: #D5E3EA;
+         padding-bottom: 200vw;
      }
 
      /* some navbar design inspired by W3school */
@@ -168,6 +169,11 @@
      .outerActivity.done.lineRight::after{
          border-bottom: 15px solid #F99EAB !important;
      }
+     #space {
+         height: 50vw;
+         position: absolute;
+         bottom: 0;
+     }
     </style>
 
 
@@ -178,7 +184,7 @@
     <div id="lovemap">
 
     </div>
-
+    <div id="space"></div>
   <div class="navbar">
     <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
     <a href="days"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
@@ -203,15 +209,13 @@
  //  var myUID = Date.now() % 10000;
  var $container = $("#lovemap");
  //store activity names in order
- var datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
- var zigzagList = zigzagOrder(datingList);
+ var defaultList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
+ // var zigzagList = zigzagOrder(datingList);
+ var datingList, zigzagList;
  //dictionary mapping activity names to img paths
  // var nameToImg = {"First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"};
  var nameToImg = {};
  //all the image names are just lowercase activity name without space
- for (var i of datingList) {
-     nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "") + ".svg";
- }
  //index of latest common activity
  var latestCommon, ahead, otherAhead;
  updateVarFromCookies();
@@ -241,7 +245,7 @@
      // updateVarFromCookies();
      $container.html(" ");
      var N = zigzagList.length;
-     console.log(N);
+     console.log("reeee" + N);
      for (var j = 0; j < N/3; j += 1) {
          var tripleDiv = $("<div>").addClass("outerTriple");
          //if the path stops but N is not div by 3, and it is going right to left, float things right
@@ -257,11 +261,12 @@
              if ((i % 3 == 0 || i % 3 == 1) && i < N-1) {
                  outerDiv.addClass("lineRight");
              }
+             console.log("hi"+originalIndex + "hi" + i);
              // add square things at ends of lines
-             if (i % 9 == 2 && i < N-1) {
+             if (i % 6 == 2 && i < N-1) {
                  outerDiv.addClass("squareLineRight");
              }
-             if (i % 9 == 3 && i < N-3) {
+             if (i % 6 == 3 && i < N-3) {
                  outerDiv.addClass("squareLineLeft");
              }
              // if ((i % 6) < 3) {
@@ -381,6 +386,22 @@
      } else {
          otherAhead = (otherAhead === 'true');
      }
+     datingList = Cookies.get("datingList");
+     if (datingList == undefined) {
+         datingList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
+     } else {
+         datingList = JSON.parse(datingList);
+     }
+     zigzagList = zigzagOrder(datingList);
+     for (var i of defaultList) {
+         nameToImg[i] = "/static/queue_t/img/tracker/" + i.toLowerCase().replace(/\s/g, "") + ".svg";
+     }
+     for (var i of datingList) {
+         if (defaultList.indexOf(i) < 0) {
+             nameToImg[i] = "/static/queue_t/img/tracker/" + "default.svg";
+         }
+     }
+
  }
  function rewriteCookies() {
      Cookies.set("latestCommon1", latestCommon, { SameSite: 'Lax' });
