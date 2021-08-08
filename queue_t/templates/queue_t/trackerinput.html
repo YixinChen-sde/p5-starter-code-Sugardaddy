@@ -242,6 +242,18 @@
          datingList.splice(positionNum, 0, enteredEvent);
          Cookies.set("datingList", JSON.stringify(datingList));
          console.log(JSON.parse(Cookies.get("datingList")));
+         // sendDatingList();
+         let lc = parseInt(Cookies.get("latestCommon1"));
+         let newLC = Math.min(lc, positionNum-1);
+         let reset = false;
+         Cookies.set("latestCommon1", newLC);
+         // sendLatestCommon(newLC);
+         if (positionNum <= lc + 1) {
+             Cookies.set("otherAhead", false);
+             Cookies.set("ahead", false);
+             reset = true;
+         }
+         sendDatingList(newLC, reset);
      });
  })();
  //if the user clicked the count down button, save how many days left till the event and the event information
@@ -260,6 +272,22 @@
          datingList.splice(positionNum, 1);
          Cookies.set("datingList", JSON.stringify(datingList));
          console.log(JSON.parse(Cookies.get("datingList")));
+         // sendDatingList();
+         let lc = parseInt(Cookies.get("latestCommon1"));
+         let newLC = lc;
+         let reset = false;
+         if (positionNum <= lc) {
+             Cookies.set("latestCommon1", lc-1);
+             // sendLatestCommon(lc-1);
+             newLC = lc-1;
+         }
+         if (positionNum == lc+1) {
+             Cookies.set("otherAhead", false);
+             Cookies.set("ahead", false);
+             // sendReset();
+             reset = true;
+         }
+         sendDatingList(newLC, reset);
      });
  })();
 
@@ -292,22 +320,23 @@
 
 
 
- function sendDates() {
-     //send event_list cookie
-     socket.send("{\"uid\" : " + myUID + ",\"eventList\" : " + getCookie('event_list') + "}" );
-     //send all the things in allEvents cookies
-
-     let allEvents = JSON.parse(getCookie('event_list'));
-     let eventData = {};
-     for (var i = 0; i < allEvents.length; i += 1){
-         var ei = JSON.parse(getCookie(allEvents[i]));
-         // socket.send("{\"uid\" : " + myUID + ",\"" +allEvents[i] + "\" : " + ei + "}" );
-         eventData[allEvents[i]] = ei;
-     }
-     socket.send("{\"uid\" : " + myUID + ",\"eventData\" : " + JSON.stringify(eventData) + "}" );
-     // socket.send("{\"uid\" : " + myUID + ",\"events\" : " + getCookie('event_list') + "}" );
+ function sendDatingList(newCommon, reset) {
+     //send datingList cookie
+     socket.send("{\"uid\" : " + myUID + ",\"datingList\" :\" " + getCookie('datingList') + "\"" +
+                 ",\"newCommon\" : " + newCommon +
+                 ",\"reset\" : " + reset +
+                 "}" );
  }
 
+ function sendLatestCommon(a) {
+     //send datingList cookie
+     console.log(a);
+     socket.send("{\"uid\" : " + myUID + ",\"newCommon\" : " + a + "}" );
+ }
+ function sendReset() {
+     //send datingList cookie
+     socket.send("{\"uid\" : " + myUID + ",\"reset\" : " + true + "}" );
+ }
  $("#lovedate").on("focus", (e) =>  {$(".simple-keyboard").hide()});
 </script>
 

@@ -17,7 +17,7 @@
 
      body{
          background-color: #D5E3EA;
-         padding-bottom: 200vw;
+         /* padding-bottom: 200vw; */
      }
 
      /* some navbar design inspired by W3school */
@@ -59,6 +59,7 @@
          position: fixed;
          top: 0;
          width: 100%;
+         z-index: 1000000000;
      }
 
      .topbar a {
@@ -169,10 +170,9 @@
      .outerActivity.done.lineRight::after{
          border-bottom: 15px solid #F99EAB !important;
      }
-     #space {
-         height: 50vw;
-         position: absolute;
-         bottom: 0;
+     .space {
+         height: 40vw;
+         /* bottom: 0; */
      }
      #girl {
         border-radius: 50%;
@@ -296,7 +296,7 @@
 
  rebuildTracker();
  function rebuildTracker() {
-     // updateVarFromCookies();
+     updateVarFromCookies();
      $container.html(" ");
      var N = zigzagList.length;
      console.log("reeee" + N);
@@ -352,10 +352,15 @@
          }
          $container.append(tripleDiv);
      }
+     var filler = $("<div>").addClass("space");
+     $container.append(filler);
+     clickerFunction();
  }
  // progress
+ function clickerFunction() {
  $(".innerActivity").on("click", (e) => {
      // console.log(e.currentTarget);
+     console.log("IGNORANCE IS STRENGTH");
      var t = $(e.currentTarget);
      if (parseInt(t.attr("id")) == latestCommon + 1) {
          updateVarFromCookies();
@@ -377,6 +382,7 @@
          rewriteCookies();
      }
  });
+ }
  // since the path goes left to right, right to left, etc.
  // convert the list into the order we want to display the actions top to bottom, left to right
  //
@@ -407,7 +413,7 @@
          var o = datingList.indexOf(zigzagList[i]);
          $("#" +i).removeClass("locked");
          $("#" +i).removeClass("pending");
-         $("#" +i).addClass("unLocked");
+         $("#" +i).addClass("unlocked");
 
      }
  }

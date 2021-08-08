@@ -36,6 +36,24 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
          Cookies.set("otherAhead", true);
        }
      }
+     if (received.datingList) {
+       console.log('update time');
+       let dl = received.datingList;
+       createCookie('datingList', JSON.stringify(dl));
+       // if (typeof rebuildTracker === "function") {
+       //   rebuildTracker();
+       // }
+
+     }
+
+     if (received.reset) {
+       Cookies.set("otherAhead", false);
+       Cookies.set("ahead", false);
+     }
+     if (received.newCommon != undefined) {
+       console.log("received it");
+       Cookies.set("latestCommon1", received.newCommon)
+     }
      // info for special days
      // overwrite the event list
      if (received.eventList) {
@@ -79,12 +97,12 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
        updateActivityColors();
      }
 
-     // if (typeof rebuildTracker === "function") {
-     //   rebuildTracker();
-     // }
-     if (typeof updateTrackerColors === "function") {
-       updateTrackerColors();
+     if (typeof rebuildTracker === "function") {
+       rebuildTracker();
      }
+     // if (typeof updateTrackerColors === "function") {
+     //   updateTrackerColors();
+     // }
 
      if (typeof rebuildCustom === "function") {
        rebuildCustom();
