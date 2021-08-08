@@ -21,8 +21,9 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
      // info for lovetracker
      if (received.ahead) {
        // let ahead = Cookies.get("ahead");
-       let ahead = getCookie("ahead");
+       let ahead = Cookies.get("ahead") === "true";
        if (received.ahead && ahead) {
+         console.log("qwerty")
          let lc = Cookies.get("latestCommon1");
          Cookies.set('ahead', false, { SameSite: 'Lax' });
          Cookies.set('otherAhead', false, { SameSite: 'Lax' });
@@ -32,7 +33,7 @@ var socket = new WebSocket('ws://' + window.location.host + '/ws/queue_t');
          // createCookie("latestCommon", parseInt(lc) + 1);
        } else if (received.ahead && !ahead) {
          // Cookies.set('otherAhead', true, { SameSite: 'Lax' });
-         createCookie("otherAhead", true);
+         Cookies.set("otherAhead", true);
        }
      }
      // info for special days

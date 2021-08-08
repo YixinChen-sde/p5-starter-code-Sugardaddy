@@ -215,6 +215,7 @@
  //index of latest common activity
  var latestCommon, ahead, otherAhead;
  updateVarFromCookies();
+ rewriteCookies();
  // var latestCommon = Cookies.get("latestCommon");
  // if (!latestCommon) {
  //     latestCommon = -1;
@@ -345,9 +346,9 @@
      updateVarFromCookies();
      for (var i = 0; i <= latestCommon; i += 1) {
          var o = datingList.indexOf(zigzagList[i]);
-         $("#" +o).removeClass("locked");
-         $("#" +o).removeClass("pending");
-         $("#" +o).addClass("unLocked");
+         $("#" +i).removeClass("locked");
+         $("#" +i).removeClass("pending");
+         $("#" +i).addClass("unLocked");
 
      }
  }
@@ -367,12 +368,11 @@
      }
      //whether current user is ahead of other user
      ahead = Cookies.get("ahead");
-     console.log(ahead);
      // ahead = getCookie("ahead");
-     if (!ahead) {
+     if (ahead == undefined) {
          ahead = false;
      } else {
-         ahead = (ahead == 'true');
+         ahead = (ahead === 'true');
      }
      otherAhead = Cookies.get("otherAhead");
      // otherAhead = getCookie("otherAhead");
@@ -386,7 +386,7 @@
      Cookies.set("latestCommon1", latestCommon, { SameSite: 'Lax' });
      // console.log(Cookies.get("latestCommon"));
      Cookies.set("ahead", ahead, { SameSite: 'Lax' });
-     console.log(Cookies.get("ahead"));
+     console.log("233333"+Cookies.get("ahead"));
      Cookies.set('otherAhead', otherAhead, { SameSite: 'Lax' });
      // createCookie("latestCommon", latestCommon.toString());
      // createCookie("ahead", ahead);
