@@ -30,7 +30,7 @@
       #responseText {
         position: absolute;
         left: 5px;
-        height: 65vh;
+        height: 61.5vh;
           width: 96%;
           left: 2%;
         top: 17cm;
@@ -191,17 +191,17 @@
   
     <form onsubmit="return false;" id="form">
         <!-- <input type="text" name="message" id="textbox" placeholder="Please type in here..."> -->
-     <textarea id="inputText" name="message" placeholder="Please type here..." style="position: absolute; top: 1450px;"></textarea>
+     <textarea id="inputText" name="message" placeholder="Please type here..." style="position: absolute; top: 1305px;"></textarea>
      
-      <center><h2 id="class-name" style="position: absolute; top: 200px;">Your Bot 🤖</h2></center>
-      <center><textarea id="responseText" class = "message_text" style="position: absolute; top: 300px;"></textarea></center>
+      <center><h2 id="class-name" style="position: absolute; top: 170px;">Your Bot 🤖</h2></center>
+      <center><textarea id="responseText" class = "message_text" style="position: absolute; top: 280px;"></textarea></center>
 
       <div class="row">
         <div class="col">
-          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)" style="position: absolute; top: 1530px;">
+          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)" style="position: absolute; top: 1410px;">
         </div>
         <div class="col">
-          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board" style="position: absolute; top: 1530px;">
+          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board" style="position: absolute; top: 1410px;">
         </div>
       </div>
 	</form>
@@ -239,6 +239,8 @@
         text.value += '\n\n' + "host" + " : " + hard_msg[counter - 1];
         counter -= 1;
       }
+      var c = document.getElementById("responseText");
+      c.scrollTop = c.scrollHeight;
 	};
   // when the websocket is ready, inform the user
 	socket.onopen = function (event) {
