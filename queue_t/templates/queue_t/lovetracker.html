@@ -174,7 +174,45 @@
          position: absolute;
          bottom: 0;
      }
+     #girl {
+        border-radius: 50%;
+        width: 200px;
+        position: absolute;
+        top: 210px;
+        left: 290px;
+    }
 
+    #boy {
+        border-radius: 50%;
+        width: 200px;
+        position: absolute;
+        top: 210px;
+        right: 290px;
+    }
+
+    #circlegirl {
+    background: #F7CAD0;
+    border-radius: 50%;
+    width: 20%;
+    position: absolute;
+    top: 200px;
+    left: 280px;
+    width: 220px;
+    height: 220px;
+    border: 1vw solid black;
+}
+
+    #circleboy {
+    background: #F7CAD0;
+    border-radius: 50%;
+    width: 20%;
+    position: absolute;
+    top: 200px;
+    right: 280px;
+    width: 220px;
+    height: 220px;
+    border: 1vw solid black;
+}
    
 
     </style>
@@ -202,6 +240,14 @@
     <a href="summary" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
     <a href="" style="padding-left:  4.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Relationship</p></a>
     <a href="trackerinput" style="padding-left: 5.5cm; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Edit</p></a>
+
+    </div>
+    <div id="circlegirl"></div>
+    <div id="circleboy"></div>
+
+    <div id="profilePic">
+        <img id="girl" src="{% static 'queue_t/img/girl.png' %}" alt="Avatar">
+        <img id="boy" src="{% static 'queue_t/img/boy.png' %}" alt="Avatar">
 
     </div>
 
