@@ -17,15 +17,14 @@
 
 <style>
   body{
-    background-color: #ffffff;
+    background-color: #F6EEED;
   }
 
   /* Dropdown https://www.w3schools.com/howto/howto_js_dropdown.asp */
   .dropbtn {
     width:25vw;
     height:5vh;
-    background-color: white;
-  }
+    background-color: #EDEEED;
 
     font-size: 2vh;
     border-radius: 7%;
@@ -57,7 +56,7 @@
     font-size:2vh;
     display: none;
     position: absolute;
-    background-color: white;
+    background-color: #EDEEED;
     overflow: auto;
     border: 1px solid #ddd;
     z-index: 1;
@@ -75,6 +74,14 @@
   .dropdown a:hover {background-color: #C4C4C4;}
 
   .show {display: block;}
+
+  .navbar {
+          background-color: #EDEEED;
+          overflow: hidden;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          }
 
   /* Toggle Switch https://www.w3schools.com/howto/howto_css_switch.asp */
   .switch {
@@ -97,7 +104,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: black;
+    background-color: #C4C4C4;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -114,7 +121,7 @@
   }
 
   input:checked + .slider {
-    background-color: #EDEEED;
+    background-color: #28a745;
   }
 
   input:focus + .slider {
@@ -122,7 +129,6 @@
   }
 
   input:checked + .slider:before {
-    background-color: #28a745;
     -webkit-transform: translateX(8vw);
     -ms-transform: translateX(8vw);
     transform: translateX(8vw);
@@ -140,22 +146,14 @@
   #profile{
     width:30vw;
     height:6vh;
-    background-color: white;
+    background-color: #EDEEED;
     font-size: 3vh;
 
     border-radius: 10%;
     border-color: black;
   }
 
-  /* nav bar */
-  .navbar {
-          background-color: white;
-          overflow: hidden;
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          }
-
+  /* Style the links inside the navigation bar */
   .navbar a {
           float: left;
           display: block;
@@ -174,7 +172,7 @@
 
   /* Show you are currently on this page */
   .navbar a.active {
-          background-color: #EDEEED;
+          background-color: #C4C4C4;
           color: white;
           }
 </style>
@@ -186,27 +184,27 @@
     </div>
 
     <div class="row" style="padding-top:6vh">
-      <div class="col-6" style="text-align:left;font-size:3vh;">Theme</div>
+      <div class="col-6" style="text-align:left;font-size:3vh;">主题</div>
       <div class="col-6" style="text-align:right">
         <div class="dropdown">
           <button onclick="themes()" class="dropbtn" style="font-size:2.5vh">
-            Simple&nbsp&nbsp
+            经典&nbsp&nbsp
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="themes" class="dropdown-content" style="height:12vh">
-            <a href="dark">Dark</a>
-            <a href="settings">Classic</a>
-            <a href="#Random">Random</a>
-            <a href="#Bright">Bright</a>
-            <a href="#Romantic">Romantic</a>
-            <a href="#More">More...</a>
+            <a href="dark">夜晚</a>
+            <a href="simple">简单</a>
+            <a href="#Random">随机</a>
+            <a href="#Bright">明亮</a>
+            <a href="#Romantic">浪漫</a>
+            <a href="#More">更多...</a>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row" style="padding-top:6vh">
-      <div class="col-6" style="text-align:left;font-size:3vh;">Location</div>
+      <div class="col-6" style="text-align:left;font-size:3vh;">定位服务</div>
       <div class="col-6" style="text-align:right;padding-right:6vw">
         <label class="switch">
           <input type="checkbox">
@@ -216,22 +214,23 @@
     </div>
 
     <div class="row" style="padding-top:6vh">
-      <div class="col-6" style="text-align:left;font-size:3vh;">Language</div>
+      <div class="col-6" style="text-align:left;font-size:3vh;">语言</div>
       <div class="col-6" style="text-align:right">
         <div class="dropdown">
           <button onclick="languages()" class="dropbtn" style="font-size:2.5vh">
-            English&nbsp&nbsp
+            中文&nbsp&nbsp
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="languages" class="dropdown-content">
-            <a href="chinese">中文</a>
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <a href="settings">English</a>
             <a href="#Spanish">Español</a>
             <a href="#Arabic">العربية</a>
             <a href="#Hindi">हिन्दी</a>
             <a href="#Russian">Pусский</a>
             <a href="#Japanese">日本語</a>
             <a href="#Korean">한국어</a>
-            <a href="#More">More...</a>
+            <a href="#More">更多...</a>
           </div>
         </div>
       </div>
@@ -241,18 +240,18 @@
       <div class="col" style="text-align:center;">
         <a href="profile">
           <button id="profile">
-            Profile
+            个人信息
           </button>
         </a>
       </div>
     </div>
 
     <div class="row" style="padding-top:8vh">
-      <a href="about_us" class="col" style="text-align:left;font-size:3vh;color:black"><u>About</u></a>
+      <a href="about_us" class="col" style="text-align:left;font-size:3vh;color:black"><u>关于</u></a>
     </div>
 
     <div class="row" style="padding-top:8vh">
-      <a href="#" class="col" style="text-decoration:none;text-align:left;font-size:3vh;color:black">Sign Out</a>
+      <a href="#" class="col" style="text-decoration:none;text-align:left;font-size:3vh;color:black">注销</a>
     </div>
   </div>
 

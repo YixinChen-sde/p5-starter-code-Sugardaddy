@@ -24,6 +24,7 @@ urlpatterns = [
     path('trackerinput', views.trackerinput, name='trackerinput'),
     path('dark', views.dark, name='dark'),
     path('simple', views.simple, name='simple'),
+    path('chinese', views.chinese, name='chinese'),
 
 
 ]

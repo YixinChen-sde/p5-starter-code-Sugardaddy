@@ -60,3 +60,6 @@ def dark(request):
 
 def simple(request):
     return render(request, 'queue_t/simple.html')
+
+def chinese(request):
+    return render(request, 'queue_t/chinese.html')
