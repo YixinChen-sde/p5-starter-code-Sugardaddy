@@ -166,6 +166,16 @@
             background-color: #ddd;
             color: black;
             }
+     .row .col {
+         position:fixed;
+         bottom:50vw;
+     }
+     .row .col:nth-of-type(2) {
+         margin-left:50vw;
+     }
+     body{
+         overflow:hidden;
+     }
     </style>
 
 
@@ -190,17 +200,17 @@
     <br><br><br>
     <form onsubmit="return false;" id="form">
         <!-- <input type="text" name="message" id="textbox" placeholder="Please type in here..."> -->
-        <textarea id="inputText" name="message" placeholder="Please type here..." style="position: absolute; top: 1380px;"></textarea>
+        <textarea id="inputText" name="message" placeholder="Please type here..." style="position: fixed; bottom: 24vw;height:12vw;"></textarea>
      
       <center><h2 id="class-name" style="position: absolute; top: 170px;">Your Bot 🤖</h2></center>
       <center><textarea id="responseText" class = "message_text" style="position: absolute; top: 280px;"></textarea></center>
 
       <div class="row">
         <div class="col">
-          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)" style="position: absolute; top: 1410px;">
+          <input id="send-btn" type="button" value="send messages" onclick="send(this.form.message.value)" style="">
         </div>
         <div class="col">
-          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board" style="position: absolute; top: 1410px;">
+          <input id="clear-btn" type="button" onclick="javascript:document.getElementById('responseText').value=''"value="Clear your board" style="">
         </div>
       </div>
 	</form>
