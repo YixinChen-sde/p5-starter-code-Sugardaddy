@@ -330,9 +330,9 @@
              //     outerDiv.addClass("rightAlign");
              // }
              var innerDiv = $("<div>").addClass("innerActivity").attr("id", originalIndex.toString());//.attr("id", zigzagList[i].replace(/\s/g, ""));
-             if (i <= latestCommon) {
+             if (originalIndex <= latestCommon) {
                  innerDiv.addClass("unlocked");
-             } else if (i == latestCommon + 1 && ahead) {
+             } else if (originalIndex == latestCommon + 1 && ahead) {
                  innerDiv.addClass("pending");}
              else {
                  innerDiv.addClass("locked");
