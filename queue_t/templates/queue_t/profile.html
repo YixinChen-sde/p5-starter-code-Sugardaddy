@@ -81,8 +81,6 @@
 
   .dropdown a:hover {background-color: #C4C4C4;}
 
-  .show {display: block;}
-
   ::placeholder {
     color:black;
     text-align:center;
@@ -239,30 +237,33 @@
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(0).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(0).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   function change1() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(1).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(1).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   function change2() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(2).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(2).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   function change3() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(3).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(3).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
   function genders() {
-    document.getElementById("genders").classList.toggle("show");
-
+    $("#genders").show();
   }
 
   function filterFunction() {
