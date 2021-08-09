@@ -65,6 +65,7 @@
          text-align: center;
          position: absolute;
          margin-top: 10px;
+         opacity: 0.9;
      }
      /*test flexbox
      / i hate flexbox
@@ -452,7 +453,7 @@
                  catDiv.css("visibility", "hidden");
                  //https://stackoverflow.com/questions/6677035/jquery-scroll-to-element
                  $([document.documentElement, document.body]).animate({
-                     scrollTop: catDiv.offset().top
+                     scrollTop: $(this).offset().top - 295
                  }, 800);
              },
              done: function() {

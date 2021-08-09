@@ -123,6 +123,11 @@
  rebuildPage();
   function rebuildPage() {
       var allEvents = JSON.parse(getCookie('event_list'));             //This is list has all of the event name now
+      if (allEvents == null) {
+          allEvents = ["date"];
+          createCookie("event_list", JSON.stringify(allEvents));
+          createCookie(allEvents[0], JSON.stringify([3, "count"]));
+      }
       //Loop through the event name and dynaically append to the DOM tree
       console.log(allEvents.length);
       for (let i = 0; i < allEvents.length; i++) {

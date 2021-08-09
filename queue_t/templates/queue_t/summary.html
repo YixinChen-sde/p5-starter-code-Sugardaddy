@@ -25,11 +25,12 @@
         font-size:3vh;
       }
 
-      .button{
-        height:18vh;
-        width:40vw;
-        border-radius:12%;
-      }
+     .button{
+         height:18vh;
+         width:40vw;
+         border-radius:12%;
+         border: 2px solid #ccc;
+     }
 
         /* some navbar design inspired by W3school */
      .navbar {
@@ -117,7 +118,7 @@
   <div class="row boxes">
     <div class="col-6">
       <a href="lovetracker">
-        <button class="button" style="background:#EBB4B4"> <img src="{% static 'queue_t/img/statusquo.png' %}" alt=""> <br> Status Quo</button>
+        <button class="button" style="background:#EBB4B4"> <img id="statusIMG" src="{% static 'queue_t/img/statusquo.png' %}" alt=""> <br> Status Quo</button>
       </a>
     </div>
     <div class="col-6">
@@ -129,7 +130,7 @@
   <div class="row boxes">
     <div class="col-6">
       <a href="days">
-        <button class="button" style="background:#F4E8BB">2 Days left til next Date</button>
+        <button class="button" id="events" style="background:#F4E8BB"></button>
       </a>
     </div>
     <div class="col-6">
@@ -139,6 +140,7 @@
     </div>
   </div>
 
+  <br><br><br>
   <img src="" alt="">
 
   <div class="navbar">
@@ -163,7 +165,39 @@
  var activityCounter = $("<span>"+numCompleted+" </span>").css("font-size", "1.5em");
  $("#activities").prepend(activityCounter);
 
- 
+ var event = Cookies.get("event_list");
+ if (event == undefined) {
+     event = ["date"];
+     createCookie("event_list", JSON.stringify(event));
+     createCookie(event[0], JSON.stringify([3, "count"]));
+ } else {
+     event = JSON.parse(event);
+ }
+     let eventData = JSON.parse(Cookies.get(event[event.length-1]));
+     var eventTime = $("<span>"+eventData[0]+" </span>").css("font-size", "1.5em");
+     var eventElement;
+     if (eventData[1] == "since") {
+         eventElement  = $("<span> days since " + event[event.length-1]+ "</span>").css("font-size", "1em");
+     } else if (eventData[1] == "count") {
+         eventElement  = $("<span> days til " + event[event.length-1]+ "</span>").css("font-size", "1em");
+     }
+     $("#events").append(eventTime);
+     $("#events").append(eventElement);
+
+ var defaultList =  ["First date", "Hold hands", "First kiss", "More dates", "Cuddle", "Sleepover", "Introduce to friends", "Share secrets", "Exclusive"];
+ var status = Cookies.get("latestCommon1");
+ var dl = Cookies.get("datingList");
+ if (status != undefined) {
+     status = parseInt(status);
+     dl = JSON.parse(dl);
+     if (defaultList.indexOf(dl[status]) < 0) {
+         $("#statusIMG").attr("src", "/static/queue_t/img/tracker/" + "default.svg");
+     } else {
+         $("#statusIMG").attr("src", "/static/queue_t/img/tracker/" + dl[status].toLowerCase().replace(/\s/g, "") + ".svg");
+     }
+     $("#statusIMG").css("width", "17vw");
+ }
+
 </script>
 
 </html>
