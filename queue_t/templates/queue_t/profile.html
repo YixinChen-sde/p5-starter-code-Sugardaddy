@@ -81,8 +81,6 @@
 
   .dropdown a:hover {background-color: #C4C4C4;}
 
-  .show {display: block;}
-
   ::placeholder {
     color:black;
     text-align:center;
@@ -132,7 +130,7 @@
 </style>
 
 <body>
-  <div class="container-fluid" style="padding-left:7vw;padding-top:2vh;">
+  <div class="container-fluid" style="padding-left:9vw;padding-top:3vh;padding-right:2vw;">
 
     <div class="row">
       <div class="col backbtn">
@@ -148,28 +146,28 @@
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Name
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="name" type="text" placeholder="Donald Chuan"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Partner
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="partner" type="text" placeholder="Sophia Pu"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Gender
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;text-align:center">
+      <div class="col-6" style="font-size:2.5vh;text-align:center;padding-right:5vw">
         <div class="dropdown">
           <button id="gender" onclick="genders()" class="dropbtn" style="font-size:2.5vh">
             Male&nbsp&nbsp
@@ -186,46 +184,46 @@
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Email
       </div>
-      <div class="col-6" style="font-size:2.5vh; padding-top:1.5vh;">
+      <div class="col-6" style="font-size:2.5vh; padding-top:0.5vh;">
         <input id="email" type="text" placeholder="chuan160@qt.com"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Birthdate
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="birthdate" type="date" value="1996-08-04"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Phone
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="phone" type="text" placeholder="(081)-220-2160"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Facebook
       </div>
-      <div class="col-6" style="font-size:2.5vh; padding-top:1.5vh;">
+      <div class="col-6" style="font-size:2.5vh; padding-top:0.5vh;">
         <input id="facebook" type="text" placeholder="chuan160@qt.com"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         WeChat ID
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="wechat" type="text" placeholder="chuan160"></input>
       </div>
     </div>
@@ -239,30 +237,37 @@
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(0).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(0).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   function change1() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(1).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(1).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   function change2() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(2).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(2).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   function change3() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(3).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
     document.getElementById(3).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
   }
 
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
   function genders() {
-    document.getElementById("genders").classList.toggle("show");
-
+    if ($("#genders").css('display') == 'none')
+      $("#genders").show();
+    else {
+      $("#genders").hide();
+    }
   }
 
   function filterFunction() {
