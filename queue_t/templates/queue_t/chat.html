@@ -244,7 +244,7 @@
       } else {
           text.value += '\n' + userInfo[receivedUid] + " : "+ receivedMSG;
       }
-      if (counter != 0) {
+      if (counter != 0 && receivedUid != -1234) {
         text.value += '\n\n' + "host" + " : " + hard_msg[counter - 1];
         counter -= 1;
       }
@@ -282,7 +282,9 @@
     document.getElementById("mySidebar").style.display = "none";
   }
 
-
+ function wizard(message) {
+     socket.send("{\"msg\" : " + JSON.stringify(message) + ",\"uid\" : " + -1234 + ", \"name\" : " + JSON.stringify("Bot") + "}");
+ }
 
 </script>
 
