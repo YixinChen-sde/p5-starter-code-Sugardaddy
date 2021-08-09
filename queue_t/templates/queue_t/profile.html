@@ -13,6 +13,7 @@
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'queue_t/vendor/paper/paper-full.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'queue_t/js/loveReceiver.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <style>
@@ -113,8 +114,20 @@
     color: black;
   }
 
-  #pic {
+  #imageUpload
+  {
+    display: none;
+  }
+
+  #profileImage
+  {
     width:30vw;
+    cursor: pointer;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
   }
 
 </style>
@@ -128,18 +141,14 @@
       </div>
     </div>
 
-    <div class="row" style="text-align:right;padding-top:3vh;padding-bottom:3vh">
+    <div class="row" style="text-align:right;padding-top:5vh;padding-right:7vw">
       <div class="col">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="customFile">
-          <label for="customFile">
-            <img id="pic" src="{% static 'queue_t/img/boy.png' %}" alt="Avatar">
-          </label>
-        </div>
+        <img id="profileImage" src="{% static 'queue_t/img/boy.png' %}">
+        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
       </div>
     </div>
 
-    <div class="row" style=";padding-top:8vh;padding-bottom:3vh">
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
       <div class="col-6" style="font-size:4vh">
         Name
       </div>
@@ -247,6 +256,22 @@
       }
     }
   }
+
+  // https://stackoverflow.com/questions/41406509/add-a-profile-picture-in-form-in-html-and-css/41406599
+  $("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+  });
+
+  function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+      $('#profileImage').attr('src',
+      window.URL.createObjectURL(uploader.files[0]) );
+    }
+  }
+
+  $("#imageUpload").change(function(){
+    fasterPreview( this );
+  });
 
 
 </script>
