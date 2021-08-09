@@ -146,28 +146,28 @@
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Name
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="name" type="text" placeholder="Donald Chuan"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Partner
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="partner" type="text" placeholder="Sophia Pu"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Gender
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;text-align:center">
+      <div class="col-6" style="font-size:2.5vh;text-align:center">
         <div class="dropdown">
           <button id="gender" onclick="genders()" class="dropbtn" style="font-size:2.5vh">
             Male&nbsp&nbsp
@@ -184,46 +184,46 @@
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Email
       </div>
-      <div class="col-6" style="font-size:2.5vh; padding-top:1.5vh;">
+      <div class="col-6" style="font-size:2.5vh; padding-top:0.5vh;">
         <input id="email" type="text" placeholder="chuan160@qt.com"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Birthdate
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="birthdate" type="date" value="1996-08-04"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Phone
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="phone" type="text" placeholder="(081)-220-2160"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         Facebook
       </div>
-      <div class="col-6" style="font-size:2.5vh; padding-top:1.5vh;">
+      <div class="col-6" style="font-size:2.5vh; padding-top:0.5vh;">
         <input id="facebook" type="text" placeholder="chuan160@qt.com"></input>
       </div>
     </div>
 
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
-      <div class="col-6" style="font-size:4vh">
+      <div class="col-6" style="font-size:3vh">
         WeChat ID
       </div>
-      <div class="col-6" style="font-size:3vh; padding-top:1vh;">
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
         <input id="wechat" type="text" placeholder="chuan160"></input>
       </div>
     </div>
@@ -263,7 +263,11 @@
 
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
   function genders() {
-    $("#genders").show();
+    if ($("#genders").css('display') == 'none')
+      $("#genders").show();
+    else {
+      $("#genders").hide();
+    }
   }
 
   function filterFunction() {
