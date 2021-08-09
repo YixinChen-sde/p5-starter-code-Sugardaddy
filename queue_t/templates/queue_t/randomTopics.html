@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Random Topics Two</title>
+    <title>Random Topics</title>
 
     <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
@@ -72,7 +72,7 @@
 
 </head>
 <body>
-    
+
   <div class="topbar">
     <a href="topics"><img src="{% static 'queue_t/img/topBack.png' %}" alt="" style="width: 5vh;"></a>
     <a href="topics" style="padding-left: 0%; padding-top: .7cm;"><p style="color: black; font-size: 1.1cm; padding-left: 0%;">Back</p></a>
@@ -81,7 +81,7 @@
   </div>
 
   <div style="text-align: center; position: absolute; top: 30vh;">
-  <h1 class="text" style="font-size: 80px; position: absolute;"> Topic </h1> 
+  <h1 class="text" style="font-size: 80px; position: absolute;"> Topic </h1>
 
   <div id="topicsDisplay" style="font-size: 50px;"></div>
 
@@ -231,7 +231,7 @@
         document.getElementById("topicsDisplay").innerHTML = meaningful[randomNumber];
         }
     }
-    
+
     if (url.indexOf("funny") > -1) {
         newTopic();
         function newTopic() {

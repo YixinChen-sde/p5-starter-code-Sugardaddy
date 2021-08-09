@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P5 activities input page</title>
+    <title>Input</title>
 
     <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
@@ -18,7 +18,7 @@
     <style type="text/css">
 
       body{
-        background-color: #F6EEED;
+        background-color: #D5E3EA;
       }
 
         /* custom styles */
@@ -61,7 +61,7 @@
 
             }
 
- 
+
 
      .button-selected {
          background: #ddd;
@@ -93,7 +93,7 @@
         padding: 0.5vh;
     }
 
-    
+
     .text{
         font-family: Roboto;
         font-style: normal;
@@ -108,7 +108,7 @@
          background: #ccc;
          border-radius: 10px;
      }
-     
+
     </style>
 
 
@@ -131,8 +131,8 @@
     </br></br> </br> </br></br>
     <div class="container">
         <img class="item icon" id="1_png" src="{% static 'queue_t/img/Amusement park.png' %}" alt="Example">
-        <img class="item icon" id="2_png" src="{% static 'queue_t/img/archery.png' %}" alt="Example"> 
-        <img class="item icon" id="3_png" src="{% static 'queue_t/img/target.png' %}" alt="Example"> 
+        <img class="item icon" id="2_png" src="{% static 'queue_t/img/archery.png' %}" alt="Example">
+        <img class="item icon" id="3_png" src="{% static 'queue_t/img/target.png' %}" alt="Example">
         <img class="item icon" id="4_png" src="{% static 'queue_t/img/55.png' %}" alt="Example">
         <img class="item icon" id="5_png" src="{% static 'queue_t/img/66.png' %}" alt="Example">
         <img class="item icon" id="6_png" src="{% static 'queue_t/img/77.png' %}" alt="Example">
@@ -178,12 +178,12 @@ function createCookie(name, value) {
 
     var path;
          $("#1_png").on("click", function(){
-            path = document.getElementById("1_png").src; 
+            path = document.getElementById("1_png").src;
             icon_selected(path);
          });
 
          $("#2_png").on("click", function(){
-            path = document.getElementById("2_png").src;  
+            path = document.getElementById("2_png").src;
             icon_selected(path);
          });
 
@@ -199,56 +199,56 @@ function createCookie(name, value) {
 
          $("#5_png").on("click", function(){
             path = document.getElementById("5_png").src;
-            icon_selected(path); 
+            icon_selected(path);
          });
 
          $("#6_png").on("click", function(){
-            path = document.getElementById("6_png").src; 
+            path = document.getElementById("6_png").src;
             icon_selected(path);
          });
 
          $("#7_png").on("click", function(){
-            path = document.getElementById("7_png").src;  
+            path = document.getElementById("7_png").src;
             icon_selected(path);
          });
 
          $("#8_png").on("click", function(){
-            path = document.getElementById("8_png").src;  
+            path = document.getElementById("8_png").src;
             icon_selected(path);
          });
 
          $("#9_png").on("click", function(){
-            path = document.getElementById("9_png").src;  
+            path = document.getElementById("9_png").src;
             icon_selected(path);
          });
 
          $("#10_png").on("click", function(){
-            path = document.getElementById("10_png").src; 
-            icon_selected(path); 
+            path = document.getElementById("10_png").src;
+            icon_selected(path);
          });
 
          $("#11_png").on("click", function(){
-            path = document.getElementById("11_png").src;  
+            path = document.getElementById("11_png").src;
             icon_selected(path);
          });
 
          $("#12_png").on("click", function(){
-            path = document.getElementById("12_png").src;  
+            path = document.getElementById("12_png").src;
             icon_selected(path);
          });
 
          $("#13_png").on("click", function(){
-            path = document.getElementById("13_png").src;  
+            path = document.getElementById("13_png").src;
             icon_selected(path);
          });
 
          $("#14_png").on("click", function(){
-            path = document.getElementById("14_png").src;  
+            path = document.getElementById("14_png").src;
             icon_selected(path);
          });
 
          $("#15_png").on("click", function(){
-            path = document.getElementById("15_png").src;  
+            path = document.getElementById("15_png").src;
             icon_selected(path);
          });
 
@@ -276,7 +276,7 @@ function icon_selected(path) {
            var Json_events = JSON.stringify(allEvents);
            console.log("2: " + Json_events);
            createCookie('selected_icons', Json_events);           //This cookies has all of the activity names
-           var activity_location = [];                  
+           var activity_location = [];
            activity_location.push(path);
            console.log("img path: " + activity_location)
            var json_info = JSON.stringify(activity_location);
