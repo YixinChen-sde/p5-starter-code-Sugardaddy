@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>ChatBox</title>
+    <title>Chatbot</title>
 
     <!-- credit to https://github.com/js-cookie/js-cookie for the js cookie api for handling cookies -->
     <script type="text/javascript" src="{% static 'queue_t/vendor/jquery/js.cookie.min.js' %}"></script>
@@ -166,6 +166,11 @@
             background-color: #ddd;
             color: black;
             }
+
+            .navbar a.active {
+                background-color: #C4C4C4;
+                color: white;
+            }
      .row .col {
          position:fixed;
          bottom:50vw;
@@ -184,9 +189,9 @@
 
   <div class="navbar">
     <a href="summary"><img src="{% static 'queue_t/img/navHome.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="days" class="active"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="days"><img src="{% static 'queue_t/img/navDays.png' %}" alt="" style="width: 5vh;"></a>
     <a href="lovetracker"><img src="{% static 'queue_t/img/navRelationship.png' %}" alt="" style="width: 5vh;"></a>
-    <a href="topics" ><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
+    <a href="topics" class="active"><img src="{% static 'queue_t/img/navTopics.png' %}" alt="" style="width: 5vh;"></a>
     <a href="settings"><img src="{% static 'queue_t/img/navSettings.png' %}" alt="" style="width: 5vh;"></a>
   </div>
   <br><br>
