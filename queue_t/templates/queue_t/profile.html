@@ -174,11 +174,11 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div id="genders" class="dropdown-content" style="height:20vh">
-            <a id=0 href="#Female" onclick="change0()">Female</a>
-            <a id=1 href="#Intersex" onclick="change1()">Intersex</a>
-            <a id=2 href="#Trans" onclick="change2()">Trans</a>
-            <a id=3 href="#N/A" onclick="change3()">N/A</a>
-            <a id=4 href="#N/A" onclick="customGender()">Custom</a>
+            <a id=0 href="#Female" onclick="changeN(0)()">Female</a>
+            <a id=1 href="#Intersex" onclick="changeN(1)()">Intersex</a>
+            <a id=2 href="#Trans" onclick="changeN(2)()">Trans</a>
+            <a id=3 href="#N/A" onclick="changeN(3)()">N/A</a>
+            <a id=4 href="#N/A" onclick="changeN(4)()">Custom</a>
           </div>
         </div>
       </div>
@@ -254,39 +254,56 @@
   function change0() {
     let cur = document.getElementById("gender").innerHTML;
       document.getElementById("gender").innerHTML = document.getElementById(0).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-      if (cur.split('&nbsp')[0] != 'Custom')
           document.getElementById(0).innerHTML = cur.split('&nbsp')[0];
       $("#genders").hide();
-$("#customSelect").hide();
   }
 
   function change1() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(1).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-      if (cur.split('&nbsp')[0] != 'Custom')
           document.getElementById(1).innerHTML = cur.split('&nbsp')[0];
     $("#genders").hide();
-$("#customSelect").hide();
   }
 
   function change2() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(2).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-      if (cur.split('&nbsp')[0] != 'Custom')
     document.getElementById(2).innerHTML = cur.split('&nbsp')[0];
     $("#genders").hide();
-$("#customSelect").hide();
   }
 
   function change3() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(3).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-      if (cur.split('&nbsp')[0] != 'Custom')
     document.getElementById(3).innerHTML = cur.split('&nbsp')[0];
     $("#genders").hide();
-$("#customSelect").hide();
   }
 
+  function change4() {
+    let cur = document.getElementById("gender").innerHTML;
+    document.getElementById("gender").innerHTML = document.getElementById(4).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
+    document.getElementById(4).innerHTML = cur.split('&nbsp')[0];
+    $("#genders").hide();
+  }
+
+ function changeN(n) {
+    return () => {
+        let cur = document.getElementById("gender").innerHTML;
+        document.getElementById("gender").innerHTML = document.getElementById(n).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
+        if (document.getElementById(n).innerHTML == 'Custom') {
+            $("#customSelect").show();
+        } else {
+            $("#customSelect").hide();
+        }
+        document.getElementById(n).innerHTML = cur.split('&nbsp')[0];
+        if (document.getElementById(n).innerHTML == 'Custom') {
+            $("#"+n).addClass("customGender");
+        } else {
+            $("#"+n).removeClass("customGender");
+        }
+        $("#genders").hide();
+    };
+  }
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
   function genders() {
     if ($("#genders").css('display') == 'none')
@@ -328,13 +345,9 @@ $("#customSelect").hide();
     fasterPreview( this );
   });
 $("#customSelect").hide();
-function customGender() {
-    let cur = document.getElementById("gender").innerHTML;
-    document.getElementById("gender").innerHTML = document.getElementById(4).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-     // document.getElementById(4).innerHTML = cur.split('&nbsp')[0];
-     $("#genders").hide();
+$(".customGender").click(function () {
      $("#customSelect").show();
-}
+});
 
 </script>
 
