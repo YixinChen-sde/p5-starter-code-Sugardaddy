@@ -173,16 +173,34 @@
             Male&nbsp&nbsp
             <i class="fa fa-caret-down"></i>
           </button>
-          <div id="genders" class="dropdown-content" style="height:12vh">
+          <div id="genders" class="dropdown-content" style="height:20vh">
             <a id=0 href="#Female" onclick="change0()">Female</a>
             <a id=1 href="#Intersex" onclick="change1()">Intersex</a>
             <a id=2 href="#Trans" onclick="change2()">Trans</a>
             <a id=3 href="#N/A" onclick="change3()">N/A</a>
+            <a id=4 href="#N/A" onclick="customGender()">Custom</a>
           </div>
         </div>
       </div>
     </div>
 
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh" id="customSelect">
+      <div class="col-6" style="font-size:3vh">
+        Custom Gender
+      </div>
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
+        <input id="name" type="text" placeholder="Your Gender"></input>
+      </div>
+    </div>
+
+    <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
+      <div class="col-6" style="font-size:3vh">
+        Pronouns
+      </div>
+      <div class="col-6" style="font-size:2.5vh;padding-top:0.5vh;">
+        <input id="name" type="text" placeholder="He/Him"></input>
+      </div>
+    </div>
     <div class="row" style=";padding-top:3vh;padding-bottom:3vh">
       <div class="col-6" style="font-size:3vh">
         Email
@@ -235,30 +253,38 @@
 <script>
   function change0() {
     let cur = document.getElementById("gender").innerHTML;
-    document.getElementById("gender").innerHTML = document.getElementById(0).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-    document.getElementById(0).innerHTML = cur.split('&nbsp')[0];
-    $("#genders").hide();
+      document.getElementById("gender").innerHTML = document.getElementById(0).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
+      if (cur.split('&nbsp')[0] != 'Custom')
+          document.getElementById(0).innerHTML = cur.split('&nbsp')[0];
+      $("#genders").hide();
+$("#customSelect").hide();
   }
 
   function change1() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(1).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
-    document.getElementById(1).innerHTML = cur.split('&nbsp')[0];
+      if (cur.split('&nbsp')[0] != 'Custom')
+          document.getElementById(1).innerHTML = cur.split('&nbsp')[0];
     $("#genders").hide();
+$("#customSelect").hide();
   }
 
   function change2() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(2).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
+      if (cur.split('&nbsp')[0] != 'Custom')
     document.getElementById(2).innerHTML = cur.split('&nbsp')[0];
     $("#genders").hide();
+$("#customSelect").hide();
   }
 
   function change3() {
     let cur = document.getElementById("gender").innerHTML;
     document.getElementById("gender").innerHTML = document.getElementById(3).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
+      if (cur.split('&nbsp')[0] != 'Custom')
     document.getElementById(3).innerHTML = cur.split('&nbsp')[0];
     $("#genders").hide();
+$("#customSelect").hide();
   }
 
   // https://www.w3schools.com/howto/howto_js_dropdown.asp
@@ -301,7 +327,14 @@
   $("#imageUpload").change(function(){
     fasterPreview( this );
   });
-
+$("#customSelect").hide();
+function customGender() {
+    let cur = document.getElementById("gender").innerHTML;
+    document.getElementById("gender").innerHTML = document.getElementById(4).innerHTML + '&nbsp&nbsp<i class="fa fa-caret-down"></i>';
+     // document.getElementById(4).innerHTML = cur.split('&nbsp')[0];
+     $("#genders").hide();
+     $("#customSelect").show();
+}
 
 </script>
 
