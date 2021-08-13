@@ -172,23 +172,23 @@
          border-bottom: 15px solid #F99EAB !important;
      }
      .space {
-         height: 40vw;
+         height: 100vw;
          /* bottom: 0; */
      }
-     #girl {
-        border-radius: 50%;
-        width: 200px;
+     #girl, #p1 {
+         /* border-radius: 50%; */
+        width: 150px;
         position: absolute;
-        top: 210px;
-        left: 290px;
+        top: 230px;
+        left: 310px;
     }
 
-    #boy {
-        border-radius: 50%;
-        width: 200px;
+    #boy, #p2 {
+        /* border-radius: 50%; */
+        width: 150px;
         position: absolute;
-        top: 210px;
-        right: 290px;
+        top: 230px;
+        right: 300px;
     }
 
     #circlegirl {
@@ -247,9 +247,11 @@
     <div id="circleboy"></div>
 
     <div id="profilePic">
-        <img id="girl" src="{% static 'queue_t/img/girl.png' %}" alt="Avatar">
-        <img id="boy" src="{% static 'queue_t/img/boy.png' %}" alt="Avatar">
+        <!-- <img id="girl" src="{% static 'queue_t/img/girl.png' %}" alt="Avatar">
+             <img id="boy" src="{% static 'queue_t/img/boy.png' %}" alt="Avatar"> -->
 
+        <img id="p1" src="{% static 'queue_t/img/cupcake.svg' %}" alt="Avatar">
+        <img id="p2" src="{% static 'queue_t/img/cup.svg' %}" alt="Avatar">
     </div>
 
     <a href="activities" style="position: absolute; top: 160px; right: 20px; size: 300px;">

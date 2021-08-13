@@ -15,15 +15,15 @@
 
     <style type="text/css">
 
-      body{
-        background-color: #F6EEED;
-      }
+     body{
+         background-color: #F6EEED;
+     }
 
-      .boxes{
-        text-align:center;
-        height:24vh;
-        font-size:3vh;
-      }
+     .boxes{
+         text-align:center;
+         height:24vh;
+         font-size:3vh;
+     }
 
      .button{
          height:18vh;
@@ -32,72 +32,72 @@
          border: 2px solid #ccc;
      }
 
-        /* some navbar design inspired by W3school */
+     /* some navbar design inspired by W3school */
      .navbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            }
+         background-color: #EDEEED;
+         overflow: hidden;
+         position: fixed;
+         bottom: 0;
+         width: 100%;
+     }
 
-    /* Style the links inside the navigation bar */
-    .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
+     /* Style the links inside the navigation bar */
+     .navbar a {
+         float: left;
+         display: block;
+         color: #f2f2f2;
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+     }
 
-    .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-            }
+     .navbar a:hover {
+         background-color: #ddd;
+         color: black;
+     }
 
 
-    /* Show you are currently on this page */
-    .navbar a.active {
-            background-color: #C4C4C4;
-            color: white;
-            }
+     /* Show you are currently on this page */
+     .navbar a.active {
+         background-color: #C4C4C4;
+         color: white;
+     }
 
-    .topbar {
-            background-color: #EDEEED;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            right: 0;
-            }
+     .topbar {
+         background-color: #EDEEED;
+         overflow: hidden;
+         position: fixed;
+         top: 0;
+         width: 100%;
+         right: 0;
+     }
 
-    .topbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
+     .topbar a {
+         float: left;
+         display: block;
+         color: #f2f2f2;
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+     }
 
-    #photo {
-      position: absolute;
-      top: 8cm;
-      left: 7cm;
-      width: 12cm;
-    }
+     #photo {
+         position: absolute;
+         top: 8cm;
+         left: 7cm;
+         width: 12cm;
+     }
 
-    .share{
-        height:4vh;
-        width:15vw;
-        border-radius:50px;
-        position: absolute;
-        top: 5cm;
-        left: 19cm;
-      }
+     .share{
+         height:4vh;
+         width:15vw;
+         border-radius:50px;
+         position: absolute;
+         top: 5cm;
+         left: 19cm;
+     }
 
     </style>
 
@@ -106,8 +106,9 @@
 <body>
 
 
-
-  <img id="photo" src="{% static 'queue_t/img/couple.png' %}" alt="">
+    <!-- source: modified from https://www.pinterest.com/pin/718324209316260869/ -->
+    <!-- <img id="photo" src="{% static 'queue_t/img/couple.png' %}" alt=""> -->
+    <img id="photo" style="border-bottom: 4px solid #4e2b16" src="{% static 'queue_t/img/test3.png' %}" alt="">
   <div class="col-6">
     <a href="share">
       <button class="share" style="background:#C4C4C4"><img style=" width: 1cm; " src="{% static 'queue_t/img/share.png' %}" alt=""></button>
